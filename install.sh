@@ -45,7 +45,7 @@ check_bin() {
 
 link_file() {
   local file="$1"
-  ln -fs $DOTFILES_FILES/$file $HOME/.$file && info "done!" 
+  ln -fs $DOTFILES_FILES/$file $HOME/.$file && info "$file linked" 
 }
 
 setup_tmux() {
@@ -57,9 +57,20 @@ setup_tmux() {
   fi
 }
 
+setup_zsh() {
+  local bin="zsh"
+  info "Setting up $bin"
+  local exists=$(check_bin $bin)
+  if [ "$exists" = "true" ]; then
+    link_file "zshrc" 
+    link_file "zshenv" 
+  fi
+}
+
 # Run!
 set_env
 info "Getting latest changes"
 get_repo
 setup_tmux
+setup_zsh
 
