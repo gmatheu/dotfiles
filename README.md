@@ -12,8 +12,8 @@ or
 
 Just run:
 
-`curl -sL https://raw.githubusercontent.com/gmatheu/dotfiles/master/install.sh | bash`
+`curl -sL https://raw.githubusercontent.com/gmatheu/dotfiles/master/install.sh | sh`
 
 or
 
-`curl -sL https://raw.githubusercontent.com/gmatheu/dotfiles/master/install.sh | bash -s -- --tmux --vim --zsh`
+`curl -sL https://raw.githubusercontent.com/gmatheu/dotfiles/master/install.sh | sh -s -- --tmux --vim --zsh`
