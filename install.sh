@@ -1,5 +1,6 @@
 #! /bin/sh
 
+
 NC='\033[0m'
 error() {
   color='\033[0;31m'
@@ -11,6 +12,7 @@ info() {
 } 
 
 set_env() {
+  REPO_URL=${REPO_URL:="https://github.com/gmatheu/dotfiles.git"}
   if [ ! -n "$DOTFILES_HOME" ]; then
     export DOTFILES_HOME="$HOME/.dotfiles"
   fi
@@ -18,19 +20,28 @@ set_env() {
   export DOTFILES_FILES="$DOTFILES_HOME/files"
 }
 
+update_repo() {
+  local current=`git rev-parse HEAD`
+  git pull origin master
+  git shortlog -e -n $current..HEAD
+}
+
 get_repo() {
-  if [ ! -d $DOTFILES_HOME ];
-  then
-    echo 'Cloning repository'
-    which git >/dev/null 2>&1 && \
-    git clone https://github.com/gmatheu/dotfiles.git $DOTFILES_HOME || {
-      echo 'Could not clone repository'
-      exit 1
-    }
+  local exists=$(check_bin "git")
+  if [ "$exists" = "true" ]; then
+    if [ ! -d $DOTFILES_HOME ];
+    then
+      git clone $REPO_URL $DOTFILES_HOME || {
+        echo 'Could not clone repository'
+        exit 1
+      }
+    else
+      echo 'Updating Repository'
+      cd $DOTFILES_HOME && \
+        update_repo
+    fi
   else
-    echo 'Updating Repository'
-    cd $DOTFILES_HOME && \
-      git pull origin master
+    error "git is not available. can not clone or update repo"
   fi
 }
 
