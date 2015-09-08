@@ -13,9 +13,7 @@ info() {
 
 set_env() {
   REPO_URL=${REPO_URL:="https://github.com/gmatheu/dotfiles.git"}
-  if [ ! -n "$DOTFILES_HOME" ]; then
-    export DOTFILES_HOME="$HOME/.dotfiles"
-  fi
+  DOTFILES_HOME=${DOTFILES_HOME:="$HOME/.dotfiles"}
   info "DOTFILES_HOME: $DOTFILES_HOME"
   export DOTFILES_FILES="$DOTFILES_HOME/files"
 }

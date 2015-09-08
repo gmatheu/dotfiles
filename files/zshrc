@@ -30,6 +30,7 @@ if (type antigen | grep -e 'function' > /dev/null); then
   antigen bundle gmatheu/shell-plugins vim
   antigen bundle gmatheu/shell-plugins svn
   antigen bundle gmatheu/shell-plugins virtualbox
+  antigen bundle gmatheu/dotfiles shell-plugin
 
   antigen theme avit 
 
