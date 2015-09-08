@@ -1,6 +1,5 @@
 #! /bin/sh
 
-
 NC='\033[0m'
 error() {
   color='\033[0;31m'

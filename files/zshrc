@@ -1,5 +1,4 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="avit"
 DISABLE_CORRECTION="true"
 plugins=(docker gradle lein bundler git git-extras rake autojump rvm vagrant \ 
   rails history debian history-substring-search \
@@ -7,8 +6,17 @@ plugins=(docker gradle lein bundler git git-extras rake autojump rvm vagrant \
 
 source $ZSH/oh-my-zsh.sh
 
-## antigen
-source $STU_HOME/tools/antigen/antigen.zsh
+function load_antigen() {
+  ANTIGEN_HOME="$HOME/.antigen-repo"
+  ANTIGEN_REPO="https://github.com/zsh-users/antigen.git"
+  ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh" 
+  if [ ! -f $ANTIGEN_FILE ]; then
+    echo "antigen not found"
+    git clone --single-branch $ANTIGEN_REPO $ANTIGEN_HOME
+  fi
+  source $ANTIGEN_FILE
+}
+load_antigen
 
 # Vi-mode
 # antigen bundle vi-mode # Only for prompt
