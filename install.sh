@@ -72,6 +72,10 @@ setup_zsh() {
   if [ "$exists" = "true" ]; then
     link_file "zshrc" 
     link_file "zshenv" 
+    if [ ! -z $ZSH ]; then
+      info "Setting $bin as default shell"
+      chsh -s `pwd`
+    fi
   fi
 }
 
