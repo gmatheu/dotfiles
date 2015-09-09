@@ -87,7 +87,7 @@ setup_vim() {
     local vim_home="$HOME/.vim"
     if [ ! -d $vim_home ];
     then
-      git clone git@github.com:gmatheu/dot_vim.git $vim_home || {
+      git clone https://github.com/gmatheu/dot_vim.git $vim_home || {
         echo 'Could not clone repository'
         exit 1
       }

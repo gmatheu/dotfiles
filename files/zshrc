@@ -13,7 +13,7 @@ function load_antigen() {
   ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh" 
   if [ ! -f $ANTIGEN_FILE ]; then
     echo "antigen not found"
-    git clone --single-branch $ANTIGEN_REPO $ANTIGEN_HOME
+    git clone $ANTIGEN_REPO $ANTIGEN_HOME
   fi
   source $ANTIGEN_FILE
 }
