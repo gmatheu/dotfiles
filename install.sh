@@ -79,10 +79,29 @@ setup_zsh() {
   fi
 }
 
+setup_vim() {
+  local bin="vim"
+  info "Setting up $bin"
+  local exists=$(check_bin $bin)
+  if [ "$exists" = "true" ]; then
+    local vim_home="$HOME/.vim"
+    if [ ! -d $vim_home ];
+    then
+      git clone git@github.com:gmatheu/dot_vim.git $vim_home || {
+        echo 'Could not clone repository'
+        exit 1
+      }
+      cd $vim_home && ./scripts/setup
+      $vim_home/bundle/YouCompleteMe/install.py
+    fi
+  fi
+}
+
 # Run!
 set_env
 info "Getting latest changes"
 get_repo
 setup_tmux
 setup_zsh
+setup_vim
 
