@@ -68,6 +68,7 @@ apply_bundles
 # Customize to your needs...
 export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-source ~/.profile
+if [ -f ~/.profile ]; then
+  source ~/.profile
+fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
