@@ -15,6 +15,8 @@ set_env() {
   DOTFILES_HOME=${DOTFILES_HOME:="$HOME/.dotfiles"}
   info "DOTFILES_HOME: $DOTFILES_HOME"
   export DOTFILES_FILES="$DOTFILES_HOME/files"
+  
+  VIM_HOME="$HOME/.vim"
 }
 
 update_repo() {
@@ -72,11 +74,17 @@ setup_zsh() {
   if [ "$exists" = "true" ]; then
     link_file "zshrc" 
     link_file "zshenv" 
-    if [ ! -z $ZSH ]; then
+    if [ -z $ZSH ]; then
       info "Setting $bin as default shell"
-      chsh -s `pwd`
+      sudo chsh -s `pwd`
     fi
   fi
+}
+
+configure_vim() {
+  # sudo apt-get install build-essential cmake python-dev
+  cd $VIM_HOME && ./scripts/setup
+  $VIM_HOME/bundle/YouCompleteMe/install.py
 }
 
 setup_vim() {
@@ -84,16 +92,16 @@ setup_vim() {
   info "Setting up $bin"
   local exists=$(check_bin $bin)
   if [ "$exists" = "true" ]; then
-    local vim_home="$HOME/.vim"
-    if [ ! -d $vim_home ];
+    if [ ! -d $VIM_HOME ];
     then
       git clone https://github.com/gmatheu/dot_vim.git $vim_home || {
         echo 'Could not clone repository'
         exit 1
       }
-      cd $vim_home && ./scripts/setup
-      $vim_home/bundle/YouCompleteMe/install.py
+    else
+      cd $VIM_HOME && update_repo
     fi
+    configure_vim
   fi
 }
 
