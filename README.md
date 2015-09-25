@@ -1,4 +1,4 @@
-dotfiles
+dotfiles ![Image Alt](https://api.shippable.com/projects/56049dc91895ca447417f427/badge/master)
 ===========
 
 `git clone git@github.com:gmatheu/dotfiles.git ~/.dotfiles`
