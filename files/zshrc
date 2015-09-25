@@ -35,6 +35,12 @@ function apply_bundles() {
     antigen bundle gmatheu/shell-plugins vim
     antigen bundle gmatheu/shell-plugins svn
     antigen bundle gmatheu/shell-plugins virtualbox
+    antigen bundle gmatheu/shell-plugins xclip 
+    antigen bundle gmatheu/shell-plugins grep
+    antigen bundle gmatheu/shell-plugins fast-server
+    antigen bundle gmatheu/shell-plugins start-me-up
+    antigen bundle gmatheu/shell-plugins java
+    antigen bundle gmatheu/shell-plugins tmux
     antigen bundle gmatheu/dotfiles shell-plugin
 
     antigen use oh-my-zsh
@@ -61,9 +67,24 @@ function apply_bundles() {
   fi
 }
 
+function extra_init(){
+  d=~/.dircolors
+  test -r $d && eval "$(dircolors $d)"
+  export GREP_COLOR='1;31'
+}
+
+function aliases() {
+  alias zsh_reload='source ~/.zshrc'
+  alias zshr='zsh_reload'
+  alias o="xdg-open"
+  alias xml='xmllint --format -'
+}
+
 load_antigen
 bind_keys
 apply_bundles
+extra_init
+aliases
 
 # Customize to your needs...
 export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games

@@ -53,6 +53,10 @@ check_bin() {
   }
 }
 
+check_function() {
+  type $1 | grep -q 'shell function'
+}
+
 link_file() {
   local file="$1"
   ln -fs $DOTFILES_FILES/$file $HOME/.$file && info "$file linked" 
@@ -67,6 +71,13 @@ setup_tmux() {
   fi
 }
 
+configure_zsh() {
+    if [ -z $ZSH ]; then
+      info "Setting $bin as default shell"
+      sudo chsh -s `pwd`
+    fi
+}
+
 setup_zsh() {
   local bin="zsh"
   info "Setting up $bin"
@@ -74,10 +85,7 @@ setup_zsh() {
   if [ "$exists" = "true" ]; then
     link_file "zshrc" 
     link_file "zshenv" 
-    if [ -z $ZSH ]; then
-      info "Setting $bin as default shell"
-      sudo chsh -s `pwd`
-    fi
+    configure_zsh
   fi
 }
 
