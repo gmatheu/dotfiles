@@ -48,7 +48,7 @@ check_bin() {
   local bin=$1
   which $bin >/dev/null 2>&1 && \
     echo "true" || {
-    error '$bin is not available'
+    error "$bin is not available"
     echo "false"
   }
 }
@@ -91,8 +91,8 @@ setup_zsh() {
 
 configure_vim() {
   # sudo apt-get install build-essential cmake python-dev
-  cd $VIM_HOME && ./scripts/setup
-  $VIM_HOME/bundle/YouCompleteMe/install.py
+  cd "$VIM_HOME" && ./scripts/setup
+  "$VIM_HOME"/bundle/YouCompleteMe/install.py
 }
 
 setup_vim() {
@@ -100,14 +100,14 @@ setup_vim() {
   info "Setting up $bin"
   local exists=$(check_bin $bin)
   if [ "$exists" = "true" ]; then
-    if [ ! -d $VIM_HOME ];
+    if [ ! -d "$VIM_HOME" ];
     then
-      git clone https://github.com/gmatheu/dot_vim.git $vim_home || {
+      git clone https://github.com/gmatheu/dot_vim.git "$VIM_HOME" || {
         echo 'Could not clone repository'
         exit 1
       }
     else
-      cd $VIM_HOME && update_repo
+      cd "$VIM_HOME" && update_repo
     fi
     configure_vim
   fi
