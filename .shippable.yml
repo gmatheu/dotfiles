@@ -1,8 +1,8 @@
 language: ruby
 install:
-  - ./build/install.sh
+  - curl -sL 'https://raw.githubusercontent.com/caarlos0/shell-ci-build/master/install.sh' | sh
 script:
-  - ./build/build.sh
+  - make lint
 notifications:
   email: false
 sudo: required
