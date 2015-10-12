@@ -1,6 +1,8 @@
 language: ruby
+env:
+  - XUNIT_FILE=build/test-results.xml
 install:
-  - curl -sL 'https://raw.githubusercontent.com/caarlos0/shell-ci-build/master/install.sh' | bash
+  - curl -sL 'https://raw.githubusercontent.com/gmatheu/shell-ci-build/master/install.sh' | bash
 script:
   - make lint
 notifications:

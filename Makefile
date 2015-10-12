@@ -1,5 +1,5 @@
 build_file=.bin/build.sh
-build_file_url= 'https://raw.githubusercontent.com/caarlos0/shell-ci-build/master/build.sh'
+build_file_url= 'https://raw.githubusercontent.com/gmatheu/shell-ci-build/master/build.sh'
 
 lint: build.sh
 	/bin/bash -c $(build_file)
