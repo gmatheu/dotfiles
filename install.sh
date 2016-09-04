@@ -67,6 +67,7 @@ setup_tmux() {
   info "Setting up $bin"
   local exists=$(check_bin $bin)
   if [ "$exists" = "true" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || echo 'tpm already there'
     link_file "tmux.conf" 
   fi
 }
