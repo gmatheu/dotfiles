@@ -41,6 +41,7 @@ function apply_bundles() {
     antigen bundle gmatheu/shell-plugins start-me-up
     antigen bundle gmatheu/shell-plugins java
     antigen bundle gmatheu/shell-plugins tmux
+    antigen bundle gmatheu/shell-plugins profile-secrets
     antigen bundle gmatheu/dotfiles shell-plugin
 
     antigen use oh-my-zsh
