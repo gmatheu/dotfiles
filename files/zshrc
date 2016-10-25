@@ -94,3 +94,11 @@ if [ -f ~/.profile ]; then
   source ~/.profile
 fi
 
+
+# Right PROMPT
+rvm_current() {
+    rvm current 2>/dev/null
+}
+if [ -e ~/.rvm/bin/rvm-prompt ]; then
+    RPROMPT='%{$fg[cyan]%}‹$(rvm_current)›%{$reset_color%}'
+fi
