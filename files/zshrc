@@ -102,3 +102,7 @@ rvm_current() {
 if [ -e ~/.rvm/bin/rvm-prompt ]; then
     RPROMPT='%{$fg[cyan]%}‹$(rvm_current)›%{$reset_color%}'
 fi
+
+function measure_startup_time() {
+  for i in $(seq 1 10); do time zsh -i -c exit ; done
+}
