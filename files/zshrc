@@ -26,41 +26,41 @@ function apply_bundles() {
     antigen bundle zsh-users/zsh-syntax-highlighting 
     # antigen bundle tarruda/zsh-autosuggestions
 
-    antigen bundle gmatheu/shell-plugins explain-shell
+    # antigen bundle gmatheu/shell-plugins explain-shell
     antigen bundle gmatheu/shell-plugins dirrc
-    antigen bundle gmatheu/shell-plugins docker
-    antigen bundle gmatheu/shell-plugins notify
+    # antigen bundle gmatheu/shell-plugins docker
+    # antigen bundle gmatheu/shell-plugins notify
     antigen bundle gmatheu/shell-plugins git
-    antigen bundle gmatheu/shell-plugins git-svn 
+    # antigen bundle gmatheu/shell-plugins git-svn 
     antigen bundle gmatheu/shell-plugins vim
-    antigen bundle gmatheu/shell-plugins svn
+    # antigen bundle gmatheu/shell-plugins svn
     antigen bundle gmatheu/shell-plugins virtualbox
     antigen bundle gmatheu/shell-plugins xclip 
     antigen bundle gmatheu/shell-plugins grep
-    antigen bundle gmatheu/shell-plugins fast-server
+    # antigen bundle gmatheu/shell-plugins fast-server
     antigen bundle gmatheu/shell-plugins start-me-up
-    antigen bundle gmatheu/shell-plugins java
+    # antigen bundle gmatheu/shell-plugins java
     antigen bundle gmatheu/shell-plugins tmux
     antigen bundle gmatheu/shell-plugins profile-secrets
     antigen bundle gmatheu/dotfiles shell-plugin
 
     antigen use oh-my-zsh
     antigen bundle docker 
-    antigen bundle gradle 
-    antigen bundle lein 
+    # antigen bundle gradle 
+    # antigen bundle lein 
     antigen bundle bundler 
     antigen bundle git 
     antigen bundle git-extras 
-    antigen bundle rake 
+    # antigen bundle rake 
     antigen bundle autojump 
     antigen bundle rvm 
     antigen bundle vagrant 
-    antigen bundle rails 
+    # antigen bundle rails 
     antigen bundle history 
     antigen bundle debian 
     antigen bundle history-substring-search 
     antigen bundle command-not-found 
-    antigen bundle svn-fast-info
+    # antigen bundle svn-fast-info
 
     antigen theme robbyrussell 
 
