@@ -1,10 +1,65 @@
 export DISABLE_CORRECTION="true"
 export EDITOR='vim'
 
+
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stampts section
+  user          # Username section
+  host          # Hostname section
+  dir           # Current directory section
+  git           # Git section (git_branch + git_status)
+  hg            # Mercurial section (hg_branch  + hg_status)
+  package       # Package version
+  line_sep      # Line break
+  vi_mode       # Vi-mode indicator
+  jobs          # Backgound jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+SPACESHIP_RPROMPT_ORDER=(
+  node          # Node.js section
+  ruby          # Ruby section
+  elixir        # Elixir section
+  xcode         # Xcode section
+  swift         # Swift section
+  golang        # Go section
+  php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  julia         # Julia section
+  docker        # Docker section
+  venv          # virtualenv section
+  pyenv         # Pyenv section
+  dotnet        # .NET section
+  ember         # Ember.js section
+  exec_time     # Execution time
+)
+export SPACESHIP_PROMPT_ADD_NEWLINE=false
+export SPACESHIP_PROMPT_SEPARATE_LINE=false
+export SPACESHIP_PROMPT_SUFFIXES_SHOW=false
+export SPACESHIP_PROMPT_DEFAULT_PREFIX='\0'
+export SPACESHIP_PROMPT_DEFAULT_SUFFIX='\0'
+
+export SPACESHIP_GIT_PREFIX=':'
+export SPACESHIP_GIT_SUFFIX=':'
+export SPACESHIP_GIT_SYMBOL='\0'
+export SPACESHIP_GIT_STATUS_PREFIX="["
+export SPACESHIP_GIT_STATUS_SUFFIX="] "
+export SPACESHIP_DIR_TRUNC=2
+export SPACESHIP_NODE_SYMBOL="\0"
+export SPACESHIP_DOCKER_SHOW=false
+export SPACESHIP_DOCKER_PREFIX='\0'
+export SPACESHIP_DOCKER_SYMBOL=''
+export SPACESHIP_VENV_SHOW=false
+export SPACESHIP_PYENV_PREFIX=':'
+export SPACESHIP_PYENV_SYMBOL='\0'
+export SPACESHIP_RUBY_PREFIX=':'
+export SPACESHIP_RUBY_SYMBOL='\0'
+
 function load_antigen() {
   ANTIGEN_HOME="$HOME/.antigen-repo"
   ANTIGEN_REPO="https://github.com/zsh-users/antigen.git"
-  ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh" 
+  ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh"
   if [ ! -f $ANTIGEN_FILE ]; then
     echo "antigen not found"
     git clone $ANTIGEN_REPO $ANTIGEN_HOME
@@ -24,7 +79,7 @@ bind_keys() {
 function apply_bundles() {
   if (type antigen | grep -e 'function' > /dev/null); then
     # antigen bundle sharat87/autoenv
-    antigen bundle zsh-users/zsh-syntax-highlighting 
+    antigen bundle zsh-users/zsh-syntax-highlighting
     # antigen bundle tarruda/zsh-autosuggestions
 
     # antigen bundle gmatheu/shell-plugins explain-shell
@@ -32,11 +87,11 @@ function apply_bundles() {
     # antigen bundle gmatheu/shell-plugins docker
     # antigen bundle gmatheu/shell-plugins notify
     antigen bundle gmatheu/shell-plugins git
-    # antigen bundle gmatheu/shell-plugins git-svn 
+    # antigen bundle gmatheu/shell-plugins git-svn
     antigen bundle gmatheu/shell-plugins vim
     # antigen bundle gmatheu/shell-plugins svn
     antigen bundle gmatheu/shell-plugins virtualbox
-    antigen bundle gmatheu/shell-plugins xclip 
+    antigen bundle gmatheu/shell-plugins xclip
     antigen bundle gmatheu/shell-plugins grep
     # antigen bundle gmatheu/shell-plugins fast-server
     antigen bundle gmatheu/shell-plugins start-me-up
@@ -46,24 +101,31 @@ function apply_bundles() {
     antigen bundle gmatheu/dotfiles shell-plugin
 
     antigen use oh-my-zsh
-    antigen bundle docker 
-    # antigen bundle gradle 
-    # antigen bundle lein 
-    antigen bundle bundler 
-    antigen bundle git 
-    antigen bundle git-extras 
-    # antigen bundle rake 
-    antigen bundle autojump 
-    antigen bundle rvm 
-    antigen bundle vagrant 
-    # antigen bundle rails 
-    antigen bundle history 
-    antigen bundle debian 
-    antigen bundle history-substring-search 
-    antigen bundle command-not-found 
+    antigen bundle docker
+    # antigen bundle gradle
+    # antigen bundle lein
+    antigen bundle bundler
+    antigen bundle git
+    antigen bundle git-extras
+    # antigen bundle rake
+    antigen bundle autojump
+    antigen bundle rvm
+    antigen bundle vagrant
+    antigen bundle pyenv
+    antigen bundle pip
+    # antigen bundle rails
+    antigen bundle history
+    antigen bundle debian
+    antigen bundle history-substring-search
+    antigen bundle command-not-found
     # antigen bundle svn-fast-info
-
-    antigen theme robbyrussell 
+    # antigen bundle docker/machine contrib/completion/zsh
+    # antigen bundle docker/docker contrib/completion/zsh
+    # antigen bundle docker/compose contrib/completion/zsh
+    # antigen theme robbyrussell
+    # antigen theme denysdovhan/spaceship-zsh-theme spaceship
+    # Has RPROMPT support
+    antigen theme ddrexl/spaceship-zsh-theme spaceship
 
     antigen apply
   fi
@@ -96,12 +158,12 @@ if [ -f ~/.profile ]; then
 fi
 
 # Right PROMPT
-rvm_current() {
-    rvm current 2>/dev/null
-}
-if [ -e ~/.rvm/bin/rvm-prompt ]; then
-    RPROMPT='%{$fg[cyan]%}‹$(rvm_current)›%{$reset_color%}'
-fi
+# rvm_current() {
+#     rvm current 2>/dev/null
+# }
+# if [ -e ~/.rvm/bin/rvm-prompt ]; then
+# RPS1='%{$fg[cyan]%}‹$(spaceship_prompt)›%{$reset_color%}'
+# fi
 
 function measure_startup_time() {
   for i in $(seq 1 10); do time zsh -i -c exit ; done
