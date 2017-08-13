@@ -33,30 +33,31 @@ SPACESHIP_RPROMPT_ORDER=(
   # ember         # Ember.js section
   exec_time     # Execution time
 )
-export SPACESHIP_PROMPT_ADD_NEWLINE=false
-export SPACESHIP_PROMPT_SEPARATE_LINE=false
-export SPACESHIP_PROMPT_SUFFIXES_SHOW=false
-export SPACESHIP_PROMPT_DEFAULT_PREFIX='\0'
-export SPACESHIP_PROMPT_DEFAULT_SUFFIX='\0'
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PROMPT_SUFFIXES_SHOW=false
+SPACESHIP_PROMPT_DEFAULT_PREFIX='\0'
+SPACESHIP_PROMPT_DEFAULT_SUFFIX='\0'
 
-export SPACESHIP_GIT_PREFIX=':'
-export SPACESHIP_GIT_SUFFIX=':'
-export SPACESHIP_GIT_SYMBOL='\0'
-export SPACESHIP_GIT_STATUS_PREFIX="["
-export SPACESHIP_GIT_STATUS_SUFFIX="] "
-export SPACESHIP_DIR_TRUNC=2
-export SPACESHIP_NODE_SYMBOL="\0"
-export SPACESHIP_DOCKER_SHOW=false
-export SPACESHIP_DOCKER_PREFIX='\0'
-export SPACESHIP_DOCKER_SYMBOL=''
-export SPACESHIP_VENV_SHOW=false
-export SPACESHIP_PYENV_PREFIX=':'
-export SPACESHIP_PYENV_SYMBOL='\0'
-export SPACESHIP_RUBY_PREFIX=':'
-export SPACESHIP_RUBY_SYMBOL='\0'
+SPACESHIP_GIT_PREFIX=':'
+SPACESHIP_GIT_SUFFIX=':'
+SPACESHIP_GIT_SYMBOL='\0'
+SPACESHIP_GIT_STATUS_PREFIX="["
+SPACESHIP_GIT_STATUS_SUFFIX="] "
+SPACESHIP_DIR_TRUNC=2
+SPACESHIP_NODE_SYMBOL="\0"
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_PREFIX='\0'
+SPACESHIP_DOCKER_SYMBOL=''
+SPACESHIP_VENV_SHOW=false
+SPACESHIP_PYENV_PREFIX=':'
+SPACESHIP_PYENV_SYMBOL='\0'
+SPACESHIP_RUBY_PREFIX=':'
+SPACESHIP_RUBY_SYMBOL='\0'
 
+ANTIGEN_HOME="$HOME/.antigen-repo"
+export _ANTIGEN_INSTALL_DIR=ANTIGEN_HOME
 function load_antigen() {
-  ANTIGEN_HOME="$HOME/.antigen-repo"
   ANTIGEN_REPO="https://github.com/zsh-users/antigen.git"
   ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh"
   if [ ! -f $ANTIGEN_FILE ]; then
@@ -65,6 +66,14 @@ function load_antigen() {
   fi
   source $ANTIGEN_FILE
 }
+function update_antigen() {
+  local antigen_version=v2.0.2
+  antigen selfupdate
+  echo "Using Antigen ${antigen_version}"
+  git --git-dir=$ANTIGEN_HOME/.git checkout ${antigen_version}
+  antigen reset
+}
+
 
 bind_keys() {
   # Vi-mode
