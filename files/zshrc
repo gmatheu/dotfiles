@@ -165,14 +165,6 @@ if [ -f ~/.profile ]; then
   source ~/.profile
 fi
 
-# Right PROMPT
-# rvm_current() {
-#     rvm current 2>/dev/null
-# }
-# if [ -e ~/.rvm/bin/rvm-prompt ]; then
-# RPS1='%{$fg[cyan]%}‹$(spaceship_prompt)›%{$reset_color%}'
-# fi
-
 function measure_startup_time() {
   for i in $(seq 1 10); do time zsh -i -c exit ; done
 }
