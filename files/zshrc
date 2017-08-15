@@ -58,7 +58,7 @@ SPACESHIP_RUBY_SYMBOL='\0'
 SPACESHIP_EXEC_TIME_PREFIX=' '
 
 ANTIGEN_HOME="$HOME/.antigen-repo"
-export _ANTIGEN_INSTALL_DIR=ANTIGEN_HOME
+export _ANTIGEN_INSTALL_DIR=$ANTIGEN_HOME
 
 function load_antigen() {
   ANTIGEN_REPO="https://github.com/zsh-users/antigen.git"
