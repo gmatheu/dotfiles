@@ -4,18 +4,18 @@ NC='\033[0m'
 error() {
   color='\033[0;31m'
   echo "${color}$1${NC} "
-} 
+}
 info() {
   color='\033[0;32m'
   echo "${color}$1${NC} "
-} 
+}
 
 set_env() {
   REPO_URL=${REPO_URL:="https://github.com/gmatheu/dotfiles.git"}
   DOTFILES_HOME=${DOTFILES_HOME:="$HOME/.dotfiles"}
   info "DOTFILES_HOME: $DOTFILES_HOME"
   export DOTFILES_FILES="$DOTFILES_HOME/files"
-  
+
   VIM_HOME="$HOME/.vim"
 }
 
@@ -84,6 +84,7 @@ configure_zsh() {
 }
 
 setup_zsh() {
+  sudo apt install -yqq autojump
   local bin="zsh"
   info "Setting up $bin"
   local exists=$(check_bin $bin)
