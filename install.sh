@@ -64,6 +64,7 @@ link_file() {
 }
 
 setup_tmux() {
+  info "Going to install tmux, sudo is required"
   sudo add-apt-repository -y ppa:pi-rho/dev &&\
   sudo apt-get install -yqq python-software-properties software-properties-common &&\
   sudo apt-get update -yqq &&\
@@ -72,7 +73,11 @@ setup_tmux() {
   info "Setting up $bin"
   local exists=$(check_bin $bin)
   if [ "$exists" = "true" ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || echo 'tpm already there'
+    tpm_home=$HOME/.tmux/plugins/tpm
+    if [ ! -d "$tpm_home" ]; then
+      info "Cloning tpm"
+      git clone https://github.com/tmux-plugins/tpm $tpm_home
+    fi
     link_file "tmux.conf"
   fi
 }
@@ -120,7 +125,7 @@ setup_vim() {
 setup_theme() {
   base16_home="$HOME/.config/base16-shell"
   if [ ! -d "$base16_home" ]; then
-    git clone https://github.com/chriskempson/base16-shell.git $(base16_home)
+    git clone https://github.com/chriskempson/base16-shell.git $base16_home
   fi
   info "Use 'base16' prefixed functions to change color scheme"
 }
