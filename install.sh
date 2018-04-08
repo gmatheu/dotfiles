@@ -94,9 +94,7 @@ setup_zsh() {
 }
 
 configure_vim() {
-  sudo apt install -yqq vim cmake
-  cd "$VIM_HOME" && ./scripts/setup
-  "$VIM_HOME"/bundle/YouCompleteMe/install.py
+  vim +PlugInstall +qall
 }
 
 setup_vim() {
