@@ -26,6 +26,7 @@ update_repo() {
 }
 
 get_repo() {
+  info "Getting latest changes"
   local exists=$(check_bin "git")
   if [ "$exists" = "true" ]; then
     if [ ! -d $DOTFILES_HOME ];
@@ -118,9 +119,32 @@ setup_vim() {
 
 # Run!
 set_env
-info "Getting latest changes"
-get_repo
-setup_tmux
-setup_zsh
-setup_vim
+
+if [ $# -eq 0 ]; then
+  set -- "$@" "--update" "--tmux" "--zsh" "--vim"
+fi
+for arg in "$@"; do
+  shift
+  case "$arg" in
+    "-u"|"--update")
+      get_repo
+      ;;
+    "-t"|"--tmux")
+      setup_tmux
+      ;;
+    "-v"|"--vim")
+      setup_vim
+      ;;
+    "-z"|"--zsh")
+      setup_zsh
+      ;;
+    "-c"|"--theme")
+      setup_theme
+      ;;
+    *)
+      error "Unkown option: $arg"
+      ;;
+  esac
+done
+
 
