@@ -77,10 +77,8 @@ setup_tmux() {
 }
 
 configure_zsh() {
-    if [ -z $ZSH ]; then
-      info "Setting $bin as default shell"
-      chsh -s `which zsh`
-    fi
+  cat /etc/passwd | grep -e ^$(whoami) | grep -q $(which zsh) && info "zsh is current default shell" ||\
+    (info "Setting $bin as default shell" && chsh -s $(which zsh))
 }
 
 setup_zsh() {
