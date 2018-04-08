@@ -117,6 +117,14 @@ setup_vim() {
   fi
 }
 
+setup_theme() {
+  base16_home="$HOME/.config/base16-shell"
+  if [ ! -d "$base16_home" ]; then
+    git clone https://github.com/chriskempson/base16-shell.git $(base16_home)
+  fi
+  info "Use 'base16' prefixed functions to change color scheme"
+}
+
 # Run!
 set_env
 
