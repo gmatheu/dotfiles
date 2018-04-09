@@ -214,3 +214,15 @@ function base16-shell() {
     eval "$($BASE16_SHELL/profile_helper.sh)"
 }
 base16-shell
+
+alias dirs='dirs -v'
+
+function fzf() {
+  unset -f fzf
+  [ ! -d ~/.fzf ] \
+    && echo "Cloning fzf repo" \
+    && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf \
+    && $HOME/.fzf/install
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  fzf
+}
