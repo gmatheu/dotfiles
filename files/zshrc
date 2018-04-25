@@ -38,7 +38,7 @@ SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_PROMPT_SUFFIXES_SHOW=false
 SPACESHIP_PROMPT_DEFAULT_PREFIX='\0'
 SPACESHIP_PROMPT_DEFAULT_SUFFIX=' '
-SPACESHIP_PROMPT_SYMBOL='➜ '
+SPACESHIP_PROMPT_CHAR='➜ '
 
 SPACESHIP_GIT_PREFIX='‹'
 SPACESHIP_GIT_SUFFIX='›'
@@ -80,6 +80,18 @@ function update_antigen() {
   antigen reset
 }
 
+ZPLUG_HOME="$HOME/.zplug"
+export _ZPLUG_INSTALL_DIR=$ZPLUG_HOME
+function load_zplug() {
+  ZPLUG_REPO="https://github.com/zplug/zplug"
+  ZPLUG_FILE="$ZPLUG_HOME/init.zsh"
+  if [ ! -f $ZPLUG_FILE ]; then
+    echo "zplug not found"
+    git clone $ZPLUG_REPO $ZPLUG_HOME
+    git --git-dir=$ZPLUG_HOME/.git checkout 2.3.2
+  fi
+  source $ZPLUG_FILE
+}
 
 bind_keys() {
   # Vi-mode
@@ -146,6 +158,69 @@ function apply_bundles() {
     antigen apply
   fi
 }
+load_zplug_packages() {
+  if (type zplug | grep -e 'function' > /dev/null); then
+    # # zplug "sharat87/autoenv", from:github, as:plugin
+    # # antigen bundle tarruda/zsh-autosuggestions
+    zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "zsh-users/zsh-history-substring-search"
+
+    # # antigen bundle gmatheu/shell-plugins explain-shell
+    # antigen bundle gmatheu/shell-plugins dirrc
+    # # antigen bundle gmatheu/shell-plugins docker
+    # # antigen bundle gmatheu/shell-plugins notify
+    zplug "gmatheu/shell-plugins", from:github, as:plugin, use:git/init.zsh
+    # # antigen bundle gmatheu/shell-plugins git-svn
+    # antigen bundle gmatheu/shell-plugins vim
+    # # antigen bundle gmatheu/shell-plugins svn
+    # antigen bundle gmatheu/shell-plugins virtualbox
+    # antigen bundle gmatheu/shell-plugins xclip
+    # antigen bundle gmatheu/shell-plugins grep
+    # antigen bundle gmatheu/shell-plugins fast-server
+    # antigen bundle gmatheu/shell-plugins start-me-up
+    # # antigen bundle gmatheu/shell-plugins java
+    # antigen bundle gmatheu/shell-plugins tmux
+    # antigen bundle gmatheu/shell-plugins profile-secrets
+    # antigen bundle gmatheu/dotfiles shell-plugin
+    # antigen bundle ytet5uy4/fzf-widgets
+
+    zplug "plugins/docker", from:oh-my-zsh
+    # zplug "plugins/gradle", from:oh-my-zsh
+    # zplug "plugins/lein", from:oh-my-zsh
+    zplug "plugins/bundler", from:oh-my-zsh
+    zplug "plugins/git", from:oh-my-zsh
+    zplug "plugins/git-extras", from:oh-my-zsh
+    # zplug "plugins/rake", from:oh-my-zsh
+    zplug "plugins/autojump", from:oh-my-zsh
+    zplug "plugins/rvm", from:oh-my-zsh
+    zplug "plugins/vagrant", from:oh-my-zsh
+    zplug "plugins/pyenv", from:oh-my-zsh
+    zplug "plugins/pip", from:oh-my-zsh
+    # zplug "plugins/rails", from:oh-my-zsh
+    zplug "plugins/history", from:oh-my-zsh
+    zplug "plugins/debian", from:oh-my-zsh
+    zplug "plugins/history-substring-search", from:oh-my-zsh
+    zplug "plugins/command-not-found", from:oh-my-zsh
+    zplug "plugins/z", from:oh-my-zsh
+    # zplug "plugins/svn-fast-info", from:oh-my-zsh
+
+    # # antigen bundle docker/machine contrib/completion/zsh
+    # # antigen bundle docker/docker contrib/completion/zsh
+    # # antigen bundle docker/compose contrib/completion/zsh
+    # # antigen theme denysdovhan/spaceship-zsh-theme spaceship
+    # # Has RPROMPT support
+    # antigen theme ddrexl/spaceship-zsh-theme spaceship
+    zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:plugin, at:v3.4.1
+
+    if ! zplug check --verbose; then
+        printf "Install? [y/N]: "
+        if read -q; then
+            echo; zplug install
+        fi
+    fi
+    zplug load
+  fi
+}
 
 function extra_init(){
   d=~/.dircolors
@@ -160,9 +235,11 @@ function aliases() {
   alias xml='xmllint --format -'
 }
 
-load_antigen
 bind_keys
-apply_bundles
+# load_antigen
+# apply_bundles
+load_zplug
+load_zplug_packages
 extra_init
 aliases
 
