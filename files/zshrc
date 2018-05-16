@@ -85,6 +85,9 @@ bind_keys() {
   # Vi-mode
   # antigen bundle vi-mode # Only for prompt
   # antigen bundle sharat87/zsh-vim-mode
+  bindkey -e
+  bindkey "^[[1;3C" forward-word
+  bindkey "^[[1;3D" backward-word
   bindkey "^R" history-incremental-search-backward
   bindkey "^F" forward-char # Make them work in vicmd
   bindkey "^D" delete-char-or-list
