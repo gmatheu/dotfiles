@@ -89,10 +89,10 @@ configure_zsh() {
 
 setup_zsh() {
   sudo apt install -yqq autojump
-  local bin="zsh"
+  bin="zsh"
   info "Setting up $bin"
-  local exists=$(check_bin $bin)
-  if [ "$exists" = "true" ]; then
+  zsh_exists=$(check_bin $bin)
+  if [ "$zsh_exists" = "true" ]; then
     link_file "zshrc"
     link_file "zshenv"
     configure_zsh
