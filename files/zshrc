@@ -115,6 +115,7 @@ function apply_bundles() {
     # antigen bundle gmatheu/shell-plugins java
     antigen bundle gmatheu/shell-plugins tmux
     antigen bundle gmatheu/shell-plugins profile-secrets
+    antigen bundle gmatheu/shell-plugins fzf
     antigen bundle gmatheu/dotfiles shell-plugin
     antigen bundle ytet5uy4/fzf-widgets
 
@@ -225,12 +226,4 @@ base16-shell
 
 alias dirs='dirs -v'
 
-function fzf() {
-  unset -f fzf
-  [ ! -d ~/.fzf ] \
-    && echo "Cloning fzf repo" \
-    && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf \
-    && $HOME/.fzf/install
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-  fzf
 }
