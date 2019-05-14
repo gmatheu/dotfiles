@@ -226,5 +226,3 @@ function base16-shell() {
 base16-shell
 
 alias dirs='dirs -v'
-
-}
