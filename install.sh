@@ -66,7 +66,7 @@ link_file() {
 setup_tmux() {
   info "Going to install tmux, sudo is required"
   sudo add-apt-repository -y ppa:pi-rho/dev &&\
-  sudo apt-get install -yqq python-software-properties software-properties-common &&\
+  sudo apt-get install -yqq software-properties-common &&\
   sudo apt-get update -yqq &&\
   sudo apt install -yqq tmux
   local bin="tmux"
