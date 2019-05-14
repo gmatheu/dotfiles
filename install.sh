@@ -106,6 +106,10 @@ configure_vim() {
   # --ts-completer --go-completer
 }
 
+bootstrap() {
+  sudo apt install -yqq git curl ack
+}
+
 setup_vim() {
   sudo apt install -yqq vim vim-gtk
   bin="vim"
@@ -137,7 +141,7 @@ setup_theme() {
 set_env
 
 if [ $# -eq 0 ]; then
-  set -- "$@" "--update" "--tmux" "--zsh" "--vim"
+  set -- "$@" "--update" "--bootstrap" "--vim" "--zsh" "--tmux"
 fi
 for arg in "$@"; do
   shift
@@ -145,11 +149,17 @@ for arg in "$@"; do
     "-u"|"--update")
       get_repo
       ;;
-    "-t"|"--tmux")
-      setup_tmux
+    "-b"|"--bootstrap")
+      bootstrap
+      ;;
+    "-g"|"--git")
+      setup_git
       ;;
     "-v"|"--vim")
       setup_vim
+      ;;
+    "-t"|"--tmux")
+      setup_tmux
       ;;
     "-z"|"--zsh")
       setup_zsh
