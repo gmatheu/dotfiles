@@ -110,6 +110,23 @@ bootstrap() {
   sudo apt install -yqq git curl ack
 }
 
+setup_git() {
+  sudo apt install -yqq git meld
+
+  read -p "Enter full name: " fullname
+  read -p "Enter e-mail address: " email
+  git config --global user.name "$fullname"
+  git config --global user.email $email
+  git config --global core.pager ''
+  git config --global color.ui true
+  git config --global merge.tool meld
+  git config --global diff.tool meld
+  git config --global credential.helper 'cache --timeout=3600'
+
+  info "Git global config: "
+  git config --global -l
+}
+
 setup_vim() {
   sudo apt install -yqq vim vim-gtk
   bin="vim"
