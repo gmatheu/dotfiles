@@ -107,10 +107,10 @@ configure_vim() {
 }
 
 setup_vim() {
-  sudo apt install -yqq cmake
-  local bin="vim"
+  sudo apt install -yqq vim vim-gtk
+  bin="vim"
   info "Setting up $bin"
-  local exists=$(check_bin $bin)
+  exists=$(check_bin $bin)
   if [ "$exists" = "true" ]; then
     if [ ! -d "$VIM_HOME" ];
     then
