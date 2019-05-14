@@ -112,7 +112,7 @@ function apply_bundles() {
     antigen bundle gmatheu/shell-plugins xclip
     antigen bundle gmatheu/shell-plugins grep
     antigen bundle gmatheu/shell-plugins fast-server
-    antigen bundle gmatheu/shell-plugins start-me-up
+    # antigen bundle gmatheu/shell-plugins start-me-up
     # antigen bundle gmatheu/shell-plugins java
     antigen bundle gmatheu/shell-plugins tmux
     antigen bundle gmatheu/shell-plugins profile-secrets
