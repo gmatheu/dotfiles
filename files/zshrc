@@ -63,23 +63,24 @@ SPACESHIP_PACKAGE_PREFIX='\0'
 ANTIGEN_HOME="$HOME/.antigen-repo"
 export _ANTIGEN_INSTALL_DIR=$ANTIGEN_HOME
 
+export ANTIGEN_VERSION=v2.0.2
+function update_antigen() {
+  git --git-dir=$ANTIGEN_HOME/.git checkout ${ANTIGEN_VERSION}
+  # antigen selfupdate
+  echo "Using Antigen ${ANTIGEN_VERSION}"
+  source $ANTIGEN_FILE
+  antigen reset
+}
+
 function load_antigen() {
   ANTIGEN_REPO="https://github.com/zsh-users/antigen.git"
   ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh"
   if [ ! -f $ANTIGEN_FILE ]; then
     echo "antigen not found"
-    git clone $ANTIGEN_REPO $ANTIGEN_HOME
+    git clone --branch ${ANTIGEN_VERSION} ${ANTIGEN_REPO} ${ANTIGEN_HOME}
   fi
   source $ANTIGEN_FILE
 }
-function update_antigen() {
-  local antigen_version=v2.0.2
-  antigen selfupdate
-  echo "Using Antigen ${antigen_version}"
-  git --git-dir=$ANTIGEN_HOME/.git checkout ${antigen_version}
-  antigen reset
-}
-
 
 bind_keys() {
   # Vi-mode
