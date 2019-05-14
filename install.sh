@@ -100,7 +100,10 @@ setup_zsh() {
 }
 
 configure_vim() {
+  sudo apt install -yqq build-essential cmake silversearcher-ag python3-dev
   vim +PlugInstall +qall
+  python3 ~/.local/share/nvim/plugged/YouCompleteMe/install.py --java-completer
+  # --ts-completer --go-completer
 }
 
 setup_vim() {
