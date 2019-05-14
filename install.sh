@@ -88,7 +88,7 @@ configure_zsh() {
 }
 
 setup_zsh() {
-  sudo apt install -yqq autojump
+  sudo apt install -yqq autojump zsh
   bin="zsh"
   info "Setting up $bin"
   zsh_exists=$(check_bin $bin)
