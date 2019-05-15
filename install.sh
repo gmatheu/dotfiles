@@ -88,7 +88,7 @@ configure_zsh() {
 }
 
 setup_zsh() {
-  sudo apt install -yqq autojump zsh
+  sudo apt install -yqq autojump zsh xclip
   bin="zsh"
   info "Setting up $bin"
   zsh_exists=$(check_bin $bin)
@@ -115,7 +115,7 @@ configure_vim() {
 }
 
 bootstrap() {
-  sudo apt install -yqq git curl ack
+  sudo apt install -yqq git curl ack htop
 }
 
 setup_git() {
