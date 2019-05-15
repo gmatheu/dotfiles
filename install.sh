@@ -104,6 +104,14 @@ configure_vim() {
   vim +PlugInstall +qall
   python3 ~/.local/share/nvim/plugged/YouCompleteMe/install.py --java-completer
   # --ts-completer --go-completer
+
+  fonts_dir="${DOTFILES_HOME}/fonts"
+  if [ ! -d "${fonts_dir}" ];
+  then
+    git clone https://github.com/powerline/fonts.git --depth=1 ${fonts_dir}
+  fi
+  ${fonts_dir}/install.sh
+
 }
 
 bootstrap() {
