@@ -196,6 +196,7 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
 else
   function install-nvm() {
     echo "Installing nvm"
+    mkdir "${NVM_DIR}"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
     unset -f install-nvm
   }
