@@ -112,6 +112,9 @@ configure_vim() {
   fi
   ${fonts_dir}/install.sh
 
+  echo "Installing nerd-fonts"
+  curl -o ~/.local/share/fonts/Ubuntu\ Mono\ Nerd\ Font\ Complete.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
+  fc-cache -v -f
 }
 
 bootstrap() {

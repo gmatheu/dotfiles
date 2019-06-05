@@ -118,6 +118,7 @@ function apply_bundles() {
     antigen bundle gmatheu/shell-plugins profile-secrets
     antigen bundle gmatheu/shell-plugins fzf
     antigen bundle gmatheu/shell-plugins version-managers
+    antigen bundle gmatheu/shell-plugins password-store
     antigen bundle gmatheu/dotfiles shell-plugin
     antigen bundle ytet5uy4/fzf-widgets
 
