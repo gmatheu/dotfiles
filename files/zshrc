@@ -96,12 +96,12 @@ bind_keys() {
 
 function apply_bundles() {
   if (type antigen | grep -e 'function' > /dev/null); then
-    # antigen bundle sharat87/autoenv
+    # antigen bundle Tarrasch/zsh-autoenv
     # antigen bundle tarruda/zsh-autosuggestions
     antigen bundle zsh-users/zsh-syntax-highlighting
 
     # antigen bundle gmatheu/shell-plugins explain-shell
-    antigen bundle gmatheu/shell-plugins dirrc
+    # antigen bundle gmatheu/shell-plugins dirrc
     # antigen bundle gmatheu/shell-plugins docker
     # antigen bundle gmatheu/shell-plugins notify
     antigen bundle gmatheu/shell-plugins git
@@ -119,6 +119,7 @@ function apply_bundles() {
     antigen bundle gmatheu/shell-plugins fzf
     antigen bundle gmatheu/shell-plugins version-managers
     antigen bundle gmatheu/shell-plugins password-store
+    antigen bundle gmatheu/shell-plugins file-compression
     antigen bundle gmatheu/dotfiles shell-plugin
     antigen bundle ytet5uy4/fzf-widgets
 
@@ -167,6 +168,10 @@ function aliases() {
   alias xml='xmllint --format -'
 }
 
+if [ -f ~/.profile ]; then
+  source ~/.profile
+fi
+
 load_antigen
 bind_keys
 apply_bundles
@@ -176,9 +181,6 @@ aliases
 # Customize to your needs...
 export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-if [ -f ~/.profile ]; then
-  source ~/.profile
-fi
 
 function measure_startup_time() {
   for i in $(seq 1 10); do time zsh -i -c exit ; done

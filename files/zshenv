@@ -1,3 +1,11 @@
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 DEBIAN_PREVENT_KEYBOARD_CHANGES=yes
 skip_global_compinit=1
+export GPG_ID=gmatheu@simtlix.com
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+fpath=(/snap/google-cloud-sdk/current/completion.zsh.inc $fpath)
+autoload -U compinit compdef
+compinit
