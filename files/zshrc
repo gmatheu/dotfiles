@@ -1,5 +1,17 @@
 export DISABLE_CORRECTION="true"
-export EDITOR='vim'
+export EDITOR='nvim'
+
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000000   # the number of items for the internal history list
+export SAVEHIST=1000000   # maximum number of items for the history file
+export HISTORY_IGNORE='(fg|bg)'
+
+# The meaning of these options can be found in man page of `zshoptions`.
+setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
+setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
+setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+setopt EXTENDED_HISTORY  # record command start time
 
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stampts section
@@ -10,7 +22,7 @@ SPACESHIP_PROMPT_ORDER=(
   # hg            # Mercurial section (hg_branch  + hg_status)
   package       # Package version
   line_sep      # Line break
-  vi_mode       # Vi-mode indicator
+  # vi_mode       # Vi-mode indicator
   jobs          # Backgound jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
@@ -27,8 +39,8 @@ SPACESHIP_RPROMPT_ORDER=(
   # haskell       # Haskell Stack section
   # julia         # Julia section
   docker        # Docker section
-  venv          # virtualenv section
-  pyenv         # Pyenv section
+  # venv          # virtualenv section
+  python        # was Pyenv section
   # dotnet        # .NET section
   # ember         # Ember.js section
   exec_time     # Execution time
@@ -38,7 +50,7 @@ SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_PROMPT_SUFFIXES_SHOW=false
 SPACESHIP_PROMPT_DEFAULT_PREFIX='\0'
 SPACESHIP_PROMPT_DEFAULT_SUFFIX=' '
-SPACESHIP_PROMPT_SYMBOL='➜ '
+SPACESHIP_CHAR_SYMBOL='➜ '
 
 SPACESHIP_GIT_PREFIX='‹'
 SPACESHIP_GIT_SUFFIX='›'
@@ -51,8 +63,8 @@ SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_DOCKER_PREFIX='\0'
 SPACESHIP_DOCKER_SYMBOL=''
 SPACESHIP_VENV_SHOW=false
-SPACESHIP_PYENV_PREFIX='›'
-SPACESHIP_PYENV_SYMBOL=' '
+SPACESHIP_PYTHON_PREFIX='›'
+SPACESHIP_PYTHON_SYMBOL=' '
 SPACESHIP_RUBY_PREFIX='›'
 SPACESHIP_RUBY_SYMBOL='\0'
 SPACESHIP_EXEC_TIME_PREFIX=' '
@@ -72,6 +84,15 @@ function update_antigen() {
   antigen reset
 }
 
+export ZPLUG_HOME=${HOME}/.zplug
+function load_zplug() {
+  ZPLUG_FILE="$ZPLUG_HOME/init.zsh"
+  if [ ! -f $ZPLUG_FILE ]; then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  fi
+  source $ZPLUG_FILE
+}
+
 function load_antigen() {
   ANTIGEN_REPO="https://github.com/zsh-users/antigen.git"
   ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh"
@@ -86,12 +107,99 @@ bind_keys() {
   # Vi-mode
   # antigen bundle vi-mode # Only for prompt
   # antigen bundle sharat87/zsh-vim-mode
+  export KEYTIMEOUT=1
   bindkey -e
   bindkey "^[[1;3C" forward-word
   bindkey "^[[1;3D" backward-word
   bindkey "^R" history-incremental-search-backward
+  bindkey "^?" backward-delete-char
   bindkey "^F" forward-char # Make them work in vicmd
   bindkey "^D" delete-char-or-list
+  bindkey "^a" beginning-of-line
+  bindkey "^e" end-of-line
+  bindkey "^f" history-incremental-search-forward
+  bindkey "^g" send-break
+  bindkey "^h" backward-delete-char
+  bindkey "^n" down-history
+  bindkey "^p" up-history
+  bindkey "^r" history-incremental-search-backward
+  bindkey "^u" redo
+  bindkey "^w" backward-kill-word
+  bindkey "^?" backward-delete-char
+
+  export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+  autoload -Uz select-word-style
+  select-word-style normal
+}
+
+function apply_zplug_bundles() {
+  if (type zplug | grep -e 'function' > /dev/null); then
+    # # antigen bundle Tarrasch/zsh-autoenv
+    # # antigen bundle tarruda/zsh-autosuggestions
+    zplug "zsh-users/zsh-history-substring-search"
+    #
+    # # antigen bundle gmatheu/shell-plugins explain-shell
+    zplug "gmatheu/shell-plugins", use:'dirrc/*.sh'
+    # # antigen bundle gmatheu/shell-plugins docker
+    zplug "gmatheu/shell-plugins", use:'git/*.zsh'
+    zplug "gmatheu/shell-plugins", use:'notify/*.sh'
+    # # antigen bundle gmatheu/shell-plugins git-svn
+    zplug "gmatheu/shell-plugins", use:'vim/*.zsh'
+    # # antigen bundle gmatheu/shell-plugins svn
+    # antigen bundle gmatheu/shell-plugins virtualbox
+    zplug "gmatheu/shell-plugins", use:'clipboard/*.sh'
+    zplug "gmatheu/shell-plugins", use:'grep/*.sh'
+    zplug "gmatheu/shell-plugins", use:'fast-server/*.sh'
+    zplug "gmatheu/shell-plugins", use:'quick-file-actions/*.sh'
+    # # antigen bundle gmatheu/shell-plugins start-me-up
+    # # antigen bundle gmatheu/shell-plugins java
+    zplug "gmatheu/shell-plugins", use:'profile-secrets/*.zsh'
+    zplug "gmatheu/shell-plugins", use:'fzf/*.sh'
+    zplug "gmatheu/shell-plugins", use:'version-managers/*.sh'
+    zplug "gmatheu/shell-plugins", use:'password-store/*.sh'
+    zplug "gmatheu/shell-plugins", use:'file-compression/*.sh'
+    zplug "gmatheu/shell-plugins", use:'gcloud/*.sh'
+    zplug "gmatheu/shell-plugins", use:'kubectl/*.sh'
+    zplug "gmatheu/shell-plugins", use:'aws/*.sh'
+    zplug "gmatheu/shell-plugins", use:'rclone-fzf/*.sh'
+    zplug "gmatheu/shell-plugins", use:'telegram/*.sh'
+    zplug "gmatheu/shell-plugins", use:'ssh-agent/init.sh'
+    zplug "gmatheu/shell-plugins", use:'zplug-helper/init.sh'
+    zplug "gmatheu/shell-plugins", use:'npm-scripts/init.sh'
+    zplug "gmatheu/shell-plugins", use:'tmux/init.sh'
+    zplug "gmatheu/dotfiles", use:'shell-plugin/*.sh'
+    # zpluc "ytet5uy4/fzf-widgets",
+    #
+    zplug "plugins/docker", from:oh-my-zsh
+    zplug "plugins/docker-compose", from:oh-my-zsh
+    zplug "plugins/gcloud", from:oh-my-zsh
+    zplug "plugins/git", from:oh-my-zsh
+    zplug "plugins/git-extras", from:oh-my-zsh
+    zplug "plugins/pip", from:oh-my-zsh
+    zplug "plugins/rvm", from:oh-my-zsh
+    zplug "plugins/pyenv", from:oh-my-zsh
+    zplug "plugins/debian", from:oh-my-zsh
+    zplug "plugins/history", from:oh-my-zsh
+    zplug "pLugins/history-substring-search", from:oh-my-zsh
+    zplug "plugins/command-not-found", from:oh-my-zsh
+    # zplug "plugins/z", from:oh-my-zsh
+    zplug "plugins/common-aliases", from:oh-my-zsh
+    zplug "plugins/asdf", from:oh-my-zsh
+    # zplug "MichaelAquilina/zsh-you-should-use"
+    # # antigen bundle gradle
+    # antigen bundle bundler
+    # # antigen bundle rake
+    # antigen bundle autojump
+    # antigen bundle vagrant
+    # # antigen bundle rails
+    # # antigen bundle docker/machine contrib/completion/zsh
+    # # antigen bundle docker/docker contrib/completion/zsh
+    # # antigen bundle docker/compose contrib/completion/zsh
+
+    zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+    # zplug load --verbose
+    zplug load
+  fi
 }
 
 function apply_bundles() {
@@ -101,9 +209,9 @@ function apply_bundles() {
     antigen bundle zsh-users/zsh-syntax-highlighting
 
     # antigen bundle gmatheu/shell-plugins explain-shell
-    # antigen bundle gmatheu/shell-plugins dirrc
+    antigen bundle gmatheu/shell-plugins dirrc
     # antigen bundle gmatheu/shell-plugins docker
-    # antigen bundle gmatheu/shell-plugins notify
+    antigen bundle gmatheu/shell-plugins notify
     antigen bundle gmatheu/shell-plugins git
     # antigen bundle gmatheu/shell-plugins git-svn
     antigen bundle gmatheu/shell-plugins vim
@@ -120,6 +228,9 @@ function apply_bundles() {
     antigen bundle gmatheu/shell-plugins version-managers
     antigen bundle gmatheu/shell-plugins password-store
     antigen bundle gmatheu/shell-plugins file-compression
+    # antigen bundle gmatheu/shell-plugins gcloud
+    # antigen bundle gmatheu/shell-plugins aws
+    # antigen bundle gmatheu/shell-plugins rclone-fzf
     antigen bundle gmatheu/dotfiles shell-plugin
     antigen bundle ytet5uy4/fzf-widgets
 
@@ -141,7 +252,7 @@ function apply_bundles() {
     antigen bundle debian
     antigen bundle history-substring-search
     antigen bundle command-not-found
-    antigen bundle z
+    # antigen bundle z
     # antigen bundle svn-fast-info
     # antigen bundle docker/machine contrib/completion/zsh
     # antigen bundle docker/docker contrib/completion/zsh
@@ -161,20 +272,44 @@ function extra_init(){
   export GREP_COLOR='1;31'
 }
 
+export NVIM_APPNAME=astronvim
 function aliases() {
   alias zsh_reload='source ~/.zshrc'
   alias zshr='zsh_reload'
-  alias o="xdg-open"
+  # alias o="xdg-open"
+  # https://github.com/sonnyp/Junction/blob/main/README.md#junction
+  alias o="flatpak run re.sonny.Junction"
   alias xml='xmllint --format -'
+  alias j='z'
+  alias la='ls -al'
+  alias ls='exa'
+  # alias vim='nvim'
+  alias vim='nvim'
+  alias vimf='nvim -u ~/.vim/fast.vim'
+  alias vimn='nvim -u ~/.vim/init.lua'
+  alias vf='nvim -u ~/.vim/fast.vim'
+  alias mvim='/usr/bin/vim'
+  alias minimal-vim='/usr/bin/vim'
+  # alias nvimchad='nvim'
+  alias nvim2='NVIM_APPNAME=nvim-v2 nvim'
+
+  alias ..='cd ..'
+  alias ...='cd ../..'
+
+  alias pipu='pip install -U pip'
 }
 
 if [ -f ~/.profile ]; then
   source ~/.profile
 fi
 
-load_antigen
+
+eval "$(zoxide init zsh)"
+# load_antigen
+load_zplug
 bind_keys
-apply_bundles
+# apply_bundles
+apply_zplug_bundles
 extra_init
 aliases
 
