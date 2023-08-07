@@ -1,0 +1,4 @@
+#! /bin/bash -x
+
+# tmux list-keys | "${HOME}"/.fzf/bin/fzf
+tmux list-keys | less
