@@ -1,4 +1,4 @@
 #! /bin/bash
 
 source "$HOME"/.zplug/repos/gmatheu/shell-plugins/tmux/init.sh 
-tmux_pstree
+tmux_repeat_inactive_pane
