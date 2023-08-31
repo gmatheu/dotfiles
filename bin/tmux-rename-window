@@ -1,0 +1,5 @@
+#! /bin/bash
+pane_path=$(tmux list-panes -f '#{window_active}' -F '#{pane_current_path}')
+current_directory=$(basename ${pane_path})
+active_window=$(tmux list-windows -f '#{window_active}' -F '#{window_id}')
+tmux rename-window -t "${active_window}" "${current_directory:0:15}"
