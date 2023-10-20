@@ -21,4 +21,10 @@ run: build
 share: build
 	docker run --rm -it -v `pwd`/.:/root/.dotfiles dotfiles /bin/bash
 
-.PHONY: build run share build.sh lint
+
+${HOME}/.config/starship.toml:
+	ln -fs $(CURDIR)/files/starship.toml $@
+
+starship.toml: ${HOME}/.config/starship.toml
+
+.PHONY: build run share build.sh lint starship.toml

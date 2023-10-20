@@ -91,6 +91,7 @@ function update_antigen() {
 }
 
 export ZPLUG_HOME=${HOME}/.zplug
+export ZPLUG_VERSION=2.4.2
 function load_zplug() {
   ZPLUG_FILE="$ZPLUG_HOME/init.zsh"
   if [ ! -f $ZPLUG_FILE ]; then
@@ -176,7 +177,7 @@ function apply_zplug_bundles() {
     zplug "gmatheu/dotfiles", use:'shell-plugin/*.sh'
     # zpluc "ytet5uy4/fzf-widgets",
     #
-    zplug "plugins/docker", from:oh-my-zsh
+    # zplug "plugins/docker", from:oh-my-zsh
     zplug "plugins/docker-compose", from:oh-my-zsh
     zplug "plugins/gcloud", from:oh-my-zsh
     zplug "plugins/git", from:oh-my-zsh
