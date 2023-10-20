@@ -203,7 +203,10 @@ function apply_zplug_bundles() {
     # # antigen bundle docker/docker contrib/completion/zsh
     # # antigen bundle docker/compose contrib/completion/zsh
 
-    zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+    if [[ ! -v USE_STARSHIP ]]
+    then
+      zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+    fi
     # zplug load --verbose
     zplug load
   fi
@@ -317,6 +320,10 @@ load_zplug
 bind_keys
 # apply_bundles
 apply_zplug_bundles
+if [[ -v USE_STARSHIP ]]
+then
+  eval "$(starship init zsh)"
+fi
 extra_init
 aliases
 
