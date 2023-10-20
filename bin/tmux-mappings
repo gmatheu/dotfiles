@@ -1,4 +1,5 @@
 #! /bin/bash -x
 
-# tmux list-keys | "${HOME}"/.fzf/bin/fzf
-tmux list-keys | less
+source "$HOME"/.zplug/repos/gmatheu/shell-plugins/tmux/init.sh
+# tmux list-keys | less
+tmux_popup "tmux list-keys | fzf"
