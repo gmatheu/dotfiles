@@ -94,7 +94,7 @@ style = 'cyan bold'
 disabled = true
 
 [directory]
-fish_style_pwd_dir_length = 1
+fish_style_pwd_dir_length = 0
 
 [aws]
 format = ' [$symbol($profile)(\($region\))(\[$duration\])]($style)'
