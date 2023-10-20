@@ -1,3 +1,9 @@
+if [[ -v PROFILE_ZSH ]]
+then
+  echo "Profiling with zprof (execute zprof to gather results)"
+  zmodload zsh/zprof
+fi
+zmodload zsh/zprof
 export DISABLE_CORRECTION="true"
 export EDITOR='nvim'
 
