@@ -94,6 +94,7 @@ setup_zsh() {
   zsh_exists=$(check_bin $bin)
   if [ "$zsh_exists" = "true" ]; then
     link_file "zshrc"
+    link_file "spaceshiprc.zsh"
     link_file "zshenv"
     configure_zsh
   fi
@@ -200,5 +201,3 @@ for arg in "$@"; do
       ;;
   esac
 done
-
-
