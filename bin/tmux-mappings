@@ -3,3 +3,5 @@
 source "$HOME"/.zplug/repos/gmatheu/shell-plugins/tmux/init.sh
 # tmux list-keys | less
 tmux_popup "tmux list-keys | fzf"
+
+echo ""
