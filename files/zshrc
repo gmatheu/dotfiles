@@ -108,6 +108,7 @@ function apply_zplug_bundles() {
     zplug "gmatheu/shell-plugins", use:'password-store/*.sh'
     zplug "gmatheu/shell-plugins", use:'file-compression/*.sh'
     zplug "gmatheu/shell-plugins", use:'gcloud/*.sh'
+    # zplug "daniprado/fzf-gcloud", use:'fzf-gcloud.plugin.zsh'
     zplug "gmatheu/shell-plugins", use:'kubectl/*.sh'
     zplug "gmatheu/shell-plugins", use:'aws/*.sh'
     zplug "gmatheu/shell-plugins", use:'rclone-fzf/*.sh'
@@ -116,6 +117,7 @@ function apply_zplug_bundles() {
     zplug "gmatheu/shell-plugins", use:'zplug-helper/init.sh'
     zplug "gmatheu/shell-plugins", use:'npm-scripts/init.sh'
     zplug "gmatheu/shell-plugins", use:'tmux/init.sh'
+    zplug "gmatheu/shell-plugins", use:'ripgrep/init.sh'
     zplug "gmatheu/dotfiles", use:'shell-plugin/*.sh'
     # zpluc "ytet5uy4/fzf-widgets",
     #
@@ -135,6 +137,8 @@ function apply_zplug_bundles() {
     zplug "plugins/common-aliases", from:oh-my-zsh
     zplug "plugins/asdf", from:oh-my-zsh
     # zplug "MichaelAquilina/zsh-you-should-use"
+    zplug "sobolevn/wakatime-zsh-plugin"
+    zplug chriskempson/base16-shell, from:github
     # # antigen bundle gradle
     # antigen bundle bundler
     # # antigen bundle rake
@@ -221,7 +225,7 @@ function apply_bundles() {
 function extra_init(){
   d=~/.dircolors
   test -r $d && eval "$(dircolors $d)"
-  export GREP_COLOR='1;31'
+  export GREP_COLORS='mt=1;31'
 }
 
 export NVIM_APPNAME=astronvim
@@ -244,6 +248,7 @@ function aliases() {
   alias minimal-vim='/usr/bin/vim'
   # alias nvimchad='nvim'
   alias nvim2='NVIM_APPNAME=nvim-v2 nvim'
+  alias astronvim4='NVIM_APPNAME=astronvim-v4 nvim'
 
   alias ..='cd ..'
   alias ...='cd ../..'
@@ -256,9 +261,6 @@ if [ -f ~/.profile ]; then
 fi
 
 
-eval "$(zoxide init zsh)"
-# load_antigen
-bind_keys
 # apply_bundles
 if [[ -v SKIP_ZPLUG ]]
 then
@@ -272,6 +274,10 @@ then
   echo "[experimental] Using starship as zsh prompt"
   eval "$(starship init zsh)"
 fi
+
+eval "$(zoxide init zsh)"
+# load_antigen
+bind_keys
 extra_init
 aliases
 
@@ -288,8 +294,57 @@ function base16-shell() {
   BASE16_SHELL=$HOME/.config/base16-shell/
   [ -n "$PS1"  ] && \
     [ -s $BASE16_SHELL/profile_helper.sh ] && \
-    eval "$($BASE16_SHELL/profile_helper.sh)"
+    source "$($BASE16_SHELL/profile_helper.sh)"
 }
-base16-shell
+# base16-shell
 
 alias dirs='dirs -v'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/gmatheu/.sdkman"
+[[ -s "/home/gmatheu/.sdkman/bin/sdkman-init.sh" ]] && source "/home/gmatheu/.sdkman/bin/sdkman-init.sh"
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+
+# IntelliShell
+INTELLI_HOME=${HOME}/.local/share/intelli-shell
+# export INTELLI_SEARCH_HOTKEY=\\C-@
+# export INTELLI_LABEL_HOTKEY=\\C-l
+export INTELLI_BOOKMARK_HOTKEY=\\C-n
+# export INTELLI_SKIP_ESC_BIND=0
+alias intelli-shell="$INTELLI_HOME/bin/intelli-shell"
+source $INTELLI_HOME/bin/intelli-shell.sh
+
+# export ATUIN_NOBIND="true"
+eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin gen-completions --shell zsh)"
+bindkey "^R" atuin-search
+
+eval "$(direnv hook zsh)"
+
+# . "$HOME/.asdf/asdf.sh"
+# # append completions to fpath
+# fpath=(${ASDF_DIR}/completions $fpath)
+# # initialise completions with ZSH's compinit
+# autoload -Uz compinit && compinit
+
+# [ -f /home/gmatheu/.shelloracle.zsh ] && source /home/gmatheu/.shelloracle.zsh
+
+# pnpm
+export PNPM_HOME="/home/gmatheu/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

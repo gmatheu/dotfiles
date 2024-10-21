@@ -1,11 +1,38 @@
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-DEBIAN_PREVENT_KEYBOARD_CHANGES=yes
+export DEBIAN_PREVENT_KEYBOARD_CHANGES=yes
 skip_global_compinit=1
 export GPG_ID=gmatheu@simtlix.com
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 fpath=(/snap/google-cloud-sdk/current/completion.zsh.inc $fpath)
+# autoload -U compinit compdef
+# compinit
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/asdf/installs/gcloud/465.0.0/path.zsh.inc" ]; then . "$HOME/asdf/installs/gcloud/465.0.0/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/asdf/installs/gcloud/465.0.0/completion.zsh.inc" ]; then . "$HOME/asdf/installs/gcloud/465.0.0/completion.zsh.inc"; fi
 autoload -U compinit compdef
 compinit
+
+
+export ZK_NOTEBOOK_DIR=${HOME}/Documents/notes
+export ZK_PATH=${ZK_NOTEBOOK_DIR}
+
+
+export EGET_BIN=~/.local/eget/bin
+mkdir -p $EGET_BIN
+export PATH=$EGET_BIN:$PATH
+
+export BOB_BIN=$HOME/.local/share/bob/nvim-bin
+export PATH=${BOB_BIN}:$PATH
+
+export PATH=$(go env GOPATH)/bin:$PATH
+
+export=PIPX_DEFAULT_PYTHON=$(which python)
+
+
+if [ -e /home/gmatheu/.nix-profile/etc/profile.d/nix.sh ]; then . /home/gmatheu/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
