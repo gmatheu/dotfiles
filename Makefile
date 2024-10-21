@@ -24,7 +24,10 @@ share: build
 
 ${HOME}/.config/starship.toml:
 	ln -fs $(CURDIR)/files/starship.toml $@
+${HOME}/.config/atuin/config.toml:
+	ln -fs $(CURDIR)/files/atuin.toml $@
 
+atuin.toml: ${HOME}/.config/atuin/config.toml
 starship.toml: ${HOME}/.config/starship.toml
 
-.PHONY: build run share build.sh lint starship.toml
+.PHONY: build run share build.sh lint starship.toml atuin.toml
