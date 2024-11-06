@@ -35,4 +35,10 @@ stow-dry-run:
 stow:
 	stow .
 
+
+home-manager-edit:
+	home-manager edit
+home-manager-switch:
+	home-manager switch
+
 .PHONY: build run share build.sh lint starship.toml atuin.toml
