@@ -90,8 +90,8 @@ success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set
 
 [shell]
 unknown_indicator = 'mystery shell'
-style = 'cyan bold'
-disabled = true
+style = 'cyan'
+disabled = false
 
 [directory]
 fish_style_pwd_dir_length = 0
