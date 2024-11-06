@@ -30,4 +30,9 @@ ${HOME}/.config/atuin/config.toml:
 atuin.toml: ${HOME}/.config/atuin/config.toml
 starship.toml: ${HOME}/.config/starship.toml
 
+stow-dry-run:
+	stow -n .
+stow:
+	stow .
+
 .PHONY: build run share build.sh lint starship.toml atuin.toml
