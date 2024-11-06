@@ -39,6 +39,7 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".config/nix".source = ~/.dotfiles/nix;
     ".config/starship.toml".source = ~/.dotfiles/files/starship.toml;
     ".config/atuin/config.toml".source = ~/.dotfiles/files/atuin.toml;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in

@@ -36,9 +36,16 @@ stow:
 	stow .
 
 
+home-manager-setup:
+	nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+	nix-channel --update
+	nix-shell '<home-manager>' -A install
+
 home-manager-edit:
 	home-manager edit
 home-manager-switch:
 	home-manager switch
+home-manager-clean:
+	nix-collect-garbage -d
 
 .PHONY: build run share build.sh lint starship.toml atuin.toml
