@@ -48,4 +48,10 @@ home-manager-switch:
 home-manager-clean:
 	nix-collect-garbage -d
 
+i3-setup:
+	git clone https://github.com/gmatheu/i3config ${HOME}/.config/i3
+
+neovim-setup:
+	git clone https://github.com/gmatheu/nvim-config ${HOME}/.config/nvim
+
 .PHONY: build run share build.sh lint starship.toml atuin.toml

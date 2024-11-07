@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
   # shown above.
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder ".", "/home/vagrant/.dotfiles"
-  config.vm.synced_folder "../.config/i3", "/home/vagrant/.config/i3"
+  # config.vm.synced_folder "../.config/i3", "/home/vagrant/.config/i3"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -58,8 +58,22 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    apt update
+    apt install -y nala
+    nala update
+    nala upgrade
+    nala install --assume-yes -y vim neovim tmux htop zsh git linux-headers-$(uname -r) gcc make perl kitty stow
+
+    wget -qO - https://regolith-desktop.org/regolith.key | gpg --dearmor | tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
+    echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
+      https://regolith-desktop.org/release-3_2-ubuntu-noble-amd64 noble main" | \
+      tee /etc/apt/sources.list.d/regolith.list
+    nala update
+    nala install -y regolith-desktop regolith-session-flashback regolith-look-lascaille regolith-session-sway
+
+    nala install -y ubuntu-desktop
+
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
+  SHELL
 end

@@ -18,3 +18,6 @@
 --ignore=Makefile
 --ignore=README.md
 --ignore=shell-plugin
+--ignore=flake.*
+--ignore=Vagrantfile
+--ignore=\..*
