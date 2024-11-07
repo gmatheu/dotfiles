@@ -76,7 +76,7 @@ bind_keys() {
   bindkey "^w" backward-kill-word
   bindkey "^?" backward-delete-char
 
-  export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+  export WORDCHARS='*?_~=&;!#$%^{}<>'
   autoload -Uz select-word-style
   select-word-style normal
 }
@@ -261,6 +261,7 @@ if [ -f ~/.profile ]; then
   source ~/.profile
 fi
 
+eval "$(zoxide init zsh)"
 
 # apply_bundles
 if [[ -v SKIP_ZPLUG ]]
@@ -276,7 +277,6 @@ then
   eval "$(starship init zsh)"
 fi
 
-eval "$(zoxide init zsh)"
 # load_antigen
 bind_keys
 extra_init
