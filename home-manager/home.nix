@@ -42,6 +42,9 @@
     ".config/nix".source = ~/.dotfiles/nix;
     ".config/starship.toml".source = ~/.dotfiles/files/starship.toml;
     ".config/atuin/config.toml".source = ~/.dotfiles/files/atuin.toml;
+
+    ".zshrc".source = ~/.dotfiles/files/zshrc;
+
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.

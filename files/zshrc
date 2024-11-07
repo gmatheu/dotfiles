@@ -103,7 +103,7 @@ function apply_zplug_bundles() {
     # # antigen bundle gmatheu/shell-plugins start-me-up
     # # antigen bundle gmatheu/shell-plugins java
     zplug "gmatheu/shell-plugins", use:'profile-secrets/*.zsh'
-    zplug "gmatheu/shell-plugins", use:'fzf/*.sh'
+    zplug "gmatheu/shell-plugins", use:'fzf/init.sh'
     zplug "gmatheu/shell-plugins", use:'version-managers/*.sh'
     zplug "gmatheu/shell-plugins", use:'password-store/*.sh'
     zplug "gmatheu/shell-plugins", use:'file-compression/*.sh'
@@ -119,7 +119,8 @@ function apply_zplug_bundles() {
     zplug "gmatheu/shell-plugins", use:'tmux/init.sh'
     zplug "gmatheu/shell-plugins", use:'ripgrep/init.sh'
     zplug "gmatheu/dotfiles", use:'shell-plugin/*.sh'
-    # zpluc "ytet5uy4/fzf-widgets",
+    zplug "nix-community/nix-zsh-completions", use:'init.zsh'
+    # zplug "ytet5uy4/fzf-widgets",
     #
     # zplug "plugins/docker", from:oh-my-zsh
     zplug "plugins/docker-compose", from:oh-my-zsh
