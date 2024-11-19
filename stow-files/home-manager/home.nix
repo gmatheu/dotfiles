@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+  homeFilesBase= ~/.dotfiles/home-manager-files;
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "gmatheu";
@@ -38,13 +40,14 @@
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
+
   home.file = {
 
-    ".config/starship.toml".source = ~/.dotfiles/home-manager-files/starship.toml;
-    ".config/atuin/config.toml".source = ~/.dotfiles/home-manager-files/atuin.toml;
-    ".config/yazi/yazi.toml".source = ~/.dotfiles/home-manager-files/yazi/yazi.toml;
+    ".config/starship.toml".source = homeFilesBase + /starship.toml;
+    ".config/atuin/config.toml".source = homeFilesBase + /atuin.toml;
+    ".config/yazi/yazi.toml".source =  homeFilesBase + /yazi/yazi.toml;
 
-    ".zshrc".source = ~/.dotfiles/home-manager-files/zshrc;
+    ".zshrc".source = homeFilesBase + /zshrc;
 
     ".config/dunst/dunstrc".source = ~/.config/i3/dunst/dunstrc;
     ".config/i3blocks/config".source = ~/.config/i3/i3blocks/config;
