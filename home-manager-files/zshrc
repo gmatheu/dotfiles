@@ -349,3 +349,8 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+export CARAPACE_BRIDGES='zsh,bash' # optional
+export LS_COLORS=$(vivid generate dracula)
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
