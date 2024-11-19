@@ -50,8 +50,21 @@ home-manager-clean:
 
 i3-setup:
 	git clone https://github.com/gmatheu/i3config ${HOME}/.config/i3
+vim-setup:
+	curl -sL https://raw.githubusercontent.com/gmatheu/vim-minimal/master/install.sh | sh
 
 neovim-setup:
 	git clone https://github.com/gmatheu/nvim-config ${HOME}/.config/nvim
+
+nala:
+	sudo apt update -q
+	sudo apt install -y nala
+node:
+	curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+	sudo nala install -y nodejs
+tmux:
+	sudo nala install -y tmux tmuxp
+
+bootstrap: nala node tmux
 
 .PHONY: build run share build.sh lint starship.toml atuin.toml
