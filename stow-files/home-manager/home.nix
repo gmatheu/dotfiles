@@ -40,10 +40,11 @@
   # plain files is through 'home.file'.
   home.file = {
 
-    ".config/starship.toml".source = ~/.dotfiles/files/starship.toml;
-    ".config/atuin/config.toml".source = ~/.dotfiles/files/atuin.toml;
+    ".config/starship.toml".source = ~/.dotfiles/home-manager-files/starship.toml;
+    ".config/atuin/config.toml".source = ~/.dotfiles/home-manager-files/atuin.toml;
+    ".config/yazi/yazi.toml".source = ~/.dotfiles/home-manager-files/yazi/yazi.toml;
 
-    ".config/yazi/yazi.toml".source = ~/.dotfiles/yazi/yazi.toml;
+    ".zshrc".source = ~/.dotfiles/home-manager-files/zshrc;
 
     ".zshrc".source = ~/.dotfiles/files/zshrc;
 
