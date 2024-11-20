@@ -46,6 +46,7 @@ in {
     ".config/starship.toml".source = homeFilesBase + /starship.toml;
     ".config/atuin/config.toml".source = homeFilesBase + /atuin.toml;
     ".config/yazi/yazi.toml".source =  homeFilesBase + /yazi/yazi.toml;
+    ".config/espanso/config/default.yml".source =  homeFilesBase + /espanso/default.yml;
 
     ".zshrc".source = homeFilesBase + /zshrc;
 
