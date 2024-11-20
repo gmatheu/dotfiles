@@ -1,2 +1,3 @@
 --target=~/.config
 --dir=./stow-files
+--dotfiles

@@ -1,0 +1,3 @@
+[submodule "stow-files/dot-i3"]
+	path = stow-files/i3
+	url = git@github.com:gmatheu/i3config.git
