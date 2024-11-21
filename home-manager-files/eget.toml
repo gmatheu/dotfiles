@@ -1,0 +1,21 @@
+[global]
+    quiet = false
+    show_hash = false
+    upgrade_only = true
+    system = "linux/amd64"
+    asset_filters = [ "x86_64", "^musl"]
+
+["ogham/exa"]
+    asset_filters = ["^musl"]
+
+["sxyazi/yazi"]
+    asset_filters = ["x86_64-unknown-linux-gnu.zip"]
+
+["lasantosr/intelli-shell"]
+    asset_filters = ["x86_64-unknown-linux-gnu"]
+
+["atuinsh/atuin"]
+    asset_filters = ["x86_64-unknown-linux-gnu.tar.gz"]
+
+["sharkdp/vivid"]
+    asset_filters = ["x86_64-unknown-linux-gnu.tar.gz"]

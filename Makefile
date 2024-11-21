@@ -64,7 +64,22 @@ node:
 	sudo nala install -y nodejs
 tmux:
 	sudo nala install -y tmux tmuxp
+i3:
+	sudo nala install -y i3 i3lock i3lock-fancy polybar feh rofi pulseaudio-utils libnotify-bin light dunst flameshot picom
 
-bootstrap: nala node tmux
+eget:
+	mkdir -p ${HOME}/.local/eget/bin
+	wget --no-clobber https://github.com/zyedidia/eget/releases/download/v1.3.4/eget-1.3.4-linux_amd64.tar.gz
+	tar -C ${HOME}/.local/eget/bin/ --strip-components 1 --wildcards -xf eget-1.3.4-linux_amd64.tar.gz '*/eget'
+	rm eget-1.3.4-linux_amd64.tar.gz
+eget-packages: eget
+	bash ./scripts/eget-packages.sh
+
+bootstrap: nala node tmux i3 eget eget-packages
+	sudo nala install -y stow neovim kitty htop ripgrep
+	sudo chsh -s $$(which zsh) $$(whoami)
+	curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/install.sh | bash
+	zsh -c 'source ~/.zshrc; zplug install;'
+
 
 .PHONY: build run share build.sh lint starship.toml atuin.toml

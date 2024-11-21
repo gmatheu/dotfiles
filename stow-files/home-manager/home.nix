@@ -2,11 +2,13 @@
 
 let
   homeFilesBase= ~/.dotfiles/home-manager-files;
+  username = "gmatheu";
+  # username = "vagrant";
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "gmatheu";
-  home.homeDirectory = "/home/gmatheu";
+  home.username = username;
+  home.homeDirectory = "/home/" + username;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -45,6 +47,7 @@ in {
 
     ".config/starship.toml".source = homeFilesBase + /starship.toml;
     ".config/atuin/config.toml".source = homeFilesBase + /atuin.toml;
+    ".config/.eget.toml".source = homeFilesBase + /eget.toml;
     ".config/yazi/yazi.toml".source =  homeFilesBase + /yazi/yazi.toml;
     ".config/espanso/config/default.yml".source =  homeFilesBase + /espanso/default.yml;
 
