@@ -260,6 +260,9 @@ function aliases() {
 if [ -f ~/.profile ]; then
   source ~/.profile
 fi
+export EGET_BIN=~/.local/eget/bin
+export EGET_CONFIG=$HOME/.config/.eget.toml
+export PATH=$EGET_BIN:$PATH
 
 eval "$(zoxide init zsh)"
 
@@ -309,13 +312,16 @@ export SDKMAN_DIR="/home/gmatheu/.sdkman"
 #
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 
+
+
+#
 # IntelliShell
 INTELLI_HOME=${HOME}/.local/share/intelli-shell
 # export INTELLI_SEARCH_HOTKEY=\\C-@
 # export INTELLI_LABEL_HOTKEY=\\C-l
 export INTELLI_BOOKMARK_HOTKEY=\\C-n
 # export INTELLI_SKIP_ESC_BIND=0
-alias intelli-shell="$INTELLI_HOME/bin/intelli-shell"
+alias intelli-shell="${HOME}/.local/eget/bin/intelli-shell"
 source $INTELLI_HOME/bin/intelli-shell.sh
 
 # export ATUIN_NOBIND="true"

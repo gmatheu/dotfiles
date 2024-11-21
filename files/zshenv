@@ -23,9 +23,10 @@ export ZK_NOTEBOOK_DIR=${HOME}/Documents/notes
 export ZK_PATH=${ZK_NOTEBOOK_DIR}
 
 
-export EGET_BIN=~/.local/eget/bin
-mkdir -p $EGET_BIN
-export PATH=$EGET_BIN:$PATH
+# export EGET_BIN=~/.local/eget/bin
+# export EGET_CONFIG=$HOME/.config/.eget.toml
+# mkdir -p $EGET_BIN
+# export PATH=$EGET_BIN:$PATH
 
 export BOB_BIN=$HOME/.local/share/bob/nvim-bin
 export PATH=${BOB_BIN}:$PATH
