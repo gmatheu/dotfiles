@@ -2,6 +2,7 @@
 
 let
   homeFilesBase= ~/.dotfiles/home-manager-files;
+  stowFilesBase= ~/.dotfiles/stow-files;
   username = "gmatheu";
   # username = "vagrant";
 in {
@@ -53,10 +54,11 @@ in {
 
     ".zshrc".source = homeFilesBase + /zshrc;
 
+    ".config/polybar/config.ini".source = stowFilesBase + /i3/polybar/config.ini;
+
     ".config/dunst/dunstrc".source = ~/.config/i3/dunst/dunstrc;
     ".config/i3blocks/config".source = ~/.config/i3/i3blocks/config;
     ".config/kitty/kitty.conf".source = ~/.config/i3/kitty/kitty.conf;
-    ".config/polybar/config.ini".source = ~/.config/i3/polybar/config.ini;
 
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
