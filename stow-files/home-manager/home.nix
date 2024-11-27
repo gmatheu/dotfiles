@@ -54,6 +54,7 @@ in {
 
     ".zshrc".source = homeFilesBase + /zshrc;
     ".tmux.conf".source = homeFilesBase + /tmux/tmux.conf;
+    ".tmux/scripts".source = homeFilesBase + /tmux/scripts;
 
     ".config/polybar/config.ini".source = stowFilesBase + /i3/polybar/config.ini;
 
