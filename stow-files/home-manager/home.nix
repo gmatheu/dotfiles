@@ -53,6 +53,7 @@ in {
     ".config/espanso/config/default.yml".source =  homeFilesBase + /espanso/default.yml;
 
     ".zshrc".source = homeFilesBase + /zshrc;
+    ".tmux.conf".source = homeFilesBase + /tmux/tmux.conf;
 
     ".config/polybar/config.ini".source = stowFilesBase + /i3/polybar/config.ini;
 
