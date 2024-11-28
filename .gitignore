@@ -4,3 +4,4 @@ build
 *.log
 fonts
 .vagrant
+*.bak

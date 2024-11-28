@@ -75,6 +75,12 @@ eget:
 eget-packages: eget
 	bash ./scripts/eget-packages.sh
 
+ulauncher:
+	sudo add-apt-repository universe -y
+	sudo add-apt-repository ppa:agornostal/ulauncher -y
+	sudo nala update
+	sudo nala install ulauncher
+
 bootstrap: nala node tmux i3 eget eget-packages
 	sudo nala install -y stow neovim kitty htop ripgrep
 	sudo chsh -s $$(which zsh) $$(whoami)
