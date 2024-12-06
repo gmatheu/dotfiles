@@ -33,6 +33,7 @@ starship.toml: ${HOME}/.config/starship.toml
 stow-dry-run:
 	stow -n .
 stow:
+	mkdir -p ${HOME}/.config
 	stow .
 
 
@@ -48,13 +49,9 @@ home-manager-switch:
 home-manager-clean:
 	nix-collect-garbage -d
 
-i3-setup:
-	git clone https://github.com/gmatheu/i3config ${HOME}/.config/i3
 vim-setup:
 	curl -sL https://raw.githubusercontent.com/gmatheu/vim-minimal/master/install.sh | sh
 
-neovim-setup:
-	git clone https://github.com/gmatheu/nvim-config ${HOME}/.config/nvim
 
 nala:
 	sudo apt update -q
@@ -63,7 +60,7 @@ node:
 	curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
 	sudo nala install -y nodejs
 tmux:
-	sudo nala install -y tmux tmuxp
+	sudo nala install -y tmux tmuxp ruby
 i3:
 	sudo nala install -y i3 i3lock i3lock-fancy polybar feh rofi pulseaudio-utils libnotify-bin light dunst flameshot picom
 
@@ -75,17 +72,33 @@ eget:
 eget-packages: eget
 	bash ./scripts/eget-packages.sh
 
+i3-setup: stow i3
+neovim-setup: stow eget-packages
+	sudo nala install -y luarocks
+	bob install stable
+	bob use stable
+	nvim +'AstroVersion' +'Lazy install' +qall
+tmux-setup: tmux
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || echo "tpm repository already there"
+
 ulauncher:
 	sudo add-apt-repository universe -y
 	sudo add-apt-repository ppa:agornostal/ulauncher -y
 	sudo nala update
 	sudo nala install ulauncher
 
-bootstrap: nala node tmux i3 eget eget-packages
-	sudo nala install -y stow neovim kitty htop ripgrep
+bootstrap: nala node tmux i3 eget eget-packages stow home-manager-setup neovim-setup i3-setup tmux-setup
+	sudo nala install -y stow neovim kitty htop ripgrep zsh
 	sudo chsh -s $$(which zsh) $$(whoami)
 	curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/install.sh | bash
-	zsh -c 'source ~/.zshrc; zplug install;'
+	zsh -c 'source ~/.zshrc; zplug install;' || echo ''
 
+vagrant-provision:
+	VAGRANT_BOOTSTRAP=true vagrant up --provision
+
+vagrant-default=ssh:
+	VAGRANT_BOOTSTRAP=true vagrant ssh
+vagrant-ssh:
+	vagrant ssh
 
 .PHONY: build run share build.sh lint starship.toml atuin.toml
