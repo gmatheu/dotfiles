@@ -21,15 +21,6 @@ run: build
 share: build
 	docker run --rm -it -v `pwd`/.:/root/.dotfiles dotfiles /bin/bash
 
-
-${HOME}/.config/starship.toml:
-	ln -fs $(CURDIR)/files/starship.toml $@
-${HOME}/.config/atuin/config.toml:
-	ln -fs $(CURDIR)/files/atuin.toml $@
-
-atuin.toml: ${HOME}/.config/atuin/config.toml
-starship.toml: ${HOME}/.config/starship.toml
-
 stow-dry-run:
 	stow -n .
 stow:
@@ -51,7 +42,6 @@ home-manager-clean:
 
 vim-setup:
 	curl -sL https://raw.githubusercontent.com/gmatheu/vim-minimal/master/install.sh | sh
-
 
 nala:
 	sudo apt update -q
@@ -91,7 +81,7 @@ bootstrap: nala node tmux i3 eget eget-packages stow home-manager-setup neovim-s
 	sudo nala install -y stow neovim kitty htop ripgrep zsh
 	sudo chsh -s $$(which zsh) $$(whoami)
 	curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/install.sh | bash
-	zsh -c 'source ~/.zshrc; zplug install;' || echo ''
+	zsh -c 'source ~/.zshrc; zplug install;'
 
 vagrant-provision:
 	VAGRANT_BOOTSTRAP=true vagrant up --provision
