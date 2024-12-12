@@ -3,7 +3,7 @@
     show_hash = false
     upgrade_only = true
     system = "linux/amd64"
-    asset_filters = [ "x86_64", "^musl"]
+    asset_filters = [ "x86_64", "^musl", "AppImage"]
 
 ["ogham/exa"]
     asset_filters = ["^musl"]
@@ -22,3 +22,7 @@
 
 ["MordechaiHadad/bob"]
     asset_filters = ["bob-linux-x86_64.zip"]
+
+
+["janhq/jan"]
+    asset_filters = ["AppImage"]
