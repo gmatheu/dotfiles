@@ -26,3 +26,10 @@
 
 ["janhq/jan"]
     asset_filters = ["AppImage"]
+
+["astral-sh/uv"]
+    asset_filters = ["uv-x86_64-unknown-linux-musl.tar.gz"]
+    all = true
+
+["astral-sh/ruff"]
+    asset_filters = ["ruff-x86_64-unknown-linux-musl.tar.gz"]
