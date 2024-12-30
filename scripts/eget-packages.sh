@@ -14,3 +14,4 @@ eget direnv/direnv
 eget sharkdp/vivid
 
 eget MordechaiHadad/bob
+eget joshmedeski/sesh
