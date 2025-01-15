@@ -1,0 +1,4 @@
+#! /bin/bash -x
+
+source "$HOME"/.zplug/repos/gmatheu/shell-plugins/tmux/init.sh
+tmux_popup

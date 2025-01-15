@@ -1,0 +1,11 @@
+#! /bin/bash
+
+source "$HOME"/.zplug/repos/gmatheu/shell-plugins/tmux/init.sh
+
+actions="""
+btop
+gpt
+aider
+aider --opus
+"""
+echo ${actions} | fzf --bind 'enter:become({})'
