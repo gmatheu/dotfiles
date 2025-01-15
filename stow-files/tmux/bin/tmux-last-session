@@ -1,3 +1,5 @@
 #! /bin/bash
 
 sesh last
+
+tmux display 'Switched to last session'

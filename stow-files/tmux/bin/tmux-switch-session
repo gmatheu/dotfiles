@@ -1,7 +1,8 @@
-#! /bin/bash
+#! /bin/bash -x
 
+fzf --version >/dev/null
 sesh connect $(
-  sesh list -t --icons | fzf-tmux -p 55%,60% \
+  sesh list -t --icons | ~/.fzf/bin/fzf-tmux -p 55%,60% \
     --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
     --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
     --bind 'tab:down,btab:up' \
