@@ -1,11 +1,12 @@
 { config, pkgs, ... }:
 
 let
-  homeFilesBase= ~/.dotfiles/home-manager-files;
-  stowFilesBase= ~/.dotfiles/stow-files;
+  homeFilesBase = ~/.dotfiles/home-manager-files;
+  stowFilesBase = ~/.dotfiles/stow-files;
   username = "gmatheu";
   # username = "vagrant";
-in {
+in
+{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = username;
@@ -50,14 +51,13 @@ in {
     ".config/starship.toml".source = homeFilesBase + /starship.toml;
     ".config/atuin/config.toml".source = homeFilesBase + /atuin.toml;
     ".config/.eget.toml".source = homeFilesBase + /eget.toml;
-    ".config/yazi/yazi.toml".source =  homeFilesBase + /yazi/yazi.toml;
-    ".config/espanso/config/default.yml".source =  homeFilesBase + /espanso/default.yml;
+    ".config/yazi/yazi.toml".source = homeFilesBase + /yazi/yazi.toml;
+    ".config/espanso/config/default.yml".source = homeFilesBase + /espanso/default.yml;
 
     ".zshrc".source = homeFilesBase + /zshrc;
     ".spaceshiprc.zsh".source = homeFilesBase + /spaceshiprc.zsh;
     ".zshenv".source = homeFilesBase + /zshenv;
     ".tmux.conf".source = homeFilesBase + /tmux/tmux.conf;
-    ".tmux/scripts".source = homeFilesBase + /tmux/scripts;
 
     ".config/polybar/config.ini".source = stowFilesBase + /i3/polybar/config.ini;
 
