@@ -7,7 +7,7 @@
 )
 (defsrc
   tab
-  caps
+  caps a s l ;
  ;; a   s   d   f   j   k   l   ;
 )
 (defvar
@@ -20,7 +20,10 @@
 (defalias
   tab (tap-hold $tap-time $hold-time tab lctl)
   cap (tap-hold $tap-time $hold-time esc lmet)
-  ;; a (tap-hold $tap-time $hold-time a lmet)
+  a (tap-hold $tap-time $hold-time a lctl)
+  s (tap-hold $tap-time $hold-time s lmet)
+  l (tap-hold $tap-time $hold-time l lmet)
+  ; (tap-hold $tap-time $hold-time ; lctl)
   ;; s (tap-hold $tap-time $hold-time s lctl)
   ;; d (tap-hold $tap-time $hold-time d d)
   ;; f (tap-hold $tap-time $hold-time f f)
@@ -31,6 +34,6 @@
 )
 (deflayer base
   @tab
-  @cap
+  @cap @a @s @l @;
   ;; @a  @s  @d  @f  @j  @k  @l  @;
 )
