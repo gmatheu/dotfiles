@@ -33,3 +33,6 @@
 
 ["astral-sh/ruff"]
     asset_filters = ["ruff-x86_64-unknown-linux-musl.tar.gz"]
+
+["jtroo/kanata"]
+    asset_filters=["kanata_cmd_allowed"]

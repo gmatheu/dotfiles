@@ -9,13 +9,16 @@
   tab
   caps a s l ;
  ;; a   s   d   f   j   k   l   ;
+  ;; lalt
 )
+
 (defvar
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slower to release keys and index
   ;; fingers faster.
   tap-time 750
   hold-time 500
+  tap-dance-timeout 100
 )
 (defalias
   tab (tap-hold $tap-time $hold-time tab lctl)
@@ -31,9 +34,13 @@
   ;; k (tap-hold $tap-time $hold-time k k)
   ;; l (tap-hold $tap-time $hold-time l rctl)
   ;; ; (tap-hold $tap-time $hold-time ; lmet)
+
+  ;; Define the tap-dance
+  ;; lalt (tap-dance $tap-dance-timeout (lalt (cmd "notify-send 'Double alt'")))
 )
 (deflayer base
   @tab
   @cap @a @s @l @;
   ;; @a  @s  @d  @f  @j  @k  @l  @;
+  ;; @lalt
 )
