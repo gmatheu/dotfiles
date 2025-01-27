@@ -4,12 +4,14 @@
 
 (defcfg
   process-unmapped-keys yes
+  danger-enable-cmd yes
+  linux-x11-repeat-delay-rate 400,30
 )
 (defsrc
   tab
   caps a s l ;
  ;; a   s   d   f   j   k   l   ;
-  ;; lalt
+  lalt
 )
 
 (defvar
@@ -18,7 +20,7 @@
   ;; fingers faster.
   tap-time 750
   hold-time 500
-  tap-dance-timeout 100
+  tap-dance-timeout 200
 )
 (defalias
   tab (tap-hold $tap-time $hold-time tab lctl)
@@ -36,11 +38,13 @@
   ;; ; (tap-hold $tap-time $hold-time ; lmet)
 
   ;; Define the tap-dance
-  ;; lalt (tap-dance $tap-dance-timeout (lalt (cmd "notify-send 'Double alt'")))
+  lalt (tap-dance $tap-dance-timeout (lalt
+                                       (cmd /home/gmatheu/.config/kanata/bin/kanata-toggle-espanso)
+                                       (cmd /home/gmatheu/.config/kanata/bin/kanata-restart)))
 )
 (deflayer base
   @tab
   @cap @a @s @l @;
   ;; @a  @s  @d  @f  @j  @k  @l  @;
-  ;; @lalt
+  @lalt
 )
