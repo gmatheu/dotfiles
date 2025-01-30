@@ -112,6 +112,15 @@ history_filter = [
   '^exit$',
   '--help',
   '^sesh-',
+  '^zi .*',
+  '^glof$',
+  '^ggpush$',
+  '^gapa$',
+  '^cd$',
+  '^cd ..$',
+  '^gd$',
+  '^gc$',
+  '^saa$',
 ]
 
 ## prevent commands run with cwd matching any of these regexes from being written
