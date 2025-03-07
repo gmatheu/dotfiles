@@ -23,7 +23,6 @@
 ["MordechaiHadad/bob"]
     asset_filters = ["bob-linux-x86_64.zip"]
 
-
 ["janhq/jan"]
     asset_filters = ["AppImage"]
 
@@ -34,5 +33,8 @@
 ["astral-sh/ruff"]
     asset_filters = ["ruff-x86_64-unknown-linux-musl.tar.gz"]
 
-["jtroo/kanata"]
-    asset_filters=["kanata_cmd_allowed"]
+["zed-industries/zed"]
+    asset_filters=["zed-linux-x86_64.tar.gz"]
+
+["ollama/ollama"]
+    asset_filters=["ollama-linux-amd64.tgz"]
