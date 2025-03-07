@@ -1,0 +1,9 @@
+[
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      ", `": "file_finder::Toggle",
+      ", f k": "command_palette::Toggle"
+    }
+  }
+]
