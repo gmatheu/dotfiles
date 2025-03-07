@@ -1,0 +1,7 @@
+${HOME}/.config/intelli-shell/scripts/eget_fzf_update.sh ## Updates eget packages from pre-selected list
+${HOME}/.config/intelli-shell/scripts/tmuxp_fzf_load.sh ## Shows and loads tmuxp sessions interactively
+${HOME}/.config/intelli-shell/scripts/docker_fzf_container.sh ## Stops a docker container
+${HOME}/.config/intelli-shell/scripts/tmuxp_freeze_all.sh ## Stores all tmux sessions as tmuxp files
+${HOME}/.config/intelli-shell/scripts/ollama_fzf_run.sh ## Shows and runs ollama locally available models
+${HOME}/.config/intelli-shell/scripts/docker_fzf_stop_all.sh ## Stop all running containers
+${HOME}/.config/intelli-shell/scripts/atuin_fzf_eget_update.sh ## Best can do effort to search for eget installed packages and include in pre-selected list
