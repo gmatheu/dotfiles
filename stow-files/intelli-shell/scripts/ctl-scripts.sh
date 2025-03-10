@@ -1,3 +1,8 @@
 #! /bin/bash
 
-find -L ~/.config/intelli-shell/scripts/ -name '*.sh' | fzf --preview 'cat {}' --bind "ctrl-e:become($EDITOR {}),enter:become(bash {})"
+SCRIPTS_HOME=~/.config/intelli-shell/scripts/
+find -L ${SCRIPTS_HOME} -name '*.sh' -printf '%f\n' |
+  fzf \
+    --prompt "ctrl-e: edit / Enter: execute > " \
+    --preview "cat ${SCRIPTS_HOME}{}" \
+    --bind "ctrl-e:execute($EDITOR ${SCRIPTS_HOME}{}),enter:become(bash ${SCRIPTS_HOME}{})"
