@@ -230,6 +230,17 @@ function extra_init(){
 }
 
 export NVIM_APPNAME=astronvim
+function _nvim (){
+  cmd="nvim"
+
+  if [ -f uv.lock ]; then
+    echo "Using uv to execute nvim"
+    cmd="uv run nvim"
+  fi
+
+  ${cmd} $@
+}
+
 function aliases() {
   alias zsh_reload='source ~/.zshrc'
   alias zshr='zsh_reload'
@@ -240,7 +251,10 @@ function aliases() {
   alias j='z'
   alias la='ls -al'
   alias ls='exa'
-  # alias vim='nvim'
+
+  alias nvimp=$(which nvim)
+  alias nvim=_nvim
+  alias nv=_nvim
   alias vim='nvim'
   alias vimf='nvim -u ~/.vim/fast.vim'
   alias vimn='nvim -u ~/.vim/init.lua'
