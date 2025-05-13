@@ -235,10 +235,11 @@ function _nvim (){
 
   if [ -f uv.lock ]; then
     echo "Using uv to execute nvim"
-    cmd="uv run nvim"
+    uv run nvim $@
+  else
+    nvim $@
   fi
 
-  ${cmd} $@
 }
 
 function aliases() {

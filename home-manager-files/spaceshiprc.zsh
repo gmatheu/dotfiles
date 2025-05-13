@@ -23,6 +23,7 @@ SPACESHIP_RPROMPT_ORDER=(
   # haskell       # Haskell Stack section
   # julia         # Julia section
   docker        # Docker section
+  uv
   venv          # virtualenv section
   python        # was Pyenv section
   jobs
@@ -55,6 +56,7 @@ SPACESHIP_DOCKER_SYMBOL=''
 
 SPACESHIP_PYTHON_PREFIX='›'
 SPACESHIP_PYTHON_SYMBOL=' '
+SPACESHIP_UV_SHOW=true
 
 SPACESHIP_VENV_SHOW=true
 
