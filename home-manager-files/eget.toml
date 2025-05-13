@@ -38,3 +38,9 @@
 
 ["ollama/ollama"]
     asset_filters=["ollama-linux-amd64.tgz"]
+
+["jtroo/kanata"]
+    asset_filters=["kanata_cmd_allowed"]
+
+['Wilfred/difftastic']
+    asset_filters = ["difft-x86_64-unknown-linux-musl"]
