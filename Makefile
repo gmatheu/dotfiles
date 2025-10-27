@@ -52,7 +52,7 @@ node:
 tmux:
 	sudo nala install -y tmux tmuxp ruby
 i3:
-	sudo nala install -y i3 i3lock i3lock-fancy polybar feh rofi pulseaudio-utils libnotify-bin light dunst flameshot picom
+	sudo nala install -y i3 i3lock i3lock-fancy polybar feh rofi pulseaudio-utils libnotify-bin light dunst flameshot picom xdotool arandr
 
 eget:
 	mkdir -p ${HOME}/.local/eget/bin
@@ -77,7 +77,7 @@ ulauncher:
 	sudo nala update
 	sudo nala install ulauncher
 
-bootstrap: nala node tmux i3 eget eget-packages stow home-manager-setup neovim-setup i3-setup tmux-setup
+bootstrap: nala node tmux i3 eget eget-packages stow home-manager-setup neovim-setup i3-setup tmux-setup cmake direnv build-essential pv golang luarocks fd fdfind
 	sudo nala install -y stow neovim kitty htop ripgrep zsh
 	sudo chsh -s $$(which zsh) $$(whoami)
 	curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/install.sh | bash
