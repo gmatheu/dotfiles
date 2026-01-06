@@ -5,3 +5,9 @@ build
 fonts
 .vagrant
 *.bak
+.gitignore
+
+#ln-remote-chunk: https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/chunks/self.gitignore
+# Ignore files created by this repository
+*.old
+#ln-remote-chunk:end

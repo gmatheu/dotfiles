@@ -21,11 +21,16 @@ run: build
 share: build
 	docker run --rm -it -v `pwd`/.:/root/.dotfiles dotfiles /bin/bash
 
+STOW_DIR=${HOME}/.config
+#ln-remote-chunk: https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/chunks/stow.make.inc
+## Set this variable above STOW_DIR=<stow directory>
 stow-dry-run:
 	stow -n .
 stow:
-	mkdir -p ${HOME}/.config
+	mkdir -p ${STOW_DIR}
 	stow .
+#ln-remote-chunk:end
+
 
 
 home-manager-setup:

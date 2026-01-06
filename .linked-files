@@ -1,0 +1,4 @@
+ln-remote-files,https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/ln-remote-files.sh,+x
+ln-remote-chunk,https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/ln-remote-chunk.sh,+x
+stow-files/kitty/kitty.conf,https://raw.githubusercontent.com/gmatheu/i3config/refs/heads/main/kitty/kitty.conf,+r
+stow-files/dunst/dunstrc,https://raw.githubusercontent.com/gmatheu/i3config/refs/heads/main/dunst/dunstrc,+r
