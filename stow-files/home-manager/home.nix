@@ -50,7 +50,7 @@ in
 
     ".config/starship.toml".source = homeFilesBase + /starship.toml;
     ".config/atuin/config.toml".source = homeFilesBase + /atuin.toml;
-    ".config/.eget.toml".source = homeFilesBase + /eget.toml;
+    # ".config/.eget.toml".source = homeFilesBase + /eget.toml;
     ".config/yazi/yazi.toml".source = homeFilesBase + /yazi/yazi.toml;
     ".config/espanso/config/default.yml".source = homeFilesBase + /espanso/default.yml;
 
@@ -101,7 +101,7 @@ in
   programs.home-manager.enable = true;
 
   programs.carapace = {
-    enable = true;
+    enable = false;
   };
 
   # programs.zsh.enable = true;

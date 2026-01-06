@@ -1,0 +1,132 @@
+[installed]
+  [installed."MordechaiHadad/bob"]
+    repo = "MordechaiHadad/bob"
+    target = "MordechaiHadad/bob"
+    installed_at = 2026-01-05T13:33:35.383442647-03:00
+    url = "https://github.com/MordechaiHadad/bob/releases/download/v4.1.6/bob-linux-x86_64.zip"
+    asset = "bob-linux-x86_64.zip"
+    tool = "bob"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/bob"]
+    tag = "v4.1.6"
+    [installed."MordechaiHadad/bob".options]
+      asset = ["bob-linux-x86_64.zip"]
+      upgrade_only = true
+  [installed."NeuralNomadsAI/CodeNomad"]
+    repo = "NeuralNomadsAI/CodeNomad"
+    target = "NeuralNomadsAI/CodeNomad"
+    installed_at = 2026-01-05T15:01:29.141928431-03:00
+    url = "https://github.com/NeuralNomadsAI/CodeNomad/releases/download/v0.4.0/CodeNomad-Tauri-0.4.0-linux-x64.AppImage"
+    asset = "CodeNomad-Tauri-0.4.0-linux-x64.AppImage"
+    tool = "CodeNomad"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/CodeNomad"]
+    [installed."NeuralNomadsAI/CodeNomad".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."Wilfred/difftastic"]
+    repo = "Wilfred/difftastic"
+    target = "Wilfred/difftastic"
+    installed_at = 2026-01-05T13:34:18.439682914-03:00
+    url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-musl.tar.gz"
+    asset = "difft-x86_64-unknown-linux-musl.tar.gz"
+    tool = "difftastic"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/difft"]
+    tag = "0.67.0"
+    [installed."Wilfred/difftastic".options]
+      asset = ["difft-x86_64-unknown-linux-musl"]
+      tag = "0.67.0"
+      upgrade_only = true
+  [installed."achristmascarl/rainfrog"]
+    repo = "achristmascarl/rainfrog"
+    target = "achristmascarl/rainfrog"
+    installed_at = 2025-12-26T09:25:32.174481338-03:00
+    url = "https://github.com/achristmascarl/rainfrog/releases/download/v0.3.12/rainfrog-v0.3.12-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "rainfrog-v0.3.12-x86_64-unknown-linux-gnu.tar.gz"
+    tool = "rainfrog"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/rainfrog"]
+    [installed."achristmascarl/rainfrog".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."charmbracelet/crush"]
+    repo = "charmbracelet/crush"
+    target = "charmbracelet/crush"
+    installed_at = 2026-01-05T13:34:01.169145014-03:00
+    url = "https://github.com/charmbracelet/crush/releases/download/v0.30.2/crush_0.30.2_Linux_x86_64.tar.gz"
+    asset = "crush_0.30.2_Linux_x86_64.tar.gz"
+    tool = "crush"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/crush"]
+    [installed."charmbracelet/crush".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."derailed/k9s"]
+    repo = "derailed/k9s"
+    target = "derailed/k9s"
+    installed_at = 2026-01-05T13:34:22.158435101-03:00
+    url = "https://github.com/derailed/k9s/releases/download/v0.50.16/k9s_Linux_amd64.tar.gz"
+    asset = "k9s_Linux_amd64.tar.gz"
+    tool = "k9s"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/k9s"]
+    tag = "v0.50.16"
+    [installed."derailed/k9s".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."fcoury/tsql"]
+    repo = "fcoury/tsql"
+    target = "fcoury/tsql"
+    installed_at = 2026-01-05T13:34:24.076789434-03:00
+    url = "https://github.com/fcoury/tsql/releases/download/v0.4.0/tsql-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "tsql-x86_64-unknown-linux-gnu.tar.gz"
+    tool = "tsql"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/tsql"]
+    tag = "v0.4.0"
+    [installed."fcoury/tsql".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."jesseduffield/lazygit"]
+    repo = "jesseduffield/lazygit"
+    target = "jesseduffield/lazygit"
+    installed_at = 2026-01-05T13:33:30.923908096-03:00
+    url = "https://github.com/jesseduffield/lazygit/releases/download/v0.58.0/lazygit_0.58.0_linux_x86_64.tar.gz"
+    asset = "lazygit_0.58.0_linux_x86_64.tar.gz"
+    tool = "lazygit"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/lazygit"]
+    tag = "v0.58.0"
+    [installed."jesseduffield/lazygit".options]
+      system = "linux/amd64"
+      tag = "v0.58.0"
+      upgrade_only = true
+  [installed."joshmedeski/sesh"]
+    repo = "joshmedeski/sesh"
+    target = "joshmedeski/sesh"
+    installed_at = 2026-01-05T13:34:09.154050375-03:00
+    url = "https://github.com/joshmedeski/sesh/releases/download/v2.20.0/sesh_Linux_x86_64.tar.gz"
+    asset = "sesh_Linux_x86_64.tar.gz"
+    tool = "sesh"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/sesh"]
+    tag = "v2.20.0"
+    [installed."joshmedeski/sesh".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."rclone/rclone"]
+    repo = "rclone/rclone"
+    target = "rclone/rclone"
+    installed_at = 2026-01-05T13:33:25.030533874-03:00
+    url = "https://github.com/rclone/rclone/releases/download/v1.72.1/rclone-v1.72.1-linux-amd64.zip"
+    asset = "rclone-v1.72.1-linux-amd64.zip"
+    tool = "rclone"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/rclone"]
+    tag = "v1.72.1"
+    [installed."rclone/rclone".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."sst/opencode"]
+    repo = "sst/opencode"
+    target = "sst/opencode"
+    installed_at = 2026-01-05T13:34:11.735431543-03:00
+    url = "https://github.com/anomalyco/opencode/releases/download/v1.1.2/opencode-linux-x64.tar.gz"
+    asset = "opencode-linux-x64.tar.gz"
+    tool = "opencode"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/opencode"]
+    tag = "v1.1.2"
+    [installed."sst/opencode".options]
+      system = "linux/amd64"
+      upgrade_only = true

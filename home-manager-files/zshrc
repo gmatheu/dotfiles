@@ -1,5 +1,4 @@
-if [[ -v PROFILE_ZSH ]]
-then
+if [[ -v PROFILE_ZSH ]]; then
   echo "Profiling with zprof (execute zprof to gather results)"
   zmodload zsh/zprof
 fi
@@ -8,17 +7,16 @@ export DISABLE_CORRECTION="true"
 export EDITOR='nvim'
 
 export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=1000000   # the number of items for the internal history list
-export SAVEHIST=1000000   # maximum number of items for the history file
+export HISTSIZE=1000000 # the number of items for the internal history list
+export SAVEHIST=1000000 # maximum number of items for the history file
 export HISTORY_IGNORE='(fg|bg)'
 
 # The meaning of these options can be found in man page of `zshoptions`.
-setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
-setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
-setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
-setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
-setopt EXTENDED_HISTORY  # record command start time
-
+setopt HIST_IGNORE_ALL_DUPS    # do not put duplicated command into history list
+setopt HIST_SAVE_NO_DUPS       # do not save duplicated command
+setopt HIST_REDUCE_BLANKS      # remove unnecessary blanks
+setopt INC_APPEND_HISTORY_TIME # append command to history file immediately after execution
+setopt EXTENDED_HISTORY        # record command start time
 
 ANTIGEN_HOME="$HOME/.antigen-repo"
 export _ANTIGEN_INSTALL_DIR=$ANTIGEN_HOME
@@ -82,7 +80,7 @@ bind_keys() {
 }
 
 function apply_zplug_bundles() {
-  if (type zplug | grep -e 'function' > /dev/null); then
+  if (type zplug | grep -e 'function' >/dev/null); then
     # # antigen bundle Tarrasch/zsh-autoenv
     # # antigen bundle tarruda/zsh-autosuggestions
     zplug "zsh-users/zsh-history-substring-search"
@@ -138,7 +136,7 @@ function apply_zplug_bundles() {
     zplug "plugins/common-aliases", from:oh-my-zsh
     zplug "plugins/asdf", from:oh-my-zsh
     # zplug "MichaelAquilina/zsh-you-should-use"
-    zplug "sobolevn/wakatime-zsh-plugin"
+    #zplug "sobolevn/wakatime-zsh-plugin"
     zplug chriskempson/base16-shell, from:github
     # # antigen bundle gradle
     # antigen bundle bundler
@@ -150,8 +148,7 @@ function apply_zplug_bundles() {
     # # antigen bundle docker/docker contrib/completion/zsh
     # # antigen bundle docker/compose contrib/completion/zsh
 
-    if [[ ! -v USE_STARSHIP ]]
-    then
+    if [[ ! -v USE_STARSHIP ]]; then
       zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
     fi
     # zplug load --verbose
@@ -160,7 +157,7 @@ function apply_zplug_bundles() {
 }
 
 function apply_bundles() {
-  if (type antigen | grep -e 'function' > /dev/null); then
+  if (type antigen | grep -e 'function' >/dev/null); then
     # antigen bundle Tarrasch/zsh-autoenv
     # antigen bundle tarruda/zsh-autosuggestions
     antigen bundle zsh-users/zsh-syntax-highlighting
@@ -223,14 +220,14 @@ function apply_bundles() {
   fi
 }
 
-function extra_init(){
+function extra_init() {
   d=~/.dircolors
   test -r $d && eval "$(dircolors $d)"
   export GREP_COLORS='mt=1;31'
 }
 
 export NVIM_APPNAME=astronvim
-function _nvim (){
+function _nvim() {
   cmd="nvim"
 
   if [ -f uv.lock ]; then
@@ -282,15 +279,13 @@ export PATH=$EGET_BIN:$PATH
 eval "$(zoxide init zsh)"
 
 # apply_bundles
-if [[ -v SKIP_ZPLUG ]]
-then
+if [[ -v SKIP_ZPLUG ]]; then
   echo "Skipping zplug use apply_zplug_bundles to load plugins"
 else
   load_zplug
   apply_zplug_bundles
 fi
-if [[ -v USE_STARSHIP ]]
-then
+if [[ -v USE_STARSHIP ]]; then
   echo "[experimental] Using starship as zsh prompt"
   eval "$(starship init zsh)"
 fi
@@ -303,16 +298,14 @@ aliases
 # Customize to your needs...
 export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-
 function measure_startup_time() {
-  for i in $(seq 1 10); do time zsh -i -c exit ; done
+  for i in $(seq 1 10); do time zsh -i -c exit; done
 }
-
 
 function base16-shell() {
   BASE16_SHELL=$HOME/.config/base16-shell/
-  [ -n "$PS1"  ] && \
-    [ -s $BASE16_SHELL/profile_helper.sh ] && \
+  [ -n "$PS1" ] &&
+    [ -s $BASE16_SHELL/profile_helper.sh ] &&
     source "$($BASE16_SHELL/profile_helper.sh)"
 }
 # base16-shell
@@ -327,8 +320,6 @@ export SDKMAN_DIR="/home/gmatheu/.sdkman"
 #
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 
-
-
 #
 # IntelliShell
 INTELLI_HOME=${HOME}/.local/share/intelli-shell
@@ -337,7 +328,8 @@ INTELLI_HOME=${HOME}/.local/share/intelli-shell
 export INTELLI_BOOKMARK_HOTKEY=\\C-n
 # export INTELLI_SKIP_ESC_BIND=0
 alias intelli-shell="${HOME}/.local/eget/bin/intelli-shell"
-source $INTELLI_HOME/bin/intelli-shell.sh
+# source $INTELLI_HOME/bin/intelli-shell.sh
+eval $($INTELLI_HOME/bin/intelli-shell init zsh)
 
 # export ATUIN_NOBIND="true"
 eval "$(atuin init zsh --disable-up-arrow)"
@@ -357,22 +349,23 @@ eval "$(direnv hook zsh)"
 # pnpm
 export PNPM_HOME="/home/gmatheu/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 #
 function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 function sesh-switch() {
-  sesh connect $(sesh list -t --icons | fzf-tmux -p 55%,60% \
+  sesh connect $(
+    sesh list -t --icons | fzf-tmux -p 55%,60% \
       --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
       --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
       --bind 'tab:down,btab:up' \
@@ -381,14 +374,18 @@ function sesh-switch() {
       --bind 'ctrl-g:change-prompt(⚙<fe0f>  )+reload(sesh list -c --icons)' \
       --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
       --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)'
   )
 }
 function sesh-last() {
   sesh last
 }
 
-export CARAPACE_BRIDGES='zsh,bash' # optional
+# export CARAPACE_BRIDGES='zsh,bash' # optional
 export LS_COLORS=$(vivid generate dracula)
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
+# source <(carapace _carapace)
+
+compdef _files _nvim
+# autoload -U compinit
+# compinit

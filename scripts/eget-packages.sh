@@ -15,3 +15,10 @@ eget sharkdp/vivid
 
 eget MordechaiHadad/bob
 eget joshmedeski/sesh
+eget charmbracelet/crush
+eget jesseduffield/lazygit
+eget sharkdp/fd
+eget derailed/k9s
+eget asdf-vm/asdf
+eget charmbracelet/mod
+eget dimo414/bkt
