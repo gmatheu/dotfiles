@@ -96,4 +96,12 @@ vagrant-default=ssh:
 vagrant-ssh:
 	vagrant ssh
 
+#ln-remote-chunk: https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/chunks/ln-remote-files.make.inc
+## Execute ln-remote-files and ln-remote-chunks
+ln-remote-files:
+	bash ln-remote-files
+ln-remote-chunk:
+	bash ln-remote-chunk
+#ln-remote-chunk:end
+
 .PHONY: build run share build.sh lint starship.toml atuin.toml
