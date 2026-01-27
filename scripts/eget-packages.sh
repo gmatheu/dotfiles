@@ -5,6 +5,12 @@ mkdir -p $EGET_BIN
 export PATH=$EGET_BIN:$PATH
 export EGET_CONFIG=$HOME/.dotfiles/home-manager-files/eget.toml
 
+command -v eget >/dev/null 2>&1 || {
+	wget https://github.com/gmatheu/eget/releases/download/1.4.0/eget_Linux_x86_64.tar.gz
+	tar -xzf eget_Linux_x86_64.tar.gz -C $EGET_BIN
+	rm eget_Linux_x86_64.tar.gz
+}
+
 eget ogham/exa
 eget sxyazi/yazi
 eget lasantosr/intelli-shell
