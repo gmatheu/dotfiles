@@ -11,3 +11,4 @@ fonts
 # Ignore files created by this repository
 *.old
 #ln-remote-chunk:end
+rofi

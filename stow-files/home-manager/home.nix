@@ -48,11 +48,11 @@ in
 
   home.file = {
 
-    ".config/starship.toml".source = homeFilesBase + /starship.toml;
-    ".config/atuin/config.toml".source = homeFilesBase + /atuin.toml;
+    # ".config/starship.toml".source = homeFilesBase + /starship.toml;
+    # ".config/atuin/config.toml".source = homeFilesBase + /atuin.toml;
     # ".config/.eget.toml".source = homeFilesBase + /eget.toml;
-    ".config/yazi/yazi.toml".source = homeFilesBase + /yazi/yazi.toml;
-    ".config/espanso/config/default.yml".source = homeFilesBase + /espanso/default.yml;
+    # ".config/yazi/yazi.toml".source = homeFilesBase + /yazi/yazi.toml;
+    # ".config/espanso/config/default.yml".source = homeFilesBase + /espanso/default.yml;
 
     ".zshrc".source = homeFilesBase + /zshrc;
     ".spaceshiprc.zsh".source = homeFilesBase + /spaceshiprc.zsh;
