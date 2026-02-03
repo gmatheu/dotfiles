@@ -1,0 +1,391 @@
+if [[ -v PROFILE_ZSH ]]; then
+  echo "Profiling with zprof (execute zprof to gather results)"
+  zmodload zsh/zprof
+fi
+zmodload zsh/zprof
+export DISABLE_CORRECTION="true"
+export EDITOR='nvim'
+
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000000 # the number of items for the internal history list
+export SAVEHIST=1000000 # maximum number of items for the history file
+export HISTORY_IGNORE='(fg|bg)'
+
+# The meaning of these options can be found in man page of `zshoptions`.
+setopt HIST_IGNORE_ALL_DUPS    # do not put duplicated command into history list
+setopt HIST_SAVE_NO_DUPS       # do not save duplicated command
+setopt HIST_REDUCE_BLANKS      # remove unnecessary blanks
+setopt INC_APPEND_HISTORY_TIME # append command to history file immediately after execution
+setopt EXTENDED_HISTORY        # record command start time
+
+ANTIGEN_HOME="$HOME/.antigen-repo"
+export _ANTIGEN_INSTALL_DIR=$ANTIGEN_HOME
+
+export ANTIGEN_VERSION=v2.0.2
+function update_antigen() {
+  git --git-dir=$ANTIGEN_HOME/.git checkout ${ANTIGEN_VERSION}
+  # antigen selfupdate
+  echo "Using Antigen ${ANTIGEN_VERSION}"
+  source $ANTIGEN_FILE
+  antigen reset
+}
+
+export ZPLUG_HOME=${HOME}/.zplug
+export ZPLUG_VERSION=2.4.2
+function load_zplug() {
+  ZPLUG_FILE="$ZPLUG_HOME/init.zsh"
+  if [ ! -f $ZPLUG_FILE ]; then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  fi
+  source $ZPLUG_FILE
+}
+
+function load_antigen() {
+  ANTIGEN_REPO="https://github.com/zsh-users/antigen.git"
+  ANTIGEN_FILE="$ANTIGEN_HOME/antigen.zsh"
+  if [ ! -f $ANTIGEN_FILE ]; then
+    echo "antigen not found"
+    git clone --branch ${ANTIGEN_VERSION} ${ANTIGEN_REPO} ${ANTIGEN_HOME}
+  fi
+  source $ANTIGEN_FILE
+}
+
+bind_keys() {
+  # Vi-mode
+  # antigen bundle vi-mode # Only for prompt
+  # antigen bundle sharat87/zsh-vim-mode
+  export KEYTIMEOUT=1
+  bindkey -e
+  bindkey "^[[1;3C" forward-word
+  bindkey "^[[1;3D" backward-word
+  bindkey "^R" history-incremental-search-backward
+  bindkey "^?" backward-delete-char
+  bindkey "^F" forward-char # Make them work in vicmd
+  bindkey "^D" delete-char-or-list
+  bindkey "^a" beginning-of-line
+  bindkey "^e" end-of-line
+  bindkey "^f" history-incremental-search-forward
+  bindkey "^g" send-break
+  bindkey "^h" backward-delete-char
+  bindkey "^n" down-history
+  bindkey "^p" up-history
+  bindkey "^r" history-incremental-search-backward
+  bindkey "^u" redo
+  bindkey "^w" backward-kill-word
+  bindkey "^?" backward-delete-char
+
+  export WORDCHARS='*?_~=&;!#$%^{}<>'
+  autoload -Uz select-word-style
+  select-word-style normal
+}
+
+function apply_zplug_bundles() {
+  if (type zplug | grep -e 'function' >/dev/null); then
+    # # antigen bundle Tarrasch/zsh-autoenv
+    # # antigen bundle tarruda/zsh-autosuggestions
+    zplug "zsh-users/zsh-history-substring-search"
+    #
+    # # antigen bundle gmatheu/shell-plugins explain-shell
+    zplug "gmatheu/shell-plugins", use:'dirrc/*.sh'
+    # # antigen bundle gmatheu/shell-plugins docker
+    zplug "gmatheu/shell-plugins", use:'git/*.zsh'
+    zplug "gmatheu/shell-plugins", use:'notify/*.sh'
+    # # antigen bundle gmatheu/shell-plugins git-svn
+    zplug "gmatheu/shell-plugins", use:'vim/*.zsh'
+    # # antigen bundle gmatheu/shell-plugins svn
+    # antigen bundle gmatheu/shell-plugins virtualbox
+    zplug "gmatheu/shell-plugins", use:'clipboard/*.sh'
+    zplug "gmatheu/shell-plugins", use:'grep/*.sh'
+    zplug "gmatheu/shell-plugins", use:'fast-server/*.sh'
+    zplug "gmatheu/shell-plugins", use:'quick-file-actions/*.sh'
+    # # antigen bundle gmatheu/shell-plugins start-me-up
+    # # antigen bundle gmatheu/shell-plugins java
+    zplug "gmatheu/shell-plugins", use:'profile-secrets/*.zsh'
+    zplug "gmatheu/shell-plugins", use:'fzf/init.sh'
+    zplug "gmatheu/shell-plugins", use:'version-managers/*.sh'
+    zplug "gmatheu/shell-plugins", use:'password-store/*.sh'
+    zplug "gmatheu/shell-plugins", use:'file-compression/*.sh'
+    zplug "gmatheu/shell-plugins", use:'gcloud/*.sh'
+    # zplug "daniprado/fzf-gcloud", use:'fzf-gcloud.plugin.zsh'
+    zplug "gmatheu/shell-plugins", use:'kubectl/*.sh'
+    zplug "gmatheu/shell-plugins", use:'aws/*.sh'
+    zplug "gmatheu/shell-plugins", use:'rclone-fzf/*.sh'
+    zplug "gmatheu/shell-plugins", use:'telegram/*.sh'
+    zplug "gmatheu/shell-plugins", use:'ssh-agent/init.sh'
+    zplug "gmatheu/shell-plugins", use:'zplug-helper/init.sh'
+    zplug "gmatheu/shell-plugins", use:'npm-scripts/init.sh'
+    zplug "gmatheu/shell-plugins", use:'tmux/init.sh'
+    zplug "gmatheu/shell-plugins", use:'ripgrep/init.sh'
+    zplug "gmatheu/dotfiles", use:'shell-plugin/*.sh'
+    zplug "nix-community/nix-zsh-completions", use:'init.zsh'
+    # zplug "ytet5uy4/fzf-widgets",
+    #
+    # zplug "plugins/docker", from:oh-my-zsh
+    zplug "plugins/docker-compose", from:oh-my-zsh
+    zplug "plugins/gcloud", from:oh-my-zsh
+    zplug "plugins/git", from:oh-my-zsh
+    zplug "plugins/git-extras", from:oh-my-zsh
+    zplug "plugins/pip", from:oh-my-zsh
+    zplug "plugins/rvm", from:oh-my-zsh
+    zplug "plugins/pyenv", from:oh-my-zsh
+    zplug "plugins/debian", from:oh-my-zsh
+    zplug "plugins/history", from:oh-my-zsh
+    zplug "pLugins/history-substring-search", from:oh-my-zsh
+    zplug "plugins/command-not-found", from:oh-my-zsh
+    # zplug "plugins/z", from:oh-my-zsh
+    zplug "plugins/common-aliases", from:oh-my-zsh
+    zplug "plugins/asdf", from:oh-my-zsh
+    # zplug "MichaelAquilina/zsh-you-should-use"
+    #zplug "sobolevn/wakatime-zsh-plugin"
+    zplug chriskempson/base16-shell, from:github
+    # # antigen bundle gradle
+    # antigen bundle bundler
+    # # antigen bundle rake
+    # antigen bundle autojump
+    # antigen bundle vagrant
+    # # antigen bundle rails
+    # # antigen bundle docker/machine contrib/completion/zsh
+    # # antigen bundle docker/docker contrib/completion/zsh
+    # # antigen bundle docker/compose contrib/completion/zsh
+
+    if [[ ! -v USE_STARSHIP ]]; then
+      zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+    fi
+    # zplug load --verbose
+    zplug load
+  fi
+}
+
+function apply_bundles() {
+  if (type antigen | grep -e 'function' >/dev/null); then
+    # antigen bundle Tarrasch/zsh-autoenv
+    # antigen bundle tarruda/zsh-autosuggestions
+    antigen bundle zsh-users/zsh-syntax-highlighting
+
+    # antigen bundle gmatheu/shell-plugins explain-shell
+    antigen bundle gmatheu/shell-plugins dirrc
+    # antigen bundle gmatheu/shell-plugins docker
+    antigen bundle gmatheu/shell-plugins notify
+    antigen bundle gmatheu/shell-plugins git
+    # antigen bundle gmatheu/shell-plugins git-svn
+    antigen bundle gmatheu/shell-plugins vim
+    # antigen bundle gmatheu/shell-plugins svn
+    antigen bundle gmatheu/shell-plugins virtualbox
+    antigen bundle gmatheu/shell-plugins xclip
+    antigen bundle gmatheu/shell-plugins grep
+    antigen bundle gmatheu/shell-plugins fast-server
+    # antigen bundle gmatheu/shell-plugins start-me-up
+    # antigen bundle gmatheu/shell-plugins java
+    antigen bundle gmatheu/shell-plugins tmux
+    antigen bundle gmatheu/shell-plugins profile-secrets
+    antigen bundle gmatheu/shell-plugins fzf
+    antigen bundle gmatheu/shell-plugins version-managers
+    antigen bundle gmatheu/shell-plugins password-store
+    antigen bundle gmatheu/shell-plugins file-compression
+    # antigen bundle gmatheu/shell-plugins gcloud
+    # antigen bundle gmatheu/shell-plugins aws
+    # antigen bundle gmatheu/shell-plugins rclone-fzf
+    antigen bundle gmatheu/dotfiles shell-plugin
+    antigen bundle ytet5uy4/fzf-widgets
+
+    antigen use oh-my-zsh
+    antigen bundle docker
+    # antigen bundle gradle
+    # antigen bundle lein
+    antigen bundle bundler
+    antigen bundle git
+    antigen bundle git-extras
+    # antigen bundle rake
+    antigen bundle autojump
+    antigen bundle rvm
+    antigen bundle vagrant
+    antigen bundle pyenv
+    antigen bundle pip
+    # antigen bundle rails
+    antigen bundle history
+    antigen bundle debian
+    antigen bundle history-substring-search
+    antigen bundle command-not-found
+    # antigen bundle z
+    # antigen bundle svn-fast-info
+    # antigen bundle docker/machine contrib/completion/zsh
+    # antigen bundle docker/docker contrib/completion/zsh
+    # antigen bundle docker/compose contrib/completion/zsh
+    # antigen theme robbyrussell
+    # antigen theme denysdovhan/spaceship-zsh-theme spaceship
+    # Has RPROMPT support
+    antigen theme ddrexl/spaceship-zsh-theme spaceship
+
+    antigen apply
+  fi
+}
+
+function extra_init() {
+  d=~/.dircolors
+  test -r $d && eval "$(dircolors $d)"
+  export GREP_COLORS='mt=1;31'
+}
+
+export NVIM_APPNAME=astronvim
+function _nvim() {
+  cmd="nvim"
+
+  if [ -f uv.lock ]; then
+    echo "Using uv to execute nvim"
+    uv run nvim $@
+  else
+    nvim $@
+  fi
+
+}
+
+function aliases() {
+  alias zsh_reload='source ~/.zshrc'
+  alias zshr='zsh_reload'
+  # alias o="xdg-open"
+  # https://github.com/sonnyp/Junction/blob/main/README.md#junction
+  alias o="flatpak run re.sonny.Junction"
+  alias xml='xmllint --format -'
+  alias j='z'
+  alias la='ls -al'
+  alias ls='exa'
+
+  alias nvimp=$(which nvim)
+  alias nvim=_nvim
+  alias nv=_nvim
+  alias vim='nvim'
+  alias vimf='nvim -u ~/.vim/fast.vim'
+  alias vimn='nvim -u ~/.vim/init.lua'
+  alias vf='nvim -u ~/.vim/fast.vim'
+  alias mvim='/usr/bin/vim'
+  alias minimal-vim='/usr/bin/vim'
+  # alias nvimchad='nvim'
+  alias nvim2='NVIM_APPNAME=nvim-v2 nvim'
+  alias astronvim4='NVIM_APPNAME=astronvim-v4 nvim'
+
+  alias ..='cd ..'
+  alias ...='cd ../..'
+
+  alias pipu='pip install -U pip'
+}
+
+if [ -f ~/.profile ]; then
+  source ~/.profile
+fi
+export EGET_BIN=~/.local/eget/bin
+export EGET_CONFIG=$HOME/.config/.eget.toml
+export PATH=$EGET_BIN:$PATH
+
+eval "$(zoxide init zsh)"
+
+# apply_bundles
+if [[ -v SKIP_ZPLUG ]]; then
+  echo "Skipping zplug use apply_zplug_bundles to load plugins"
+else
+  load_zplug
+  apply_zplug_bundles
+fi
+if [[ -v USE_STARSHIP ]]; then
+  echo "[experimental] Using starship as zsh prompt"
+  eval "$(starship init zsh)"
+fi
+
+# load_antigen
+bind_keys
+extra_init
+aliases
+
+# Customize to your needs...
+export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+function measure_startup_time() {
+  for i in $(seq 1 10); do time zsh -i -c exit; done
+}
+
+function base16-shell() {
+  BASE16_SHELL=$HOME/.config/base16-shell/
+  [ -n "$PS1" ] &&
+    [ -s $BASE16_SHELL/profile_helper.sh ] &&
+    source "$($BASE16_SHELL/profile_helper.sh)"
+}
+# base16-shell
+
+alias dirs='dirs -v'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/gmatheu/.sdkman"
+[[ -s "/home/gmatheu/.sdkman/bin/sdkman-init.sh" ]] && source "/home/gmatheu/.sdkman/bin/sdkman-init.sh"
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+
+#
+# IntelliShell
+INTELLI_HOME=${HOME}/.local/share/intelli-shell
+# export INTELLI_SEARCH_HOTKEY=\\C-@
+# export INTELLI_LABEL_HOTKEY=\\C-l
+export INTELLI_BOOKMARK_HOTKEY=\\C-n
+# export INTELLI_SKIP_ESC_BIND=0
+alias intelli-shell="${HOME}/.local/eget/bin/intelli-shell"
+# source $INTELLI_HOME/bin/intelli-shell.sh
+eval $($INTELLI_HOME/bin/intelli-shell init zsh)
+
+# export ATUIN_NOBIND="true"
+eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin gen-completions --shell zsh)"
+bindkey "^R" atuin-search
+
+eval "$(direnv hook zsh)"
+
+# . "$HOME/.asdf/asdf.sh"
+# # append completions to fpath
+# fpath=(${ASDF_DIR}/completions $fpath)
+# # initialise completions with ZSH's compinit
+# autoload -Uz compinit && compinit
+
+# [ -f /home/gmatheu/.shelloracle.zsh ] && source /home/gmatheu/.shelloracle.zsh
+
+# pnpm
+export PNPM_HOME="/home/gmatheu/.local/share/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+function yy() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
+function sesh-switch() {
+  sesh connect $(
+    sesh list -t --icons | fzf-tmux -p 55%,60% \
+      --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+      --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+      --bind 'tab:down,btab:up' \
+      --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+      --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+      --bind 'ctrl-g:change-prompt(⚙<fe0f>  )+reload(sesh list -c --icons)' \
+      --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+      --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)'
+  )
+}
+function sesh-last() {
+  sesh last
+}
+
+# export CARAPACE_BRIDGES='zsh,bash' # optional
+export LS_COLORS=$(vivid generate dracula)
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+# source <(carapace _carapace)
+
+compdef _files _nvim
+# autoload -U compinit
+# compinit

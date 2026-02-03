@@ -25,11 +25,16 @@ STOW_DIR=${HOME}/.config
 #ln-remote-chunk: https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/chunks/stow.make.inc
 ## Set this variable above STOW_DIR=<stow directory>
 stow-dry-run:
-	stow -n .
+	stow -v -n .
 stow:
 	mkdir -p ${STOW_DIR}
 	stow .
 #ln-remote-chunk:end
+
+stow-home-dry-run:
+	stow -n --target=${HOME} --dir=./stow-files-home -v .
+stow-home:
+	stow --target=${HOME} --dir=./stow-files-home -v .
 
 
 

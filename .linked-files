@@ -2,4 +2,6 @@ ln-remote-files,https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/ln-
 ln-remote-chunk,https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/ln-remote-chunk.sh,+x
 stow-files/kitty/kitty.conf,https://raw.githubusercontent.com/gmatheu/i3config/refs/heads/main/kitty/kitty.conf,+r
 stow-files/dunst/dunstrc,https://raw.githubusercontent.com/gmatheu/i3config/refs/heads/main/dunst/dunstrc,+r
+stow-files/polybar/config.ini,https://raw.githubusercontent.com/gmatheu/i3config/refs/heads/main/polybar/config.ini,+r
+stow-files/i3blocks/config,https://raw.githubusercontent.com/gmatheu/i3config/refs/heads/main/i3blocks/config,+r
 $HOME/.local/bin/ctls,https://raw.githubusercontent.com/gmatheu/dotfiles/refs/heads/master/stow-files/intelli-shell/scripts/ctl-scripts.sh,+x

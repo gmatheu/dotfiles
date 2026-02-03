@@ -54,15 +54,15 @@ in
     # ".config/yazi/yazi.toml".source = homeFilesBase + /yazi/yazi.toml;
     # ".config/espanso/config/default.yml".source = homeFilesBase + /espanso/default.yml;
 
-    ".zshrc".source = homeFilesBase + /zshrc;
-    ".spaceshiprc.zsh".source = homeFilesBase + /spaceshiprc.zsh;
-    ".zshenv".source = homeFilesBase + /zshenv;
-    ".tmux.conf".source = homeFilesBase + /tmux/tmux.conf;
+    # ".zshrc".source = homeFilesBase + /zshrc;
+    # ".spaceshiprc.zsh".source = homeFilesBase + /spaceshiprc.zsh;
+    # ".zshenv".source = homeFilesBase + /zshenv;
+    # ".tmux.conf".source = homeFilesBase + /tmux/tmux.conf;
 
-    ".config/polybar/config.ini".source = stowFilesBase + /i3/polybar/config.ini;
+    # ".config/polybar/config.ini".source = stowFilesBase + /i3/polybar/config.ini;
 
     # ".config/dunst/dunstrc".source = ~/.config/i3/dunst/dunstrc;
-    ".config/i3blocks/config".source = ~/.config/i3/i3blocks/config;
+    # ".config/i3blocks/config".source = ~/.config/i3/i3blocks/config;
     # ".config/kitty/kitty.conf".source = ~/.config/i3/kitty/kitty.conf;
 
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
