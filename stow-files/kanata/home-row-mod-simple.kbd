@@ -5,15 +5,8 @@
 (defcfg
   process-unmapped-keys yes
   danger-enable-cmd yes
-  linux-x11-repeat-delay-rate 400,30
+  linux-x11-repeat-delay-rate 200,45
 )
-(defsrc
-  tab
-  caps a s l ;
- ;; a   s   d   f   j   k   l   ;
-  lalt
-)
-
 (defvar
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slower to release keys and index
@@ -22,29 +15,43 @@
   hold-time 500
   tap-dance-timeout 200
 )
+
+(defsrc
+  tab
+  caps a s h j k l ;
+ ;; a   s   d   f   j   k   l   ;
+  lalt
+)
+(deflayer default
+  @tab
+  @cap @a @s @h @j @k @l @;
+  ;; @a  @s  @d  @f  @j  @k  @l  @;
+  @lalt
+)
+(deflayer arrows
+  _
+  _ _ _ left down up rght _
+  _
+)
+
 (defalias
   tab (tap-hold $tap-time $hold-time tab lctl)
   cap (tap-hold $tap-time $hold-time esc lmet)
   a (tap-hold $tap-time $hold-time a lctl)
   s (tap-hold $tap-time $hold-time s lmet)
-  l (tap-hold $tap-time $hold-time l lmet)
   ; (tap-hold $tap-time $hold-time ; lctl)
   ;; s (tap-hold $tap-time $hold-time s lctl)
   ;; d (tap-hold $tap-time $hold-time d d)
   ;; f (tap-hold $tap-time $hold-time f f)
-  ;; j (tap-hold $tap-time $hold-time j j)
-  ;; k (tap-hold $tap-time $hold-time k k)
-  ;; l (tap-hold $tap-time $hold-time l rctl)
+  h (tap-hold $tap-time $hold-time h h)
+  j (tap-hold $tap-time $hold-time j down)
+  k (tap-hold $tap-time $hold-time k up)
+  l (tap-hold $tap-time $hold-time l l)
   ;; ; (tap-hold $tap-time $hold-time ; lmet)
 
+  lalt (tap-hold-press 200 200 lalt (layer-toggle arrows))
   ;; Define the tap-dance
-  lalt (tap-dance $tap-dance-timeout (lalt
-                                       (cmd /home/gmatheu/.config/kanata/bin/kanata-toggle-espanso)
-                                       (cmd /home/gmatheu/.config/kanata/bin/kanata-restart)))
-)
-(deflayer base
-  @tab
-  @cap @a @s @l @;
-  ;; @a  @s  @d  @f  @j  @k  @l  @;
-  @lalt
+  ;; lalt (tap-dance $tap-dance-timeout (lalt
+  ;;                                      (cmd /home/gmatheu/.config/kanata/bin/kanata-toggle-espanso)
+  ;;                                      (cmd /home/gmatheu/.config/kanata/bin/kanata-restart)))
 )

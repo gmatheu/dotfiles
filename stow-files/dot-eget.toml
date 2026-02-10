@@ -37,10 +37,10 @@
     asset_filters=["zed-linux-x86_64.tar.gz"]
 
 ["ollama/ollama"]
-    asset_filters=["ollama-linux-amd64.tgz"]
+    asset_filters=["ollama-linux-amd64.tar.zst"]
 
 ["jtroo/kanata"]
-    asset_filters=["kanata_cmd_allowed"]
+    asset_filters=["linux-binaries-x64.zip"]
 
 ['Wilfred/difftastic']
     asset_filters = ["difft-x86_64-unknown-linux-musl"]

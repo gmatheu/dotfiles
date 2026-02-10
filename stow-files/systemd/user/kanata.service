@@ -1,0 +1,13 @@
+[Unit]
+Description=Kanata
+
+[Service]
+Type=simple
+User=
+Group=
+ExecStart=/home/gmatheu/.config/kanata/bin/kanata.service.sh
+Restart=on-failure
+StandardOutput=file:%h/log_file
+
+[Install]
+WantedBy=default.target
