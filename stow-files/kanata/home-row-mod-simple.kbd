@@ -17,21 +17,27 @@
 )
 
 (defsrc
+  bspc
   tab
-  caps a s h j k l ;
+  caps a s d f h j k l ;
  ;; a   s   d   f   j   k   l   ;
   lalt
+  left down up right
 )
 (deflayer default
+  bspc
   @tab
-  @cap @a @s @h @j @k @l @;
+  @cap @a @s d f h j k l @;
   ;; @a  @s  @d  @f  @j  @k  @l  @;
   @lalt
+  left down up right
 )
 (deflayer arrows
+  A-bspc
   _
-  _ _ _ left down up rght _
+  _ _ _ _ A-f A-left down up A-rght _
   _
+  A-left A-down A-up A-rght
 )
 
 (defalias
@@ -43,13 +49,13 @@
   ;; s (tap-hold $tap-time $hold-time s lctl)
   ;; d (tap-hold $tap-time $hold-time d d)
   ;; f (tap-hold $tap-time $hold-time f f)
-  h (tap-hold $tap-time $hold-time h h)
-  j (tap-hold $tap-time $hold-time j down)
-  k (tap-hold $tap-time $hold-time k up)
-  l (tap-hold $tap-time $hold-time l l)
+  ;; h (tap-hold $tap-time $hold-time h h)
+  ;; j (tap-hold $tap-time $hold-time j j)
+  ;; k (tap-hold $tap-time $hold-time k j)
+  ;; l (tap-hold $tap-time $hold-time l l)
   ;; ; (tap-hold $tap-time $hold-time ; lmet)
 
-  lalt (tap-hold-press 200 200 lalt (layer-toggle arrows))
+  lalt (tap-hold-press 500 200 lalt (layer-toggle arrows))
   ;; Define the tap-dance
   ;; lalt (tap-dance $tap-dance-timeout (lalt
   ;;                                      (cmd /home/gmatheu/.config/kanata/bin/kanata-toggle-espanso)
