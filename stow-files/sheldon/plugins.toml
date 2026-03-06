@@ -1,0 +1,168 @@
+# Sheldon configuration file
+# Run 'sheldon source' to load plugins
+shell = "zsh"
+
+[plugins]
+
+# Core plugins
+[plugins.zsh-history-substring-search]
+github = "zsh-users/zsh-history-substring-search"
+
+# gmatheu/shell-plugins subdirectories
+[plugins.dirrc]
+github = "gmatheu/shell-plugins"
+use = ["dirrc/*.sh"]
+
+[plugins.git]
+github = "gmatheu/shell-plugins"
+use = ["git/*.zsh"]
+
+[plugins.notify]
+github = "gmatheu/shell-plugins"
+use = ["notify/*.sh"]
+
+[plugins.vim]
+github = "gmatheu/shell-plugins"
+use = ["vim/*.zsh"]
+
+[plugins.clipboard]
+github = "gmatheu/shell-plugins"
+use = ["clipboard/*.sh"]
+
+[plugins.grep]
+github = "gmatheu/shell-plugins"
+use = ["grep/*.sh"]
+
+[plugins.fast-server]
+github = "gmatheu/shell-plugins"
+use = ["fast-server/*.sh"]
+
+# [plugins.quick-file-actions]
+# github = "gmatheu/shell-plugins"
+# use = ["quick-file-actions/*.sh"]
+
+[plugins.profile-secrets]
+github = "gmatheu/shell-plugins"
+use = ["profile-secrets/*.zsh"]
+
+[plugins.fzf]
+github = "gmatheu/shell-plugins"
+use = ["fzf/init.sh"]
+
+[plugins.version-managers]
+github = "gmatheu/shell-plugins"
+use = ["version-managers/*.sh"]
+
+[plugins.password-store]
+github = "gmatheu/shell-plugins"
+use = ["password-store/*.sh"]
+
+# [plugins.file-compression]
+# github = "gmatheu/shell-plugins"
+# use = ["file-compression/*.sh"]
+
+[plugins.gcloud]
+github = "gmatheu/shell-plugins"
+use = ["gcloud/*.sh"]
+
+# [plugins.kubectl]
+# github = "gmatheu/shell-plugins"
+# use = ["kubectl/*.sh"]
+
+[plugins.aws]
+github = "gmatheu/shell-plugins"
+use = ["aws/*.sh"]
+
+[plugins.rclone-fzf]
+github = "gmatheu/shell-plugins"
+use = ["rclone-fzf/*.sh"]
+
+[plugins.telegram]
+github = "gmatheu/shell-plugins"
+use = ["telegram/*.sh"]
+
+[plugins.ssh-agent]
+github = "gmatheu/shell-plugins"
+use = ["ssh-agent/init.sh"]
+
+[plugins.zplug-helper]
+github = "gmatheu/shell-plugins"
+use = ["zplug-helper/init.sh"]
+
+[plugins.npm-scripts]
+github = "gmatheu/shell-plugins"
+use = ["npm-scripts/init.sh"]
+
+[plugins.tmux]
+github = "gmatheu/shell-plugins"
+use = ["tmux/init.sh"]
+
+[plugins.ripgrep]
+github = "gmatheu/shell-plugins"
+use = ["ripgrep/init.sh"]
+
+# Other plugins
+[plugins.dotfiles]
+github = "gmatheu/dotfiles"
+use = ["shell-plugin/*.sh"]
+
+[plugins.nix-zsh-completions]
+github = "nix-community/nix-zsh-completions"
+use = ["init.zsh"]
+
+# Oh-My-Zsh plugins (loaded as GitHub sources)
+[plugins.docker-compose]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/docker-compose/*.plugin.zsh"]
+
+[plugins.gcloud-omz]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/gcloud/*.plugin.zsh"]
+
+[plugins.git-omz]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/git/*.plugin.zsh"]
+
+[plugins.git-extras]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/git-extras/*.plugin.zsh"]
+
+[plugins.pip]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/pip/*.plugin.zsh"]
+
+[plugins.rvm]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/rvm/*.plugin.zsh"]
+
+[plugins.pyenv]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/pyenv/*.plugin.zsh"]
+
+[plugins.debian]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/debian/*.plugin.zsh"]
+
+[plugins.history]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/history/*.plugin.zsh"]
+
+[plugins.history-substring-search-omz]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/history-substring-search/*.plugin.zsh"]
+
+[plugins.command-not-found]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/command-not-found/*.plugin.zsh"]
+
+[plugins.common-aliases]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/common-aliases/*.plugin.zsh"]
+
+# [plugins.asdf]
+# github = "ohmyzsh/ohmyzsh"
+# use = ["plugins/asdf/*.plugin.zsh"]
+
+# Theme and extras
+[plugins.base16-shell]
+github = "chriskempson/base16-shell"
