@@ -2,7 +2,7 @@
   [installed."MordechaiHadad/bob"]
     repo = "MordechaiHadad/bob"
     target = "MordechaiHadad/bob"
-    installed_at = 2026-02-06T19:38:38.869131425-03:00
+    installed_at = 2026-03-02T11:29:19.067903406-03:00
     url = "https://github.com/MordechaiHadad/bob/releases/download/v4.1.6/bob-linux-x86_64.zip"
     asset = "bob-linux-x86_64.zip"
     tool = "bob"
@@ -14,20 +14,20 @@
   [installed."NeuralNomadsAI/CodeNomad"]
     repo = "NeuralNomadsAI/CodeNomad"
     target = "NeuralNomadsAI/CodeNomad"
-    installed_at = 2026-02-06T19:37:11.490034451-03:00
-    url = "https://github.com/NeuralNomadsAI/CodeNomad/releases/download/v0.9.4/CodeNomad-Tauri-0.9.4-linux-x64.AppImage"
-    asset = "CodeNomad-Tauri-0.9.4-linux-x64.AppImage"
+    installed_at = 2026-02-27T10:38:45.802562065-03:00
+    url = "https://github.com/NeuralNomadsAI/CodeNomad/releases/download/v0.11.4/CodeNomad-Tauri-0.11.4-linux-x64.AppImage"
+    asset = "CodeNomad-Tauri-0.11.4-linux-x64.AppImage"
     tool = "CodeNomad"
     extracted_files = ["/home/gmatheu/.local/eget/bin/CodeNomad"]
-    tag = "v0.9.4"
+    tag = "v0.11.4"
     [installed."NeuralNomadsAI/CodeNomad".options]
       system = "linux/amd64"
-      tag = "v0.9.4"
+      tag = "v0.11.4"
       upgrade_only = true
   [installed."Wilfred/difftastic"]
     repo = "Wilfred/difftastic"
     target = "Wilfred/difftastic"
-    installed_at = 2026-02-06T19:38:18.74268646-03:00
+    installed_at = 2026-02-27T10:38:58.65877074-03:00
     url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-musl.tar.gz"
     asset = "difft-x86_64-unknown-linux-musl.tar.gz"
     tool = "difftastic"
@@ -40,34 +40,47 @@
   [installed."achristmascarl/rainfrog"]
     repo = "achristmascarl/rainfrog"
     target = "achristmascarl/rainfrog"
-    installed_at = 2026-02-06T19:38:27.845545459-03:00
-    url = "https://github.com/achristmascarl/rainfrog/releases/download/v0.3.14/rainfrog-v0.3.14-x86_64-unknown-linux-musl.tar.gz"
-    asset = "rainfrog-v0.3.14-x86_64-unknown-linux-musl.tar.gz"
+    installed_at = 2026-03-02T11:29:21.220376399-03:00
+    url = "https://github.com/achristmascarl/rainfrog/releases/download/v0.3.17/rainfrog-v0.3.17-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "rainfrog-v0.3.17-x86_64-unknown-linux-gnu.tar.gz"
     tool = "rainfrog"
     extracted_files = ["/home/gmatheu/.local/eget/bin/rainfrog"]
-    tag = "v0.3.14"
+    tag = "v0.3.17"
     [installed."achristmascarl/rainfrog".options]
       system = "linux/amd64"
-      tag = "v0.3.14"
+      tag = "v0.3.17"
+      upgrade_only = true
+  [installed."can1357/oh-my-pi"]
+    repo = "can1357/oh-my-pi"
+    target = "can1357/oh-my-pi"
+    installed_at = 2026-03-02T11:29:55.014364809-03:00
+    url = "https://github.com/can1357/oh-my-pi/releases/download/v13.5.6/omp-linux-x64"
+    asset = "omp-linux-x64"
+    tool = "oh-my-pi"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/oh-my-pi"]
+    tag = "v13.5.6"
+    [installed."can1357/oh-my-pi".options]
+      system = "linux/amd64"
+      tag = "v13.5.6"
       upgrade_only = true
   [installed."charmbracelet/crush"]
     repo = "charmbracelet/crush"
     target = "charmbracelet/crush"
-    installed_at = 2026-02-06T19:38:33.29124764-03:00
-    url = "https://github.com/charmbracelet/crush/releases/download/v0.39.3/crush_0.39.3_Linux_x86_64.tar.gz"
-    asset = "crush_0.39.3_Linux_x86_64.tar.gz"
+    installed_at = 2026-02-27T10:39:07.776090581-03:00
+    url = "https://github.com/charmbracelet/crush/releases/download/v0.46.0/crush_0.46.0_Linux_x86_64.tar.gz"
+    asset = "crush_0.46.0_Linux_x86_64.tar.gz"
     tool = "crush"
     extracted_files = ["/home/gmatheu/.local/eget/bin/crush"]
-    tag = "v0.39.3"
+    tag = "v0.46.0"
     [installed."charmbracelet/crush".options]
       asset = ["^.sbom.json"]
       system = "linux/amd64"
-      tag = "v0.39.3"
+      tag = "v0.46.0"
       upgrade_only = true
   [installed."dandavison/delta"]
     repo = "dandavison/delta"
     target = "dandavison/delta"
-    installed_at = 2026-02-06T19:38:35.045514203-03:00
+    installed_at = 2026-03-02T11:28:56.643808909-03:00
     url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-unknown-linux-gnu.tar.gz"
     asset = "delta-0.18.2-x86_64-unknown-linux-gnu.tar.gz"
     tool = "delta"
@@ -79,7 +92,7 @@
   [installed."derailed/k9s"]
     repo = "derailed/k9s"
     target = "derailed/k9s"
-    installed_at = 2026-02-06T19:38:52.233269214-03:00
+    installed_at = 2026-03-02T11:29:18.090653515-03:00
     url = "https://github.com/derailed/k9s/releases/download/v0.50.18/k9s_Linux_amd64.tar.gz"
     asset = "k9s_Linux_amd64.tar.gz"
     tool = "k9s"
@@ -91,19 +104,20 @@
   [installed."fcoury/tsql"]
     repo = "fcoury/tsql"
     target = "fcoury/tsql"
-    installed_at = 2026-02-06T19:38:44.356937609-03:00
-    url = "https://github.com/fcoury/tsql/releases/download/v0.4.0/tsql-x86_64-unknown-linux-gnu.tar.gz"
+    installed_at = 2026-03-02T11:29:04.031218302-03:00
+    url = "https://github.com/fcoury/tsql/releases/download/v0.5.0/tsql-x86_64-unknown-linux-gnu.tar.gz"
     asset = "tsql-x86_64-unknown-linux-gnu.tar.gz"
     tool = "tsql"
     extracted_files = ["/home/gmatheu/.local/eget/bin/tsql"]
-    tag = "v0.4.0"
+    tag = "v0.5.0"
     [installed."fcoury/tsql".options]
       system = "linux/amd64"
+      tag = "v0.5.0"
       upgrade_only = true
   [installed."gmatheu/eget"]
     repo = "gmatheu/eget"
     target = "gmatheu/eget"
-    installed_at = 2026-02-06T19:30:10.960938683-03:00
+    installed_at = 2026-02-27T10:38:40.375194289-03:00
     url = "https://github.com/gmatheu/eget/releases/download/1.4.1/eget_Linux_x86_64.tar.gz"
     asset = "eget_Linux_x86_64.tar.gz"
     tool = "eget"
@@ -115,33 +129,46 @@
   [installed."j178/prek"]
     repo = "j178/prek"
     target = "j178/prek"
-    installed_at = 2026-02-06T19:37:20.968464933-03:00
-    url = "https://github.com/j178/prek/releases/download/v0.3.2/prek-x86_64-unknown-linux-musl.tar.gz"
-    asset = "prek-x86_64-unknown-linux-musl.tar.gz"
+    installed_at = 2026-02-27T11:02:01.40039723-03:00
+    url = "https://github.com/j178/prek/releases/download/v0.3.3/prek-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "prek-x86_64-unknown-linux-gnu.tar.gz"
     tool = "prek"
     extracted_files = ["/home/gmatheu/.local/eget/bin/prek"]
-    tag = "v0.3.2"
+    tag = "v0.3.3"
     [installed."j178/prek".options]
       system = "linux/amd64"
-      tag = "v0.3.2"
+      tag = "v0.3.3"
+      upgrade_only = true
+  [installed."jdx/mise"]
+    repo = "jdx/mise"
+    target = "jdx/mise"
+    installed_at = 2026-03-02T11:29:17.462001771-03:00
+    url = "https://github.com/jdx/mise/releases/download/v2026.3.0/mise-v2026.3.0-linux-x64"
+    asset = "mise-v2026.3.0-linux-x64"
+    tool = "mise"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/mise"]
+    tag = "v2026.3.0"
+    [installed."jdx/mise".options]
+      system = "linux/amd64"
+      tag = "v2026.3.0"
       upgrade_only = true
   [installed."jesseduffield/lazygit"]
     repo = "jesseduffield/lazygit"
     target = "jesseduffield/lazygit"
-    installed_at = 2026-02-06T19:38:36.962225703-03:00
-    url = "https://github.com/jesseduffield/lazygit/releases/download/v0.58.1/lazygit_0.58.1_linux_x86_64.tar.gz"
-    asset = "lazygit_0.58.1_linux_x86_64.tar.gz"
+    installed_at = 2026-03-02T11:29:20.297909223-03:00
+    url = "https://github.com/jesseduffield/lazygit/releases/download/v0.59.0/lazygit_0.59.0_linux_x86_64.tar.gz"
+    asset = "lazygit_0.59.0_linux_x86_64.tar.gz"
     tool = "lazygit"
     extracted_files = ["/home/gmatheu/.local/eget/bin/lazygit"]
-    tag = "v0.58.1"
+    tag = "v0.59.0"
     [installed."jesseduffield/lazygit".options]
       system = "linux/amd64"
-      tag = "v0.58.1"
+      tag = "v0.59.0"
       upgrade_only = true
   [installed."jgm/pandoc"]
     repo = "jgm/pandoc"
     target = "jgm/pandoc"
-    installed_at = 2026-02-06T19:38:50.579169472-03:00
+    installed_at = 2026-02-27T10:38:49.247686381-03:00
     url = "https://github.com/jgm/pandoc/releases/download/3.9/pandoc-3.9-linux-amd64.tar.gz"
     asset = "pandoc-3.9-linux-amd64.tar.gz"
     tool = "pandoc"
@@ -154,7 +181,7 @@
   [installed."jj-vcs/jj"]
     repo = "jj-vcs/jj"
     target = "jj-vcs/jj"
-    installed_at = 2026-02-06T19:30:14.525142975-03:00
+    installed_at = 2026-02-27T10:38:42.256164406-03:00
     url = "https://github.com/jj-vcs/jj/releases/download/v0.38.0/jj-v0.38.0-x86_64-unknown-linux-musl.tar.gz"
     asset = "jj-v0.38.0-x86_64-unknown-linux-musl.tar.gz"
     tool = "jj"
@@ -167,57 +194,92 @@
   [installed."joshmedeski/sesh"]
     repo = "joshmedeski/sesh"
     target = "joshmedeski/sesh"
-    installed_at = 2026-02-06T19:38:42.574007248-03:00
-    url = "https://github.com/joshmedeski/sesh/releases/download/v2.22.0/sesh_Linux_x86_64.tar.gz"
+    installed_at = 2026-02-27T10:38:43.995816135-03:00
+    url = "https://github.com/joshmedeski/sesh/releases/download/v2.24.2/sesh_Linux_x86_64.tar.gz"
     asset = "sesh_Linux_x86_64.tar.gz"
     tool = "sesh"
     extracted_files = ["/home/gmatheu/.local/eget/bin/sesh"]
-    tag = "v2.22.0"
+    tag = "v2.24.2"
     [installed."joshmedeski/sesh".options]
       system = "linux/amd64"
-      tag = "v2.22.0"
+      tag = "v2.24.2"
       upgrade_only = true
   [installed."jtroo/kanata"]
     repo = "jtroo/kanata"
     target = "jtroo/kanata"
-    installed_at = 2026-02-10T10:16:35.330444078-03:00
+    installed_at = 2026-03-02T11:28:48.972229645-03:00
     url = "https://github.com/jtroo/kanata/releases/download/v1.11.0/linux-binaries-x64.zip"
     asset = "linux-binaries-x64.zip"
     tool = "kanata"
-    extracted_files = ["/home/gmatheu/.local/eget/bin/kanata_linux_cmd_allowed_x64"]
+    extracted_files = ["/home/gmatheu/.local/eget/bin/kanata_linux_x64"]
+    tag = "v1.11.0"
     [installed."jtroo/kanata".options]
       asset = ["linux-binaries-x64.zip"]
+      tag = "v1.11.0"
       upgrade_only = true
   [installed."ollama/ollama"]
     repo = "ollama/ollama"
     target = "ollama/ollama"
-    installed_at = 2026-02-06T19:36:21.90074043-03:00
-    url = "https://github.com/ollama/ollama/releases/download/v0.15.5/ollama-linux-amd64.tar.zst"
+    installed_at = 2026-02-27T11:01:59.397160451-03:00
+    url = "https://github.com/ollama/ollama/releases/download/v0.17.4/ollama-linux-amd64.tar.zst"
     asset = "ollama-linux-amd64.tar.zst"
     tool = "ollama"
     extracted_files = ["/home/gmatheu/.local/eget/bin/ollama"]
-    tag = "v0.15.5"
+    tag = "v0.17.4"
     [installed."ollama/ollama".options]
       asset = ["ollama-linux-amd64.tar.zst"]
-      tag = "v0.15.5"
+      tag = "v0.17.4"
       upgrade_only = true
   [installed."rclone/rclone"]
     repo = "rclone/rclone"
     target = "rclone/rclone"
-    installed_at = 2026-02-06T19:36:23.950208498-03:00
-    url = "https://github.com/rclone/rclone/releases/download/v1.73.0/rclone-v1.73.0-linux-amd64.zip"
-    asset = "rclone-v1.73.0-linux-amd64.zip"
+    installed_at = 2026-03-02T11:28:49.98802629-03:00
+    url = "https://github.com/rclone/rclone/releases/download/v1.73.1/rclone-v1.73.1-linux-amd64.zip"
+    asset = "rclone-v1.73.1-linux-amd64.zip"
     tool = "rclone"
     extracted_files = ["/home/gmatheu/.local/eget/bin/rclone"]
-    tag = "v1.73.0"
+    tag = "v1.73.1"
     [installed."rclone/rclone".options]
       system = "linux/amd64"
-      tag = "v1.73.0"
+      tag = "v1.73.1"
+      upgrade_only = true
+  [installed."rohansx/vgx"]
+    repo = "rohansx/vgx"
+    target = "rohansx/vgx"
+    installed_at = 2026-03-04T10:43:35.461247706-03:00
+    url = "https://github.com/rohansx/vgx/releases/download/v2.0.0/vgx_linux_amd64"
+    asset = "vgx_linux_amd64"
+    tool = "vgx"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/vgx"]
+    [installed."rohansx/vgx".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."rohansx/workz"]
+    repo = "rohansx/workz"
+    target = "rohansx/workz"
+    installed_at = 2026-03-04T10:21:46.281627463-03:00
+    url = "https://github.com/rohansx/workz/releases/download/v0.7.0/workz-v0.7.0-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "workz-v0.7.0-x86_64-unknown-linux-gnu.tar.gz"
+    tool = "workz"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/workz"]
+    [installed."rohansx/workz".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."rossmacarthur/sheldon"]
+    repo = "rossmacarthur/sheldon"
+    target = "rossmacarthur/sheldon"
+    installed_at = 2026-03-06T12:15:07.351308006-03:00
+    url = "https://github.com/rossmacarthur/sheldon/releases/download/0.8.5/sheldon-0.8.5-x86_64-unknown-linux-musl.tar.gz"
+    asset = "sheldon-0.8.5-x86_64-unknown-linux-musl.tar.gz"
+    tool = "sheldon"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/sheldon"]
+    [installed."rossmacarthur/sheldon".options]
+      system = "linux/amd64"
       upgrade_only = true
   [installed."shubh-io/DockMate"]
     repo = "shubh-io/DockMate"
     target = "shubh-io/DockMate"
-    installed_at = 2026-02-06T19:36:25.708221811-03:00
+    installed_at = 2026-02-27T10:38:47.478194287-03:00
     url = "https://github.com/shubh-io/DockMate/releases/download/v0.1.0/dockmate-linux-amd64"
     asset = "dockmate-linux-amd64"
     tool = "DockMate"
@@ -229,26 +291,51 @@
   [installed."sst/opencode"]
     repo = "sst/opencode"
     target = "sst/opencode"
-    installed_at = 2026-02-06T19:38:12.915123785-03:00
-    url = "https://github.com/anomalyco/opencode/releases/download/v1.1.53/opencode-linux-x64.tar.gz"
+    installed_at = 2026-02-27T10:38:38.151732393-03:00
+    url = "https://github.com/anomalyco/opencode/releases/download/v1.2.15/opencode-linux-x64.tar.gz"
     asset = "opencode-linux-x64.tar.gz"
     tool = "opencode"
     extracted_files = ["/home/gmatheu/.local/eget/bin/opencode"]
-    tag = "v1.1.53"
+    tag = "v1.2.15"
     [installed."sst/opencode".options]
       system = "linux/amd64"
-      tag = "v1.1.53"
+      tag = "v1.2.15"
       upgrade_only = true
   [installed."steipete/gogcli"]
     repo = "steipete/gogcli"
     target = "steipete/gogcli"
-    installed_at = 2026-02-06T19:37:35.421229476-03:00
-    url = "https://github.com/steipete/gogcli/releases/download/v0.9.0/gogcli_0.9.0_linux_amd64.tar.gz"
-    asset = "gogcli_0.9.0_linux_amd64.tar.gz"
+    installed_at = 2026-03-02T11:28:55.7183285-03:00
+    url = "https://github.com/steipete/gogcli/releases/download/v0.11.0/gogcli_0.11.0_linux_amd64.tar.gz"
+    asset = "gogcli_0.11.0_linux_amd64.tar.gz"
     tool = "gogcli"
     extracted_files = ["/home/gmatheu/.local/eget/bin/gog"]
-    tag = "v0.9.0"
+    tag = "v0.11.0"
     [installed."steipete/gogcli".options]
       system = "linux/amd64"
-      tag = "v0.9.0"
+      tag = "v0.11.0"
+      upgrade_only = true
+  [installed."ynqa/jnv"]
+    repo = "ynqa/jnv"
+    target = "ynqa/jnv"
+    installed_at = 2026-02-27T11:02:02.933862977-03:00
+    url = "https://github.com/ynqa/jnv/releases/download/v0.6.2/jnv-x86_64-unknown-linux-gnu.tar.xz"
+    asset = "jnv-x86_64-unknown-linux-gnu.tar.xz"
+    tool = "jnv"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/jnv"]
+    tag = "v0.6.2"
+    [installed."ynqa/jnv".options]
+      system = "linux/amd64"
+      tag = "v0.6.2"
+      upgrade_only = true
+  [installed."zellij-org/zellij"]
+    repo = "zellij-org/zellij"
+    target = "zellij-org/zellij"
+    installed_at = 2026-03-02T11:29:56.037314703-03:00
+    url = "https://github.com/zellij-org/zellij/releases/download/v0.43.1/zellij-x86_64-unknown-linux-musl.tar.gz"
+    asset = "zellij-x86_64-unknown-linux-musl.tar.gz"
+    tool = "zellij"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/zellij"]
+    tag = "v0.43.1"
+    [installed."zellij-org/zellij".options]
+      system = "linux/amd64"
       upgrade_only = true
