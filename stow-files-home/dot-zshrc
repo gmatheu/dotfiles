@@ -57,25 +57,17 @@ bind_keys() {
 
 function apply_zplug_bundles() {
   if (type zplug | grep -e 'function' >/dev/null); then
-    # # antigen bundle Tarrasch/zsh-autoenv
-    # # antigen bundle tarruda/zsh-autosuggestions
     zplug "zsh-users/zsh-history-substring-search"
     #
-    # # antigen bundle gmatheu/shell-plugins explain-shell
     zplug "gmatheu/shell-plugins", use:'dirrc/*.sh'
-    # # antigen bundle gmatheu/shell-plugins docker
+    # #  bundle gmatheu/shell-plugins docker
     zplug "gmatheu/shell-plugins", use:'git/*.zsh'
     zplug "gmatheu/shell-plugins", use:'notify/*.sh'
-    # # antigen bundle gmatheu/shell-plugins git-svn
     zplug "gmatheu/shell-plugins", use:'vim/*.zsh'
-    # # antigen bundle gmatheu/shell-plugins svn
-    # antigen bundle gmatheu/shell-plugins virtualbox
     zplug "gmatheu/shell-plugins", use:'clipboard/*.sh'
     zplug "gmatheu/shell-plugins", use:'grep/*.sh'
     zplug "gmatheu/shell-plugins", use:'fast-server/*.sh'
     zplug "gmatheu/shell-plugins", use:'quick-file-actions/*.sh'
-    # # antigen bundle gmatheu/shell-plugins start-me-up
-    # # antigen bundle gmatheu/shell-plugins java
     zplug "gmatheu/shell-plugins", use:'profile-secrets/*.zsh'
     zplug "gmatheu/shell-plugins", use:'fzf/init.sh'
     zplug "gmatheu/shell-plugins", use:'version-managers/*.sh'
@@ -114,15 +106,6 @@ function apply_zplug_bundles() {
     # zplug "MichaelAquilina/zsh-you-should-use"
     #zplug "sobolevn/wakatime-zsh-plugin"
     zplug chriskempson/base16-shell, from:github
-    # # antigen bundle gradle
-    # antigen bundle bundler
-    # # antigen bundle rake
-    # antigen bundle autojump
-    # antigen bundle vagrant
-    # # antigen bundle rails
-    # # antigen bundle docker/machine contrib/completion/zsh
-    # # antigen bundle docker/docker contrib/completion/zsh
-    # # antigen bundle docker/compose contrib/completion/zsh
 
     if [[ ! -v USE_STARSHIP ]]; then
       zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
