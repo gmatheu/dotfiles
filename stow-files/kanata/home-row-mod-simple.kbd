@@ -5,7 +5,7 @@
 (defcfg
   process-unmapped-keys yes
   danger-enable-cmd yes
-  linux-x11-repeat-delay-rate 200,45
+  linux-x11-repeat-delay-rate 300,45
 )
 (defvar
   ;; Note: consider using different time values for your different fingers.
@@ -21,28 +21,27 @@
   tab
   caps a s d f h j k l ;
  ;; a   s   d   f   j   k   l   ;
-  lalt
+  lmet lalt
   left down up right
 )
 (deflayer default
   bspc
   @tab
   @cap @a @s d f h j k l @;
-  ;; @a  @s  @d  @f  @j  @k  @l  @;
-  @lalt
+  lmet lalt
   left down up right
 )
 (deflayer arrows
   A-bspc
   _
   _ _ _ _ A-f A-left down up A-rght _
-  _
+  _ _
   A-left A-down A-up A-rght
 )
 
 (defalias
   tab (tap-hold $tap-time $hold-time tab lctl)
-  cap (tap-hold $tap-time $hold-time esc lmet)
+  cap (tap-hold $tap-time $hold-time esc (layer-while-held arrows))
   a (tap-hold $tap-time $hold-time a lctl)
   s (tap-hold $tap-time $hold-time s lmet)
   ; (tap-hold $tap-time $hold-time ; lctl)
@@ -55,7 +54,7 @@
   ;; l (tap-hold $tap-time $hold-time l l)
   ;; ; (tap-hold $tap-time $hold-time ; lmet)
 
-  lalt (tap-hold-press 500 200 lalt (layer-toggle arrows))
+  lmet (tap-hold-press 500 200 lmet (layer-toggle arrows))
   ;; Define the tap-dance
   ;; lalt (tap-dance $tap-dance-timeout (lalt
   ;;                                      (cmd /home/gmatheu/.config/kanata/bin/kanata-toggle-espanso)
