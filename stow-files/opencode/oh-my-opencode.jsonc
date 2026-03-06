@@ -1,0 +1,45 @@
+{
+  "google_auth": false,
+  "sisyphus_agent": {
+    "default_builder_enabled": true,
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "opencode/kimi-k2.5",
+      "prompt_append": "Summary after work should be concise. Let's split the summary in 2 parts, first a concise summary of changes applied and then a code review focused itemized summary (hunk by hunk and order following the runtime flow)",
+    },
+    "prometheus": {
+      "model": "opencode/kimi-k2.5",
+    },
+    "atlas": {
+      "model": "opencode/gpt-5-nano",
+    },
+    "librarian": {
+      "model": "opencode/glm-4.7",
+    },
+    "oracle": {
+      "model": "opencode/gpt-5.2-codex",
+    },
+    "explore": {
+      "model": "opencode/gpt-5-nano",
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "google/gemini-3-pro-high",
+    },
+    "document-writer": {
+      "model": "google/gemini-3-flash",
+    },
+    "multimodal-looker": {
+      "model": "google/gemini-2.5-flash",
+    },
+  },
+  "categories": {
+    "quick": {
+      "model": "opencode/gpt-5-nano",
+    },
+    "visual-engineering": {
+      "model": "google/gemini-3-pro",
+    },
+  },
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+}
