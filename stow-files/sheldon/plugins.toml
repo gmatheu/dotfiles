@@ -73,9 +73,9 @@ use = ["gcloud/*.sh"]
 github = "gmatheu/shell-plugins"
 use = ["aws/*.sh"]
 
-[plugins.rclone-fzf]
-github = "gmatheu/shell-plugins"
-use = ["rclone-fzf/*.sh"]
+# [plugins.rclone-fzf]
+# github = "gmatheu/shell-plugins"
+# use = ["rclone-fzf/*.sh"]
 
 [plugins.telegram]
 github = "gmatheu/shell-plugins"
