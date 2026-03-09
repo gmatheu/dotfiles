@@ -10,16 +10,16 @@ gmatheu/shell-plugins path:vim
 gmatheu/shell-plugins path:clipboard
 gmatheu/shell-plugins path:grep
 gmatheu/shell-plugins path:fast-server
-gmatheu/shell-plugins path:quick-file-actions
+# gmatheu/shell-plugins path:quick-file-actions
 gmatheu/shell-plugins path:profile-secrets
 gmatheu/shell-plugins path:fzf
 gmatheu/shell-plugins path:version-managers
 gmatheu/shell-plugins path:password-store
-gmatheu/shell-plugins path:file-compression
+# gmatheu/shell-plugins path:file-compression
 gmatheu/shell-plugins path:gcloud
-gmatheu/shell-plugins path:kubectl
+# gmatheu/shell-plugins path:kubectl
 gmatheu/shell-plugins path:aws
-gmatheu/shell-plugins path:rclone-fzf
+# gmatheu/shell-plugins path:rclone-fzf
 gmatheu/shell-plugins path:telegram
 gmatheu/shell-plugins path:ssh-agent
 gmatheu/shell-plugins path:zplug-helper
@@ -44,7 +44,7 @@ ohmyzsh/ohmyzsh path:plugins/history
 ohmyzsh/ohmyzsh path:plugins/history-substring-search
 ohmyzsh/ohmyzsh path:plugins/command-not-found
 ohmyzsh/ohmyzsh path:plugins/common-aliases
-ohmyzsh/ohmyzsh path:plugins/asdf
+# ohmyzsh/ohmyzsh path:plugins/asdf
 
 # Theme and extras
 chriskempson/base16-shell

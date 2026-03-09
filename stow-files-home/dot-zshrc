@@ -1,3 +1,7 @@
+if [ -f $HOME/.zshrc.pre ]; then
+    source $HOME/.zshrc.pre
+fi
+
 if [[ -v PROFILE_ZSH ]]; then
   echo "Profiling with zprof (execute zprof to gather results)"
   zmodload zsh/zprof
@@ -359,3 +363,7 @@ zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 compdef _files _nvim
 # autoload -U compinit
 # compinit
+
+if [ -f $HOME/.zshrc.post ]; then
+    source $HOME/.zshrc.post
+fi
