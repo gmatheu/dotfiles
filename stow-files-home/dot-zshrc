@@ -1,3 +1,5 @@
+# ft=bash
+
 if [ -f $HOME/.zshrc.pre ]; then
     source $HOME/.zshrc.pre
 fi
@@ -86,6 +88,14 @@ bind_keys() {
   bindkey "^u" redo
   bindkey "^w" backward-kill-word
   bindkey "^?" backward-delete-char
+
+  # Vim-like navigation with hjkl
+  bindkey -r "^[h"
+  bindkey "^[h" backward-word     # alt+h = alt+left
+  bindkey "^Rh" backward-word     # alt+h = alt+left
+  bindkey "^Rl" forward-word      # alt+l = alt+right
+  bindkey "^[j" up-history        # alt+j = up arrow
+  bindkey "^[k" down-history        # alt+j = up arrow
 
   export WORDCHARS='*?_~=&;!#$%^{}<>'
   autoload -Uz select-word-style
