@@ -53,15 +53,13 @@
   [installed."can1357/oh-my-pi"]
     repo = "can1357/oh-my-pi"
     target = "can1357/oh-my-pi"
-    installed_at = 2026-03-13T09:34:06.135487002-03:00
-    url = "https://github.com/can1357/oh-my-pi/releases/download/v13.11.0/omp-linux-x64"
+    installed_at = 2026-03-18T09:25:31.855989165-03:00
+    url = "https://github.com/can1357/oh-my-pi/releases/download/v13.13.0/omp-linux-x64"
     asset = "omp-linux-x64"
     tool = "oh-my-pi"
     extracted_files = ["/home/gmatheu/.local/eget/bin/oh-my-pi"]
-    tag = "v13.11.0"
     [installed."can1357/oh-my-pi".options]
       system = "linux/amd64"
-      tag = "v13.11.0"
       upgrade_only = true
   [installed."charmbracelet/crush"]
     repo = "charmbracelet/crush"
@@ -317,6 +315,17 @@
     [installed."steipete/gogcli".options]
       system = "linux/amd64"
       tag = "v0.12.0"
+      upgrade_only = true
+  [installed."tree-sitter/tree-sitter"]
+    repo = "tree-sitter/tree-sitter"
+    target = "tree-sitter/tree-sitter"
+    installed_at = 2026-03-13T11:30:53.291452184-03:00
+    url = "https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.6/tree-sitter-linux-x64.gz"
+    asset = "tree-sitter-linux-x64.gz"
+    tool = "tree-sitter"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/tree-sitter"]
+    [installed."tree-sitter/tree-sitter".options]
+      system = "linux/amd64"
       upgrade_only = true
   [installed."ynqa/jnv"]
     repo = "ynqa/jnv"

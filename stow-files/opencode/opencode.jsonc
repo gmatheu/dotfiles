@@ -1,21 +1,32 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "oh-my-opencode",
-    "opencode-wakatime"
-  ],
+  "plugin": ["oh-my-opencode", "opencode-wakatime"],
   "mcp": {
     "playwright-mcp": {
       "type": "remote",
-      "url": "http://localhost:8931/mcp"
-    }
+      "url": "http://localhost:8931/mcp",
+    },
   },
   "permission": {
     "read": {
-      "~/.config/opencode/get-shit-done/*": "allow"
+      "~/.config/opencode/get-shit-done/*": "allow",
     },
     "external_directory": {
-      "~/.config/opencode/get-shit-done/*": "allow"
-    }
-  }
+      "~/.config/opencode/get-shit-done/*": "allow",
+    },
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+      },
+      "models": {
+        "qwen3.5:27b": {
+          "name": "qwen3.5:27b",
+        },
+      },
+    },
+  },
 }
