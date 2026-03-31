@@ -2,7 +2,7 @@
   [installed."MordechaiHadad/bob"]
     repo = "MordechaiHadad/bob"
     target = "MordechaiHadad/bob"
-    installed_at = 2026-03-13T09:33:50.055057727-03:00
+    installed_at = 2026-03-25T09:36:58.952895237-03:00
     url = "https://github.com/MordechaiHadad/bob/releases/download/v4.1.6/bob-linux-x86_64.zip"
     asset = "bob-linux-x86_64.zip"
     tool = "bob"
@@ -14,15 +14,15 @@
   [installed."NeuralNomadsAI/CodeNomad"]
     repo = "NeuralNomadsAI/CodeNomad"
     target = "NeuralNomadsAI/CodeNomad"
-    installed_at = 2026-03-13T09:33:43.047896205-03:00
-    url = "https://github.com/NeuralNomadsAI/CodeNomad/releases/download/v0.12.1/CodeNomad-Tauri-0.12.1-linux-x64.AppImage"
-    asset = "CodeNomad-Tauri-0.12.1-linux-x64.AppImage"
+    installed_at = 2026-03-25T11:58:45.126783703-03:00
+    url = "https://github.com/NeuralNomadsAI/CodeNomad/releases/download/v0.12.3/CodeNomad-Tauri-0.12.3-linux-x64.AppImage"
+    asset = "CodeNomad-Tauri-0.12.3-linux-x64.AppImage"
     tool = "CodeNomad"
     extracted_files = ["/home/gmatheu/.local/eget/bin/CodeNomad"]
-    tag = "v0.12.1"
+    tag = "v0.12.3"
     [installed."NeuralNomadsAI/CodeNomad".options]
       system = "linux/amd64"
-      tag = "v0.12.1"
+      tag = "v0.12.3"
       upgrade_only = true
   [installed."Wilfred/difftastic"]
     repo = "Wilfred/difftastic"
@@ -40,7 +40,7 @@
   [installed."achristmascarl/rainfrog"]
     repo = "achristmascarl/rainfrog"
     target = "achristmascarl/rainfrog"
-    installed_at = 2026-03-13T09:33:59.245673385-03:00
+    installed_at = 2026-03-25T09:36:47.898588755-03:00
     url = "https://github.com/achristmascarl/rainfrog/releases/download/v0.3.17/rainfrog-v0.3.17-x86_64-unknown-linux-gnu.tar.gz"
     asset = "rainfrog-v0.3.17-x86_64-unknown-linux-gnu.tar.gz"
     tool = "rainfrog"
@@ -49,6 +49,28 @@
     [installed."achristmascarl/rainfrog".options]
       system = "linux/amd64"
       tag = "v0.3.17"
+      upgrade_only = true
+  [installed."agavra/tuicr"]
+    repo = "agavra/tuicr"
+    target = "agavra/tuicr"
+    installed_at = 2026-03-27T09:43:18.739716358-03:00
+    url = "https://github.com/agavra/tuicr/releases/download/v0.9.0/tuicr-0.9.0-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "tuicr-0.9.0-x86_64-unknown-linux-gnu.tar.gz"
+    tool = "tuicr"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/tuicr"]
+    [installed."agavra/tuicr".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."alexpasmantier/television"]
+    repo = "alexpasmantier/television"
+    target = "alexpasmantier/television"
+    installed_at = 2026-03-31T09:22:41.971010226-03:00
+    url = "https://github.com/alexpasmantier/television/releases/download/0.15.4/tv-0.15.4-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "tv-0.15.4-x86_64-unknown-linux-gnu.tar.gz"
+    tool = "television"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/tv"]
+    [installed."alexpasmantier/television".options]
+      system = "linux/amd64"
       upgrade_only = true
   [installed."can1357/oh-my-pi"]
     repo = "can1357/oh-my-pi"
@@ -64,16 +86,27 @@
   [installed."charmbracelet/crush"]
     repo = "charmbracelet/crush"
     target = "charmbracelet/crush"
-    installed_at = 2026-03-13T09:32:55.298396088-03:00
-    url = "https://github.com/charmbracelet/crush/releases/download/v0.48.0/crush_0.48.0_Linux_x86_64.tar.gz"
-    asset = "crush_0.48.0_Linux_x86_64.tar.gz"
+    installed_at = 2026-03-25T09:36:55.294961837-03:00
+    url = "https://github.com/charmbracelet/crush/releases/download/v0.51.3/crush_0.51.3_Linux_x86_64.tar.gz"
+    asset = "crush_0.51.3_Linux_x86_64.tar.gz"
     tool = "crush"
     extracted_files = ["/home/gmatheu/.local/eget/bin/crush"]
-    tag = "v0.48.0"
+    tag = "v0.51.3"
     [installed."charmbracelet/crush".options]
       asset = ["^.sbom.json"]
       system = "linux/amd64"
-      tag = "v0.48.0"
+      tag = "v0.51.3"
+      upgrade_only = true
+  [installed."code-yeongyu/go-claude-code-comment-checker"]
+    repo = "code-yeongyu/go-claude-code-comment-checker"
+    target = "code-yeongyu/go-claude-code-comment-checker"
+    installed_at = 2026-03-27T10:23:39.935992594-03:00
+    url = "https://github.com/code-yeongyu/go-claude-code-comment-checker/releases/download/v0.7.0/comment-checker_v0.7.0_linux_amd64.tar.gz"
+    asset = "comment-checker_v0.7.0_linux_amd64.tar.gz"
+    tool = "go-claude-code-comment-checker"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/comment-checker"]
+    [installed."code-yeongyu/go-claude-code-comment-checker".options]
+      system = "linux/amd64"
       upgrade_only = true
   [installed."dandavison/delta"]
     repo = "dandavison/delta"
@@ -90,7 +123,7 @@
   [installed."derailed/k9s"]
     repo = "derailed/k9s"
     target = "derailed/k9s"
-    installed_at = 2026-03-13T09:33:51.637100105-03:00
+    installed_at = 2026-03-25T09:36:51.377820483-03:00
     url = "https://github.com/derailed/k9s/releases/download/v0.50.18/k9s_Linux_amd64.tar.gz"
     asset = "k9s_Linux_amd64.tar.gz"
     tool = "k9s"
@@ -102,7 +135,7 @@
   [installed."fcoury/tsql"]
     repo = "fcoury/tsql"
     target = "fcoury/tsql"
-    installed_at = 2026-03-13T09:33:47.09184015-03:00
+    installed_at = 2026-03-25T09:36:56.187659999-03:00
     url = "https://github.com/fcoury/tsql/releases/download/v0.5.0/tsql-x86_64-unknown-linux-gnu.tar.gz"
     asset = "tsql-x86_64-unknown-linux-gnu.tar.gz"
     tool = "tsql"
@@ -115,13 +148,24 @@
   [installed."gmatheu/eget"]
     repo = "gmatheu/eget"
     target = "gmatheu/eget"
-    installed_at = 2026-03-13T09:33:41.204842473-03:00
+    installed_at = 2026-03-25T09:36:49.737753312-03:00
     url = "https://github.com/gmatheu/eget/releases/download/1.4.1/eget_Linux_x86_64.tar.gz"
     asset = "eget_Linux_x86_64.tar.gz"
     tool = "eget"
     extracted_files = ["/home/gmatheu/.local/eget/bin/eget"]
     tag = "1.4.1"
     [installed."gmatheu/eget".options]
+      system = "linux/amd64"
+      upgrade_only = true
+  [installed."gmatheu/tuicr"]
+    repo = "gmatheu/tuicr"
+    target = "gmatheu/tuicr"
+    installed_at = 2026-03-30T11:39:58.967138507-03:00
+    url = "https://github.com/gmatheu/tuicr/releases/download/v0.10.0/tuicr-0.10.0-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "tuicr-0.10.0-x86_64-unknown-linux-gnu.tar.gz"
+    tool = "tuicr"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/tuicr"]
+    [installed."gmatheu/tuicr".options]
       system = "linux/amd64"
       upgrade_only = true
   [installed."j178/prek"]
@@ -166,15 +210,15 @@
   [installed."jgm/pandoc"]
     repo = "jgm/pandoc"
     target = "jgm/pandoc"
-    installed_at = 2026-03-13T09:25:12.586205911-03:00
-    url = "https://github.com/jgm/pandoc/releases/download/3.9/pandoc-3.9-linux-amd64.tar.gz"
-    asset = "pandoc-3.9-linux-amd64.tar.gz"
+    installed_at = 2026-03-25T09:37:05.113530779-03:00
+    url = "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-amd64.tar.gz"
+    asset = "pandoc-3.9.0.2-linux-amd64.tar.gz"
     tool = "pandoc"
     extracted_files = ["/home/gmatheu/.local/eget/bin/pandoc"]
-    tag = "3.9"
+    tag = "3.9.0.2"
     [installed."jgm/pandoc".options]
       system = "linux/amd64"
-      tag = "3.9"
+      tag = "3.9.0.2"
       upgrade_only = true
   [installed."jj-vcs/jj"]
     repo = "jj-vcs/jj"
@@ -218,15 +262,15 @@
   [installed."ollama/ollama"]
     repo = "ollama/ollama"
     target = "ollama/ollama"
-    installed_at = 2026-03-13T09:30:19.862373002-03:00
-    url = "https://github.com/ollama/ollama/releases/download/v0.17.7/ollama-linux-amd64.tar.zst"
+    installed_at = 2026-03-25T09:36:45.86384373-03:00
+    url = "https://github.com/ollama/ollama/releases/download/v0.18.2/ollama-linux-amd64.tar.zst"
     asset = "ollama-linux-amd64.tar.zst"
     tool = "ollama"
     extracted_files = ["/home/gmatheu/.local/eget/bin/ollama"]
-    tag = "v0.17.7"
+    tag = "v0.18.2"
     [installed."ollama/ollama".options]
       asset = ["ollama-linux-amd64.tar.zst"]
-      tag = "v0.17.7"
+      tag = "v0.18.2"
       upgrade_only = true
   [installed."rclone/rclone"]
     repo = "rclone/rclone"
@@ -256,7 +300,7 @@
   [installed."rohansx/workz"]
     repo = "rohansx/workz"
     target = "rohansx/workz"
-    installed_at = 2026-03-13T09:33:54.770508604-03:00
+    installed_at = 2026-03-25T09:36:50.660872947-03:00
     url = "https://github.com/rohansx/workz/releases/download/v0.8.0/workz-v0.8.0-x86_64-unknown-linux-gnu.tar.gz"
     asset = "workz-v0.8.0-x86_64-unknown-linux-gnu.tar.gz"
     tool = "workz"
@@ -269,7 +313,7 @@
   [installed."rossmacarthur/sheldon"]
     repo = "rossmacarthur/sheldon"
     target = "rossmacarthur/sheldon"
-    installed_at = 2026-03-13T09:33:45.642551498-03:00
+    installed_at = 2026-03-25T09:36:57.109380455-03:00
     url = "https://github.com/rossmacarthur/sheldon/releases/download/0.8.5/sheldon-0.8.5-x86_64-unknown-linux-musl.tar.gz"
     asset = "sheldon-0.8.5-x86_64-unknown-linux-musl.tar.gz"
     tool = "sheldon"
@@ -278,10 +322,21 @@
     [installed."rossmacarthur/sheldon".options]
       system = "linux/amd64"
       upgrade_only = true
+  [installed."sharkdp/bat"]
+    repo = "sharkdp/bat"
+    target = "sharkdp/bat"
+    installed_at = 2026-03-26T15:37:17.998545811-03:00
+    url = "https://github.com/sharkdp/bat/releases/download/v0.26.1/bat-v0.26.1-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "bat-v0.26.1-x86_64-unknown-linux-gnu.tar.gz"
+    tool = "bat"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/bat"]
+    [installed."sharkdp/bat".options]
+      system = "linux/amd64"
+      upgrade_only = true
   [installed."shubh-io/DockMate"]
     repo = "shubh-io/DockMate"
     target = "shubh-io/DockMate"
-    installed_at = 2026-03-13T09:33:35.916673713-03:00
+    installed_at = 2026-03-25T09:36:59.873621645-03:00
     url = "https://github.com/shubh-io/DockMate/releases/download/v0.1.0/dockmate-linux-amd64"
     asset = "dockmate-linux-amd64"
     tool = "DockMate"
@@ -293,15 +348,15 @@
   [installed."sst/opencode"]
     repo = "sst/opencode"
     target = "sst/opencode"
-    installed_at = 2026-02-27T10:38:38.151732393-03:00
-    url = "https://github.com/anomalyco/opencode/releases/download/v1.2.15/opencode-linux-x64.tar.gz"
+    installed_at = 2026-03-25T11:10:28.044029115-03:00
+    url = "https://github.com/anomalyco/opencode/releases/download/v1.3.2/opencode-linux-x64.tar.gz"
     asset = "opencode-linux-x64.tar.gz"
     tool = "opencode"
     extracted_files = ["/home/gmatheu/.local/eget/bin/opencode"]
-    tag = "v1.2.15"
+    tag = "v1.3.2"
     [installed."sst/opencode".options]
       system = "linux/amd64"
-      tag = "v1.2.15"
+      tag = "v1.3.2"
       upgrade_only = true
   [installed."steipete/gogcli"]
     repo = "steipete/gogcli"
@@ -330,7 +385,7 @@
   [installed."ynqa/jnv"]
     repo = "ynqa/jnv"
     target = "ynqa/jnv"
-    installed_at = 2026-02-27T11:02:02.933862977-03:00
+    installed_at = 2026-03-25T09:36:58.031439606-03:00
     url = "https://github.com/ynqa/jnv/releases/download/v0.6.2/jnv-x86_64-unknown-linux-gnu.tar.xz"
     asset = "jnv-x86_64-unknown-linux-gnu.tar.xz"
     tool = "jnv"
