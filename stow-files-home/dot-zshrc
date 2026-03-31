@@ -1,7 +1,7 @@
 # ft=bash
 
 if [ -f $HOME/.zshrc.pre ]; then
-    source $HOME/.zshrc.pre
+  source $HOME/.zshrc.pre
 fi
 
 if [[ -v PROFILE_ZSH ]]; then
@@ -91,11 +91,11 @@ bind_keys() {
 
   # Vim-like navigation with hjkl
   bindkey -r "^[h"
-  bindkey "^[h" backward-word     # alt+h = alt+left
-  bindkey "^Rh" backward-word     # alt+h = alt+left
-  bindkey "^Rl" forward-word      # alt+l = alt+right
-  bindkey "^[j" up-history        # alt+j = up arrow
-  bindkey "^[k" down-history        # alt+j = up arrow
+  bindkey "^[h" backward-word # alt+h = alt+left
+  bindkey "^Rh" backward-word # alt+h = alt+left
+  bindkey "^Rl" forward-word  # alt+l = alt+right
+  bindkey "^[j" up-history    # alt+j = up arrow
+  bindkey "^[k" down-history  # alt+j = up arrow
 
   export WORDCHARS='*?_~=&;!#$%^{}<>'
   autoload -Uz select-word-style
@@ -347,6 +347,7 @@ function yy() {
   rm -f -- "$tmp"
 }
 
+## Sesh zsh plugin
 function sesh-switch() {
   sesh connect $(
     sesh list -t --icons | fzf-tmux -p 55%,60% \
@@ -361,9 +362,39 @@ function sesh-switch() {
       --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)'
   )
 }
+
 function sesh-last() {
   sesh last
 }
+## end: Sesh zsh plugin
+
+function git_current_branch() { git branch --show-current }
+
+
+## Zellij zsh plugin
+if command -v zellij >/dev/null; then
+  # source <(zellij setup --generate-completion zsh)
+  function zellij_rename_session() {
+    zellij action rename-session $(basename $PWD)
+  }
+  function zellij_restore_session() {
+    zellij list-sessions -n -s | fzf --bind='enter:become(zellij attach {})'
+  }
+  function zellij_rename_tab_git() {
+    zellij action undo-rename-tab
+    local current_tab
+    current_tab=$(zellij action dump-layout | grep -e 'tab' | grep -e 'focus=true' | grep -e '#.' -o)
+    local current_branch
+    current_branch=$(git branch --show-current)
+
+    zellij action rename-tab "$current_tab:$current_branch"
+  }
+  alias zj=zellij
+  alias zjR=zellij_rename_session
+  alias zjr=zellij_restore_session
+  alias zjg=zellij_rename_tab_git
+fi
+## end:Zellij zsh plugin
 
 # export CARAPACE_BRIDGES='zsh,bash' # optional
 export LS_COLORS=$(vivid generate dracula)
@@ -375,5 +406,5 @@ compdef _files _nvim
 # compinit
 
 if [ -f $HOME/.zshrc.post ]; then
-    source $HOME/.zshrc.post
+  source $HOME/.zshrc.post
 fi

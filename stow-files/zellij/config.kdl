@@ -2,10 +2,12 @@
 keybinds {
     unbind "Ctrl p" // unbind in all modes
     unbind "Ctrl b" // unbind in all modes
-    // unbind "Alt h"
-    // unbind "Alt l"
-    // unbind "Alt j"
-    // unbind "Alt k"
+    unbind "Alt h"
+    unbind "Alt l"
+    unbind "Alt j"
+    unbind "Alt k"
+    unbind "Alt Left"
+    unbind "Alt Right"
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }

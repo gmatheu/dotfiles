@@ -1,7 +1,7 @@
 [pull]
 	rebase = false
 [core]
-	pager = cat
+	pager = bat
 [init]
 	defaultBranch = main
 
@@ -10,10 +10,16 @@
     dlog = -c diff.external=difft log --ext-diff
     dshow = -c diff.external=difft show --ext-diff
     ddiff = -c diff.external=difft diff
+
+    # Delta alises
+    dddiff = -c core.pager=delta -c merge.conflictStyle=zdiff3 diff
+
     # `git log` with patches shown with difftastic.
     dl = -c diff.external=difft log -p --ext-diff
     # Show the most recent commit with difftastic.
     ds = -c diff.external=difft show --ext-diff
+
+    rdiff = -c core.pager=cat diff
 
 [difftool "difftastic"]
     # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
@@ -32,3 +38,7 @@
     # Set difftastic as the default difftool, so we don't need to specify
     # `-t difftastic` every time.
     tool = difftastic
+
+[delta]
+    side-by-side = true
+    line-numbers = true
