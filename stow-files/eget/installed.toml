@@ -2,7 +2,7 @@
   [installed."MordechaiHadad/bob"]
     repo = "MordechaiHadad/bob"
     target = "MordechaiHadad/bob"
-    installed_at = 2026-03-25T09:36:58.952895237-03:00
+    installed_at = 2026-04-05T20:26:19.931790867-03:00
     url = "https://github.com/MordechaiHadad/bob/releases/download/v4.1.6/bob-linux-x86_64.zip"
     asset = "bob-linux-x86_64.zip"
     tool = "bob"
@@ -27,15 +27,15 @@
   [installed."Wilfred/difftastic"]
     repo = "Wilfred/difftastic"
     target = "Wilfred/difftastic"
-    installed_at = 2026-02-27T10:38:58.65877074-03:00
-    url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-musl.tar.gz"
+    installed_at = 2026-04-05T20:26:13.179097419-03:00
+    url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-unknown-linux-musl.tar.gz"
     asset = "difft-x86_64-unknown-linux-musl.tar.gz"
     tool = "difftastic"
     extracted_files = ["/home/gmatheu/.local/eget/bin/difft"]
-    tag = "0.67.0"
+    tag = "0.68.0"
     [installed."Wilfred/difftastic".options]
       asset = ["difft-x86_64-unknown-linux-musl"]
-      tag = "0.67.0"
+      tag = "0.68.0"
       upgrade_only = true
   [installed."achristmascarl/rainfrog"]
     repo = "achristmascarl/rainfrog"
@@ -135,7 +135,7 @@
   [installed."fcoury/tsql"]
     repo = "fcoury/tsql"
     target = "fcoury/tsql"
-    installed_at = 2026-03-25T09:36:56.187659999-03:00
+    installed_at = 2026-04-05T20:25:54.834203252-03:00
     url = "https://github.com/fcoury/tsql/releases/download/v0.5.0/tsql-x86_64-unknown-linux-gnu.tar.gz"
     asset = "tsql-x86_64-unknown-linux-gnu.tar.gz"
     tool = "tsql"
@@ -148,7 +148,7 @@
   [installed."gmatheu/eget"]
     repo = "gmatheu/eget"
     target = "gmatheu/eget"
-    installed_at = 2026-03-25T09:36:49.737753312-03:00
+    installed_at = 2026-04-05T20:26:02.825720364-03:00
     url = "https://github.com/gmatheu/eget/releases/download/1.4.1/eget_Linux_x86_64.tar.gz"
     asset = "eget_Linux_x86_64.tar.gz"
     tool = "eget"
@@ -210,7 +210,7 @@
   [installed."jgm/pandoc"]
     repo = "jgm/pandoc"
     target = "jgm/pandoc"
-    installed_at = 2026-03-25T09:37:05.113530779-03:00
+    installed_at = 2026-04-05T20:26:06.203249415-03:00
     url = "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-amd64.tar.gz"
     asset = "pandoc-3.9.0.2-linux-amd64.tar.gz"
     tool = "pandoc"
@@ -223,20 +223,20 @@
   [installed."jj-vcs/jj"]
     repo = "jj-vcs/jj"
     target = "jj-vcs/jj"
-    installed_at = 2026-03-13T09:33:37.72310814-03:00
-    url = "https://github.com/jj-vcs/jj/releases/download/v0.39.0/jj-v0.39.0-x86_64-unknown-linux-musl.tar.gz"
-    asset = "jj-v0.39.0-x86_64-unknown-linux-musl.tar.gz"
+    installed_at = 2026-04-05T20:26:18.879294338-03:00
+    url = "https://github.com/jj-vcs/jj/releases/download/v0.40.0/jj-v0.40.0-x86_64-unknown-linux-musl.tar.gz"
+    asset = "jj-v0.40.0-x86_64-unknown-linux-musl.tar.gz"
     tool = "jj"
     extracted_files = ["/home/gmatheu/.local/eget/bin/jj"]
-    tag = "v0.39.0"
+    tag = "v0.40.0"
     [installed."jj-vcs/jj".options]
       system = "linux/amd64"
-      tag = "v0.39.0"
+      tag = "v0.40.0"
       upgrade_only = true
   [installed."joshmedeski/sesh"]
     repo = "joshmedeski/sesh"
     target = "joshmedeski/sesh"
-    installed_at = 2026-03-13T09:34:00.704964641-03:00
+    installed_at = 2026-04-05T20:26:05.076395015-03:00
     url = "https://github.com/joshmedeski/sesh/releases/download/v2.24.2/sesh_Linux_x86_64.tar.gz"
     asset = "sesh_Linux_x86_64.tar.gz"
     tool = "sesh"
@@ -300,7 +300,7 @@
   [installed."rohansx/workz"]
     repo = "rohansx/workz"
     target = "rohansx/workz"
-    installed_at = 2026-03-25T09:36:50.660872947-03:00
+    installed_at = 2026-04-05T20:26:03.948392312-03:00
     url = "https://github.com/rohansx/workz/releases/download/v0.8.0/workz-v0.8.0-x86_64-unknown-linux-gnu.tar.gz"
     asset = "workz-v0.8.0-x86_64-unknown-linux-gnu.tar.gz"
     tool = "workz"
@@ -313,7 +313,7 @@
   [installed."rossmacarthur/sheldon"]
     repo = "rossmacarthur/sheldon"
     target = "rossmacarthur/sheldon"
-    installed_at = 2026-03-25T09:36:57.109380455-03:00
+    installed_at = 2026-04-05T20:26:27.712378495-03:00
     url = "https://github.com/rossmacarthur/sheldon/releases/download/0.8.5/sheldon-0.8.5-x86_64-unknown-linux-musl.tar.gz"
     asset = "sheldon-0.8.5-x86_64-unknown-linux-musl.tar.gz"
     tool = "sheldon"
@@ -322,21 +322,33 @@
     [installed."rossmacarthur/sheldon".options]
       system = "linux/amd64"
       upgrade_only = true
+  [installed."rtk-ai/rtk"]
+    repo = "rtk-ai/rtk"
+    target = "rtk-ai/rtk"
+    installed_at = 2026-04-06T16:11:07.730275372-03:00
+    url = "https://github.com/rtk-ai/rtk/releases/download/v0.35.0/rtk-x86_64-unknown-linux-musl.tar.gz"
+    asset = "rtk-x86_64-unknown-linux-musl.tar.gz"
+    tool = "rtk"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/rtk"]
+    [installed."rtk-ai/rtk".options]
+      system = "linux/amd64"
+      upgrade_only = true
   [installed."sharkdp/bat"]
     repo = "sharkdp/bat"
     target = "sharkdp/bat"
-    installed_at = 2026-03-26T15:37:17.998545811-03:00
+    installed_at = 2026-04-05T20:25:55.960929041-03:00
     url = "https://github.com/sharkdp/bat/releases/download/v0.26.1/bat-v0.26.1-x86_64-unknown-linux-gnu.tar.gz"
     asset = "bat-v0.26.1-x86_64-unknown-linux-gnu.tar.gz"
     tool = "bat"
     extracted_files = ["/home/gmatheu/.local/eget/bin/bat"]
+    tag = "v0.26.1"
     [installed."sharkdp/bat".options]
       system = "linux/amd64"
       upgrade_only = true
   [installed."shubh-io/DockMate"]
     repo = "shubh-io/DockMate"
     target = "shubh-io/DockMate"
-    installed_at = 2026-03-25T09:36:59.873621645-03:00
+    installed_at = 2026-04-05T20:26:20.953175563-03:00
     url = "https://github.com/shubh-io/DockMate/releases/download/v0.1.0/dockmate-linux-amd64"
     asset = "dockmate-linux-amd64"
     tool = "DockMate"
