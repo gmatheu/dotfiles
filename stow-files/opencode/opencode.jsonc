@@ -1,6 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["oh-my-openagent", "opencode-wakatime"],
+  "plugin": [
+    "oh-my-openagent",
+    "opencode-wakatime",
+    "opencode-plugin-llama.cpp@latest",
+  ],
   "mcp": {
     "playwright-mcp": {
       "type": "remote",
@@ -16,6 +20,13 @@
     },
   },
   "provider": {
+    "llama.cpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama.cpp (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1",
+      },
+    },
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Ollama",
