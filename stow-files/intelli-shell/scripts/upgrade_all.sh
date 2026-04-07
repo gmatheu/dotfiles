@@ -5,8 +5,9 @@ declare -A UPGRADERS=(
 	["nala (APT)"]="sudo nala upgrade -y"
 	["kitty (terminal)"]="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
 	["eget"]="eget --upgrade-all"
-	["flatpak"]="flatpak upgrade"
+	["flatpak"]="flatpak upgrade -y"
 	["snap"]="sudo snap refresh"
+	["mise"]="mise upgrade -- --all"
 )
 
 # Prepare items for fzf
