@@ -41,6 +41,7 @@
 
 ["jtroo/kanata"]
     asset_filters=["linux-binaries-x64.zip"]
+    file = "kanata_linux_cmd_allowed_x64"
 
 ['Wilfred/difftastic']
     asset_filters = ["difft-x86_64-unknown-linux-musl"]
