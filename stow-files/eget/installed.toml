@@ -24,6 +24,17 @@
       system = "linux/amd64"
       tag = "v0.12.3"
       upgrade_only = true
+  [installed."Raymo111/i3lock-color"]
+    repo = "Raymo111/i3lock-color"
+    target = "Raymo111/i3lock-color"
+    installed_at = 2026-04-13T10:05:25.73321747-03:00
+    url = "https://github.com/Raymo111/i3lock-color/releases/download/2.13.c.5/i3lock"
+    asset = "i3lock"
+    tool = "i3lock-color"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/i3lock-color"]
+    [installed."Raymo111/i3lock-color".options]
+      system = "linux/amd64"
+      upgrade_only = true
   [installed."Wilfred/difftastic"]
     repo = "Wilfred/difftastic"
     target = "Wilfred/difftastic"
