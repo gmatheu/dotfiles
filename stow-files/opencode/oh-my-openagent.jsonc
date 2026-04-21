@@ -5,41 +5,44 @@
   },
   "agents": {
     "sisyphus": {
-      "model": "opencode/kimi-k2.5",
+      "model": "opencode/kimi-k2.6",
       "prompt_append": "Summary after work should be concise. Let's split the summary in 2 parts, first a concise summary of changes applied and then a code review focused itemized summary (hunk by hunk and order following the runtime flow)",
     },
+    "hephaestus": {
+      "model": "opencode/gpt-5.4",
+    },
     "prometheus": {
-      "model": "opencode/kimi-k2.5",
+      "model": "opencode/kimi-k2.6",
     },
     "atlas": {
-      "model": "opencode/gpt-5-nano",
+      "model": "opencode/minimax-m2.7",
     },
     "librarian": {
-      "model": "opencode/glm-4.7",
+      "model": "opencode/glm-5.1",
     },
     "oracle": {
-      "model": "opencode/gpt-5.2-codex",
+      "model": "opencode/gpt-5.3-codex",
     },
     "explore": {
-      "model": "opencode/gpt-5-nano",
+      "model": "opencode/gpt-5.4-nano",
     },
     "frontend-ui-ux-engineer": {
-      "model": "google/gemini-3-pro-high",
+      "model": "google/gemini-3.1-pro-high",
     },
     "document-writer": {
       "model": "google/gemini-3-flash",
     },
     "multimodal-looker": {
-      "model": "google/gemini-2.5-flash",
+      "model": "google/gemini-3-flash",
     },
   },
   "categories": {
     "quick": {
-      "model": "opencode/gpt-5-nano",
+      "model": "opencode/gpt-5.4-nano",
     },
     "visual-engineering": {
-      "model": "google/gemini-3-pro",
+      "model": "google/gemini-3.1-pro",
     },
   },
-  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/master/assets/oh-my-opencode.schema.json",
 }
