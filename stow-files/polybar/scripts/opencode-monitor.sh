@@ -9,10 +9,11 @@ ramp_load_5="▆"
 ramp_load_6="▇"
 ramp_load_7="█"
 
-bar_used_foreground_0=#55aa55
-bar_used_foreground_1=#557755
-bar_used_foreground_2=#f5a70a
-bar_used_foreground_3=#ff5555
+connected_foreground="#3388ff"
+completed_foreground=#55aa55
+user_message_foreground=#557755
+session_started_foreground=#f5a70a
+error_icon=#ff5555
 
 show_numbers='false'
 function toggle() {
@@ -26,40 +27,92 @@ function toggle() {
   fi
 }
 
-cpus=$(nproc)
-colorize_value() {
-  value=$1
-  text=$2
-  int_value=$(printf '%.*f\n' 0 "$value")
-  relative_value=$((int_value * 100 / cpus))
-  if [[ $relative_value -lt 25 ]]; then
-    echo -n "%{F${bar_used_foreground_0}}${text}%{F-}"
-  elif [[ $relative_value -lt 50 ]]; then
-    echo -n "%{F${bar_used_foreground_1}}${text}%{F-}"
-  elif [[ $relative_value -lt 75 ]]; then
-    echo -n "%{F${bar_used_foreground_2}}${text}%{F-}"
-  else
-    echo -n "%{F${bar_used_foreground_3}}${text}%{F-}"
-  fi
-}
+log_file=$HOME/.local/share/opencode/opencode-notifier.log
 
-graph_load() {
-  int_value=$(printf '%.*f\n' 0 "$1")
-  relative_value=$((int_value * 100 / cpus))
-  value=$(printf '%.*f\n' 0 "$relative_value")
-  if [[ $value -ge 0 && $value -lt 25 ]]; then
-    echo -n $ramp_load_0
-  elif [[ $value -lt 50 ]]; then
-    echo -n $ramp_load_2
-  elif [[ $value -lt 75 ]]; then
-    echo -n $ramp_load_4
-  elif [[ $value -ge 75 ]]; then
-    echo -n $ramp_load_6
-  fi
-}
+declare -A latest_event
+declare -A latest_timestamp
+find_opencode_clients() {
+  if [[ -f "$log_file" ]]; then
+    while IFS= read -r line; do
+      [[ -z "$line" ]] && continue
 
-function show_notification() {
-  notify-send 'Opencode Agents' '🟢: eget@main \n🔴: stats@main\n🟠\n🟡\n🔵'
+      event=""
+      projectName=""
+      currentTimestamp=""
+
+      IFS='|' read -ra fields <<<"$line"
+      for field in "${fields[@]}"; do
+        key="${field%%:*}"
+        value="${field#*:}"
+        case "$key" in
+        event) event="$value" ;;
+        projectName) projectName="$value" ;;
+        currentTimestamp) currentTimestamp="$value" ;;
+        esac
+      done
+
+      if [[ -n "$projectName" && -n "$currentTimestamp" ]]; then
+        latest_event["$projectName"]="$event"
+        latest_timestamp["$projectName"]="$currentTimestamp"
+      fi
+    done <"$log_file"
+  fi
+
+  declare -a lines
+  now_epoch=$(date +%s)
+
+  for project in "${!latest_event[@]}"; do
+    event="${latest_event[$project]}"
+    ts="${latest_timestamp[$project]}"
+
+    icon=$ramp_load_2
+    ts_epoch=$(date -d "$ts" +%s 2>/dev/null || echo 0)
+
+    if ((ts_epoch > 0)); then
+      diff=$((now_epoch - ts_epoch))
+      if ((diff < 60)); then
+        icon=$ramp_load_2
+      elif ((diff < 180)); then
+        icon=$ramp_load_4
+      elif ((diff < 300)); then
+        icon=$ramp_load_5
+      elif ((diff < 600)); then
+        icon=$ramp_load_6
+      else
+        icon=$ramp_load_7
+      fi
+    fi
+
+    event_color="#aaaaaa"
+    case "$event" in
+    client_connected) event_color=$connected_foreground ;;
+    session_started) event_color=$session_started_foreground ;;
+    user_message) event_color=$user_message_foreground ;;
+    complete) event_color=$completed_foreground ;;
+    error) event_color=$error_icon ;;
+    question) icon="?" ;;
+    esac
+
+    lines+=("$ts_epoch|%{F${event_color}}${icon}%{F-}")
+  done
+
+  message=""
+  if ((${#lines[@]} > 0)); then
+    IFS=$'\n' sorted=($(printf '%s\n' "${lines[@]}" | sort -t'|' -k1,1 -nr))
+    unset IFS
+
+    first=true
+    for line in "${sorted[@]}"; do
+      if [[ "$first" == true ]]; then
+        message+="${line#*|}"
+        first=false
+      else
+        message+="${line#*|}"
+      fi
+    done
+  fi
+
+  echo "$message"
 }
 
 trap "toggle" USR1
@@ -67,24 +120,12 @@ trap "show_notification" USR2
 
 sleep_pid=0
 while true; do
-  _1_min=$(cat /proc/loadavg | cut -d' ' -f1)
-  _5_min=$(cat /proc/loadavg | cut -d' ' -f2)
-  _10_min=$(cat /proc/loadavg | cut -d' ' -f3)
-  _1_min_output=$(colorize_value "$_1_min" "$(graph_load "$_1_min"):$_1_min")
-  _5_min_output=$(colorize_value "$_5_min" "$(graph_load "$_5_min"):$_5_min")
-  _10_min_output=$(colorize_value "$_10_min" "$(graph_load "$_10_min"):$_10_min")
   if [[ $show_numbers = 'true' ]]; then
-    _1_min_output=$(colorize_value "$_1_min" "$(graph_load "$_1_min"):$_1_min")
-    _5_min_output=$(colorize_value "$_5_min" "$(graph_load "$_5_min"):$_5_min")
-    _10_min_output=$(colorize_value "$_10_min" "$(graph_load "$_10_min"):$_10_min")
-    echo "$_1_min_output $_5_min_output $_10_min_output"
+    find_opencode_clients
   else
-    _1_min_output=$(colorize_value "$_1_min" "$(graph_load "$_1_min")")
-    _5_min_output=$(colorize_value "$_5_min" "$(graph_load "$_5_min")")
-    _10_min_output=$(colorize_value "$_10_min" "$(graph_load "$_10_min")")
-    echo "$_1_min_output$_1_min_output$_5_min_output$_5_min_output$_10_min_output$_10_min_output"
+    find_opencode_clients
   fi
-  sleep 1 &
+  sleep 10 &
   sleep_pid=$!
   wait
 done
