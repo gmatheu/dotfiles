@@ -65,18 +65,24 @@ find_opencode_clients() {
     event="${latest_event[$project]}"
     ts="${latest_timestamp[$project]}"
 
-    icon=$ramp_load_2
+    icon=$ramp_load_7
     ts_epoch=$(date -d "$ts" +%s 2>/dev/null || echo 0)
 
     if ((ts_epoch > 0)); then
       diff=$((now_epoch - ts_epoch))
       if ((diff < 60)); then
-        icon=$ramp_load_2
+        icon=$ramp_load_0
+      elif ((diff < 120)); then
+        icon=$ramp_load_1
       elif ((diff < 180)); then
-        icon=$ramp_load_4
+        icon=$ramp_load_2
       elif ((diff < 300)); then
+        icon=$ramp_load_3
+      elif ((diff < 480)); then
+        icon=$ramp_load_4
+      elif ((diff < 780)); then
         icon=$ramp_load_5
-      elif ((diff < 600)); then
+      elif ((diff < 1500)); then
         icon=$ramp_load_6
       else
         icon=$ramp_load_7
