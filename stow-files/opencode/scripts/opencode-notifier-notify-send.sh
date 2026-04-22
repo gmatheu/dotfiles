@@ -32,14 +32,14 @@ if [[ -f "$log_file" ]]; then
     projectName=""
     currentTimestamp=""
 
-    IFS='|' read -ra fields <<< "$line"
+    IFS='|' read -ra fields <<<"$line"
     for field in "${fields[@]}"; do
       key="${field%%:*}"
       value="${field#*:}"
       case "$key" in
-        event) event="$value" ;;
-        projectName) projectName="$value" ;;
-        currentTimestamp) currentTimestamp="$value" ;;
+      event) event="$value" ;;
+      projectName) projectName="$value" ;;
+      currentTimestamp) currentTimestamp="$value" ;;
       esac
     done
 
@@ -47,7 +47,7 @@ if [[ -f "$log_file" ]]; then
       latest_event["$projectName"]="$event"
       latest_timestamp["$projectName"]="$currentTimestamp"
     fi
-  done < "$log_file"
+  done <"$log_file"
 fi
 
 declare -a lines
@@ -59,12 +59,12 @@ for project in "${!latest_event[@]}"; do
 
   icon='⚪'
   case "$event" in
-    client_connected) icon="$client_connected_icon" ;;
-    session_started) icon="$session_started_icon" ;;
-    user_message) icon="$user_message_icon" ;;
-    complete) icon="$complete_icon" ;;
-    error) icon="$error_icon" ;;
-    question) icon="$question_icon" ;;
+  client_connected) icon="$client_connected_icon" ;;
+  session_started) icon="$session_started_icon" ;;
+  user_message) icon="$user_message_icon" ;;
+  complete) icon="$complete_icon" ;;
+  error) icon="$error_icon" ;;
+  question) icon="$question_icon" ;;
   esac
 
   ts_epoch=$(date -d "$ts" +%s 2>/dev/null || echo 0)
@@ -88,7 +88,7 @@ for project in "${!latest_event[@]}"; do
 done
 
 message=""
-if (( ${#lines[@]} > 0 )); then
+if ((${#lines[@]} > 0)); then
   IFS=$'\n' sorted=($(printf '%s\n' "${lines[@]}" | sort -t'|' -k1,1 -nr))
   unset IFS
 
