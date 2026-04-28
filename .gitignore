@@ -12,3 +12,4 @@ fonts
 *.old
 #ln-remote-chunk:end
 rofi
+.aider*

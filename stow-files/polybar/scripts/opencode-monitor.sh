@@ -61,7 +61,7 @@ find_opencode_clients() {
 	declare -a lines
 	now_epoch=$(date +%s)
 
-	lines=('-')
+	# lines=('-')
 	for project in "${!latest_event[@]}"; do
 		event="${latest_event[$project]}"
 		ts="${latest_timestamp[$project]}"
