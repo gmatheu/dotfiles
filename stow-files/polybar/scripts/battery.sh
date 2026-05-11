@@ -1,13 +1,13 @@
 #!/bin/bash
 
 ramp_load_0=""
-ramp_load_2=""
+ramp_load_1=""
 ramp_load_2=""
 ramp_load_4=""
 ramp_load_6=""
 
 bar_used_foreground_3=#55aa55
-bar_used_foreground_2=#557755
+bar_used_foreground_2=#ffffff
 bar_used_foreground_1=#f5a70a
 bar_used_foreground_0=#ff5555
 
@@ -28,11 +28,11 @@ colorize_value() {
 	text=$2
 	int_value=$(printf '%.*f\n' 0 "$value")
 	relative_value=${int_value}
-	if [[ $relative_value -lt 25 ]]; then
+	if [[ $relative_value -lt 15 ]]; then
 		echo -n "%{F${bar_used_foreground_0}}${text}%{F-}"
-	elif [[ $relative_value -lt 50 ]]; then
+	elif [[ $relative_value -lt 25 ]]; then
 		echo -n "%{F${bar_used_foreground_1}}${text}%{F-}"
-	elif [[ $relative_value -lt 75 ]]; then
+	elif [[ $relative_value -lt 60 ]]; then
 		echo -n "%{F${bar_used_foreground_2}}${text}%{F-}"
 	else
 		echo -n "%{F${bar_used_foreground_3}}${text}%{F-}"
@@ -43,13 +43,15 @@ graph_load() {
 	int_value=$(printf '%.*f\n' 0 "$1")
 	# relative_value=$((int_value * 100 / cpus))
 	value=${int_value}
-	if [[ $value -ge 0 && $value -lt 25 ]]; then
+	if [[ $value -ge 0 && $value -lt 15 ]]; then
 		echo -n $ramp_load_0
-	elif [[ $value -lt 50 ]]; then
+	elif [[ $value -lt 30 ]]; then
+		echo -n $ramp_load_1
+	elif [[ $value -lt 40 ]]; then
 		echo -n $ramp_load_2
-	elif [[ $value -lt 75 ]]; then
+	elif [[ $value -lt 60 ]]; then
 		echo -n $ramp_load_4
-	elif [[ $value -ge 75 ]]; then
+	elif [[ $value -ge 80 ]]; then
 		echo -n $ramp_load_6
 	fi
 }
