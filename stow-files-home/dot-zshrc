@@ -368,8 +368,7 @@ function sesh-last() {
 }
 ## end: Sesh zsh plugin
 
-function git_current_branch() { git branch --show-current }
-
+function git_current_branch() { git branch --show-current; }
 
 ## Zellij zsh plugin
 if command -v zellij >/dev/null; then

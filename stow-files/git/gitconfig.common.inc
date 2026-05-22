@@ -1,7 +1,8 @@
 [pull]
 	rebase = false
 [core]
-	pager = bat
+#	pager = bat
+#	pager =
 [init]
 	defaultBranch = main
 
