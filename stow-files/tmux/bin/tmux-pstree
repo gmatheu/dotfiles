@@ -1,4 +1,10 @@
 #! /bin/bash
 
-source "$HOME"/.zplug/repos/gmatheu/shell-plugins/tmux/init.sh 
+source "$HOME"/.zplug/repos/gmatheu/shell-plugins/tmux/init.sh
 tmux_pstree
+
+read -s -n1 key
+case $key in
+$'\e') echo "escape pressed" ;;
+*) echo "something else" ;;
+esac

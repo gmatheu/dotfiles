@@ -11,6 +11,30 @@
       }
     },
     {
+      "icon": "☇",
+      "category": "Panes",
+      "title": "Actions",
+      "action": {
+        "palette": "actions"
+      }
+    },
+    {
+      "icon": "⌥",
+      "category": "Panes",
+      "title": "Passwords",
+      "action": {
+        "palette": "password-store"
+      }
+    },
+    {
+      "icon": "⌥",
+      "category": "Tools",
+      "title": "Refresh Passwords Palette",
+      "action": {
+        "shell": "~/.config/tmux-palette/scripts/generate-password-palette.sh"
+      }
+    },
+    {
       "icon": "",
       "category": "Panes",
       "title": "Split Horizontal",
@@ -144,6 +168,156 @@
       }
     },
     {
+      "icon": "󰩨",
+      "category": "Panes",
+      "title": "Resize Pane Down",
+      "description": "bind-key J resize-pane -D",
+      "action": {
+        "tmux": "resize-pane -D"
+      },
+      "shortcut": "prefix-J"
+    },
+    {
+      "icon": "󰩨",
+      "category": "Panes",
+      "title": "Resize Pane Up",
+      "description": "bind-key K resize-pane -U",
+      "action": {
+        "tmux": "resize-pane -U"
+      },
+      "shortcut": "prefix-K"
+    },
+    {
+      "icon": "󰩨",
+      "category": "Panes",
+      "title": "Resize Pane Left",
+      "description": "bind-key H resize-pane -L",
+      "action": {
+        "tmux": "resize-pane -L"
+      },
+      "shortcut": "prefix-H"
+    },
+    {
+      "icon": "󰩨",
+      "category": "Panes",
+      "title": "Resize Pane Right",
+      "description": "bind-key L resize-pane -R",
+      "action": {
+        "tmux": "resize-pane -R"
+      },
+      "shortcut": "prefix-L"
+    },
+    {
+      "icon": "󰋸",
+      "category": "Panes",
+      "title": "Select Pane Up",
+      "description": "bind-key k select-pane -U",
+      "action": {
+        "tmux": "select-pane -U"
+      },
+      "shortcut": "prefix-k"
+    },
+    {
+      "icon": "󰋸",
+      "category": "Panes",
+      "title": "Select Pane Down",
+      "description": "bind-key j select-pane -D",
+      "action": {
+        "tmux": "select-pane -D"
+      },
+      "shortcut": "prefix-j"
+    },
+    {
+      "icon": "󰋸",
+      "category": "Panes",
+      "title": "Select Pane Left",
+      "description": "bind-key h select-pane -L",
+      "action": {
+        "tmux": "select-pane -L"
+      },
+      "shortcut": "prefix-h"
+    },
+    {
+      "icon": "󰋸",
+      "category": "Panes",
+      "title": "Select Pane Right",
+      "description": "bind-key l select-pane -R",
+      "action": {
+        "tmux": "select-pane -R"
+      },
+      "shortcut": "prefix-l"
+    },
+    {
+      "icon": "󰕴",
+      "category": "Panes",
+      "title": "Main Vertical Layout",
+      "description": "bind-key v select-layout main-vertical",
+      "action": {
+        "tmux": "select-layout main-vertical"
+      },
+      "shortcut": "prefix-v"
+    },
+    {
+      "icon": "󰕴",
+      "category": "Panes",
+      "title": "Main Horizontal Layout",
+      "description": "bind-key h select-layout main-horizontal",
+      "action": {
+        "tmux": "select-layout main-horizontal"
+      },
+      "shortcut": "prefix-h"
+    },
+    {
+      "icon": "󰕴",
+      "category": "Panes",
+      "title": "Even Vertical Layout",
+      "description": "bind-key V select-layout even-vertical",
+      "action": {
+        "tmux": "select-layout even-vertical"
+      },
+      "shortcut": "prefix-V"
+    },
+    {
+      "icon": "󰕴",
+      "category": "Panes",
+      "title": "Even Horizontal Layout",
+      "description": "bind-key H select-layout even-horizontal",
+      "action": {
+        "tmux": "select-layout even-horizontal"
+      },
+      "shortcut": "prefix-H"
+    },
+    {
+      "icon": "󰓦",
+      "category": "Panes",
+      "title": "Synchronize Panes On",
+      "description": "bind e setw synchronize-panes on; display 'Panes sync ON'",
+      "action": {
+        "tmux": "setw synchronize-panes on ; display 'Panes sync ON'"
+      },
+      "shortcut": "prefix-e"
+    },
+    {
+      "icon": "󰓦",
+      "category": "Panes",
+      "title": "Synchronize Panes Off",
+      "description": "bind E setw synchronize-panes off; display 'Panes sync OFF'",
+      "action": {
+        "tmux": "setw synchronize-panes off ; display 'Panes sync OFF'"
+      },
+      "shortcut": "prefix-E"
+    },
+    {
+      "icon": "󰔱",
+      "category": "Panes",
+      "title": "Choose Tree",
+      "description": "bind-key m choose-tree -Zw \"join-pane -t '%%'\"",
+      "shortcut": "prefix-m",
+      "action": {
+        "tmux": "choose-tree -Zw \"join-pane -t '%%'\""
+      }
+    },
+    {
       "icon": "󰝰",
       "category": "Windows",
       "title": "New Window",
@@ -259,6 +433,36 @@
       }
     },
     {
+      "icon": "󰔱",
+      "category": "Sessions",
+      "title": "Tmux Pstree",
+      "description": "bind-key T run-shell '~/.config/tmux/bin/tmux-pstree'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-pstree'"
+      },
+      "shortcut": "prefix-T"
+    },
+    {
+      "icon": "󰍃",
+      "category": "Sessions",
+      "title": "Switch Session",
+      "description": "bind-key w run-shell '~/.config/tmux/bin/tmux-switch-session'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-switch-session'"
+      },
+      "shortcut": "prefix-w"
+    },
+    {
+      "icon": "󰋚",
+      "category": "Sessions",
+      "title": "Last Session",
+      "description": "bind-key '~' run-shell '~/.config/tmux/bin/tmux-last-session'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-last-session'"
+      },
+      "shortcut": "prefix-~"
+    },
+    {
       "icon": "󰑓",
       "category": "System",
       "title": "Reload Config",
@@ -266,6 +470,66 @@
       "action": {
         "tmux": "source-file ~/.tmux.conf ; display-message 'Config reloaded'"
       }
+    },
+    {
+      "icon": "󰆐",
+      "category": "System",
+      "title": "Paste Buffer",
+      "description": "bind P paste-buffer",
+      "action": {
+        "tmux": "paste-buffer"
+      },
+      "shortcut": "prefix-P"
+    },
+    {
+      "icon": "󰌌",
+      "category": "System",
+      "title": "Show Key Mappings",
+      "description": "bind-key - run-shell '~/.config/tmux/bin/tmux-mappings'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-mappings'"
+      },
+      "shortcut": "prefix--"
+    },
+    {
+      "icon": "󰕮",
+      "category": "System",
+      "title": "Popup Menu",
+      "description": "bind-key _ run-shell '~/.config/tmux/bin/tmux-popup'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-popup'"
+      },
+      "shortcut": "prefix-_"
+    },
+    {
+      "icon": "󰘕",
+      "category": "System",
+      "title": "Actions Menu",
+      "description": "bind-key A run-shell '~/.config/tmux/bin/tmux-actions'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-actions'"
+      },
+      "shortcut": "prefix-A"
+    },
+    {
+      "icon": "󰑖",
+      "category": "System",
+      "title": "Repeat Inactive Pane",
+      "description": "bind-key a run-shell '~/.config/tmux/bin/tmux-repeat-inactive-pane'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-repeat-inactive-pane'"
+      },
+      "shortcut": "prefix-a"
+    },
+    {
+      "icon": "󰏫",
+      "category": "System",
+      "title": "Rename Window (Script)",
+      "description": "bind-key R run-shell '~/.config/tmux/bin/tmux-rename-window'",
+      "action": {
+        "tmux": "run-shell '~/.config/tmux/bin/tmux-rename-window'"
+      },
+      "shortcut": "prefix-R"
     },
     {
       "icon": "",

@@ -7,3 +7,4 @@
 | 2026-03-13 | [20260313_1023_session_last_feature_summary.md](20260313_1023_session_last_feature_summary.md) | Session last feature summary |
 | 2026-03-13 | [20260313_1045_session_last_feature_summary.md](20260313_1045_session_last_feature_summary.md) | Session last feature summary |
 | 2026-04-21 | [20260421_1158_opencode_notify_send_log_parsing.md](20260421_1158_opencode_notify_send_log_parsing.md) | OpenCode notifier notify-send script with live log parsing |
+| 2026-05-22 | [20260522_1134-i3-pass-to-tmux-palette.md](20260522_1134-i3-pass-to-tmux-palette.md) | Convert i3-pass to tmux-palette |

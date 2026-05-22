@@ -407,3 +407,6 @@ compdef _files _nvim
 if [ -f $HOME/.zshrc.post ]; then
   source $HOME/.zshrc.post
 fi
+
+# Added by git-ai installer on Fri May 22 11:37:42 AM -03 2026
+export PATH="/home/gmatheu/.git-ai/bin:$PATH"

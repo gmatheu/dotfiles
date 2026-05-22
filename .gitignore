@@ -13,3 +13,4 @@ fonts
 #ln-remote-chunk:end
 rofi
 .aider*
+/stow-files/tmux-palette/palettes/password-store.json
