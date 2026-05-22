@@ -1,0 +1,14 @@
+[
+  {
+    "icon": "",
+    "title": "htop",
+    "category": "Tools",
+    "action": { "popup": "htop" }
+  },
+  {
+    "icon": "",
+    "title": "tmux-pstree",
+    "category": "Tools",
+    "action": { "popup": "~/.config/tmux/bin/tmux-pstree" }
+  }
+]

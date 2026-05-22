@@ -4,6 +4,7 @@ keybinds {
     unbind "Ctrl b" // unbind in all modes
     unbind "Alt h"
     unbind "Alt l"
+    unbind "Alt f"
     unbind "Alt j"
     unbind "Alt k"
     unbind "Alt Left"

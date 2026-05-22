@@ -1,0 +1,196 @@
+#!/usr/bin/env bash
+# update-tmux-palette-shortcuts
+#
+# Scans the active tmux key bindings and injects the corresponding shortcut
+# strings into the tmux-palette default.json file.
+#
+# Usage:
+#   ./update-tmux-palette-shortcuts [path/to/default.json]
+#
+# If no path is given it defaults to:
+#   <script-dir>/palettes/default.json
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+json_file="${1:-$script_dir/palettes/default.json}"
+
+if [[ ! -f "$json_file" ]]; then
+  echo "Error: JSON file not found: $json_file" >&2
+  exit 1
+fi
+
+# ---------------------------------------------------------------------------
+# 1. Capture prefix bindings from tmux into a temp file.
+# ---------------------------------------------------------------------------
+tmux list-keys 2>/dev/null | awk '
+  $2 == "-T" && $3 == "prefix" {
+    key = $4
+    cmd_start = 5
+
+    cmd = ""
+    for (i = cmd_start; i <= NF; i++) {
+      if (cmd != "") cmd = cmd " "
+      cmd = cmd $i
+    }
+
+    # Un-escape tmux key formatting
+    gsub(/\\"/, "\"", key)
+    gsub(/\\%/, "%", key)
+    gsub(/\\\{/, "{", key)
+    gsub(/\\\}/, "}", key)
+    gsub(/\\\[/, "[", key)
+    gsub(/\\\]/, "]", key)
+
+    # Strip any remaining literal quotes
+    gsub(/^"|"$/, "", key)
+
+    print key "\t" cmd
+  }
+' > /tmp/tmux_keys_$$
+
+# ---------------------------------------------------------------------------
+# 2. Python: match palette commands to bindings
+# ---------------------------------------------------------------------------
+python3 - "$json_file" /tmp/tmux_keys_$$ <<'PY'
+import json, sys, re
+
+json_path = sys.argv[1]
+keys_path = sys.argv[2]
+
+def normalize(cmd: str) -> str:
+    return ' '.join(cmd.split()).rstrip(';').strip()
+
+def extract_executable(cmd: str) -> list:
+    """Extract possible inner commands from wrapper syntax."""
+    results = []
+
+    # confirm-before -p '...' <command>
+    m = re.search(r"confirm-before\s+(?:-\w+\s+)*['\"][^'\"]*['\"]\s+(\S.*)$", cmd)
+    if m:
+        results.append(normalize(m.group(1)))
+
+    # command-prompt with { ... } braces
+    m = re.search(r"\{\s*(.+?)\s*\}", cmd)
+    if m:
+        results.append(normalize(m.group(1)))
+
+    # command-prompt with quoted command template
+    # Careful: the regex must not break on mixed quote types.
+    # Extract the LAST single-quoted string (usually the command).
+    sq = re.findall(r"'([^']+)'", cmd)
+    if sq:
+        last = sq[-1]
+        first = last.split(';')[0].strip()
+        results.append(normalize(first))
+        results.append(normalize(last))
+
+    # Deduplicate while preserving order
+    seen = set()
+    out = []
+    for r in results:
+        if r and r not in seen:
+            seen.add(r)
+            out.append(r)
+    return out
+
+# ------------------------------------------------------------------
+# Load prefix key bindings
+# ------------------------------------------------------------------
+bindings = {}
+
+with open(keys_path) as f:
+    for line in f:
+        line = line.rstrip('\n')
+        if not line or '\t' not in line:
+            continue
+        key, cmd = line.split('\t', 1)
+        norm = normalize(cmd)
+        bindings[norm] = key
+
+        # Also without -c "#{pane_current_path}" for new-window / split-window
+        no_cwd = re.sub(r'\s+-c\s+"#\{pane_current_path\}"', '', norm).strip()
+        if no_cwd != norm:
+            bindings.setdefault(no_cwd, key)
+
+# ------------------------------------------------------------------
+# Load palette
+# ------------------------------------------------------------------
+with open(json_path) as f:
+    data = json.load(f)
+
+updated = 0
+unchanged = 0
+no_match = 0
+missing = 0
+
+for item in data.get("items", []):
+    action = item.get("action", {})
+    tmux_cmd = action.get("tmux", "")
+    if not tmux_cmd:
+        no_match += 1
+        continue
+
+    palette_norm = normalize(tmux_cmd)
+    key = None
+    confidence = 0   # 0=none, 1=extracted, 2=exact
+
+    # Strategy A: exact match (highest confidence)
+    if palette_norm in bindings:
+        key = bindings[palette_norm]
+        confidence = 2
+
+    # Strategy B: exact match with normalized quotes
+    if not key:
+        qnorm = palette_norm.replace("'", '"')
+        if qnorm in bindings:
+            key = bindings[qnorm]
+            confidence = 2
+
+    # Strategy C: extract inner command from wrappers
+    if not key:
+        for variant in extract_executable(tmux_cmd):
+            if variant in bindings:
+                key = bindings[variant]
+                confidence = 1
+                break
+            qvariant = variant.replace("'", '"')
+            if qvariant in bindings:
+                key = bindings[qvariant]
+                confidence = 1
+                break
+
+    if key:
+        shortcut = f"prefix-{key}"
+        old = item.get("shortcut", "")
+
+        if old == shortcut:
+            unchanged += 1
+        elif not old and confidence >= 1:
+            # No existing shortcut and we found a match -> add it
+            item["shortcut"] = shortcut
+            updated += 1
+            print(f"Added '{item['title']}': {shortcut!r}")
+        elif confidence >= 2:
+            # Exact match but different from existing -> update
+            item["shortcut"] = shortcut
+            updated += 1
+            print(f"Updated '{item['title']}': {old!r} -> {shortcut!r}")
+        else:
+            # Low confidence and existing shortcut differs -> keep existing
+            unchanged += 1
+            print(f"Kept '{item['title']}': {old!r} (found {shortcut!r} but low confidence)")
+    else:
+        no_match += 1
+        if not item.get("shortcut"):
+            missing += 1
+            print(f"No binding for '{item['title']}': {palette_norm}")
+
+with open(json_path, 'w') as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+    f.write('\n')
+
+print(f"\nDone: {updated} updated, {unchanged} unchanged, {missing} missing, {no_match - missing} had existing shortcut.")
+PY
+
+rm -f /tmp/tmux_keys_$$

@@ -1,0 +1,285 @@
+#!/usr/bin/env bash
+# add-tmux-palette-items
+#
+# Scans tmux.conf for custom key bindings that are NOT yet in the palette JSON,
+# and injects them as new palette items with inferred title / description /
+# category / icon.
+#
+# Usage:
+#   ./add-tmux-palette-items [path/to/tmux.conf] [path/to/default.json]
+#
+# Defaults:
+#   tmux.conf  -> ~/.tmux.conf
+#   default.json -> <script-dir>/palettes/default.json
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+conf_file="${1:-$HOME/.tmux.conf}"
+json_file="${2:-$script_dir/../palettes/default.json}"
+
+if [[ ! -f "$conf_file" ]]; then
+  echo "Error: tmux.conf not found: $conf_file" >&2
+  exit 1
+fi
+if [[ ! -f "$json_file" ]]; then
+  echo "Error: JSON file not found: $json_file" >&2
+  exit 1
+fi
+
+# ---------------------------------------------------------------------------
+# 1. Parse tmux.conf into a temp file: <key>TAB<command>
+# ---------------------------------------------------------------------------
+python3 - "$conf_file" > /tmp/tmux_conf_bindings_$$ <<'AWK'
+import sys, re
+
+conf_path = sys.argv[1]
+with open(conf_path) as f:
+    raw = f.read()
+
+# Remove line continuations (backslash at end of line)
+raw = raw.replace('\\\n', ' ')
+
+for line in raw.split('\n'):
+    line = line.strip()
+    if not line or line.startswith('#'):
+        continue
+
+    # Parse tmux bind syntax robustly:
+    #   bind-key [-r] [-T table] [-n] <key> <command>
+    # Handles both -T table and -Ttable forms.
+    m = re.match(
+        r'^(?:bind-key|bind)\s+'
+        r'((?:-\w+\s+)*)'             # all leading flags (-r, -n, etc.)
+        r'(?:-T\s*(\S+)\s+)?'         # optional table (-T copy-mode-vi or -Tcopy-mode-vi)
+        r'([^\s;]+)\s+'                # key
+        r'(.*)',                        # command
+        line
+    )
+    if not m:
+        continue
+
+    flags_str = m.group(1).strip()
+    table = m.group(2) or ""
+    key = m.group(3).strip().strip("'\"")
+    cmd = m.group(4).strip()
+
+    # Skip root bindings (no prefix): look for -n as a separate flag
+    flag_list = flags_str.split()
+    if '-n' in flag_list:
+        continue
+    # Skip copy-mode / root table bindings
+    if table in ('copy-mode', 'copy-mode-vi', 'root'):
+        continue
+    # Skip send-prefix
+    if key == 'C-b' and 'send-prefix' in cmd:
+        continue
+    # Skip empty commands
+    if not cmd:
+        continue
+
+    clean = ' '.join(cmd.split())
+    print(f"{key}\t{clean}")
+AWK
+
+# ---------------------------------------------------------------------------
+# 2. Python: compare with existing palette and insert missing items
+# ---------------------------------------------------------------------------
+python3 - "$json_file" /tmp/tmux_conf_bindings_$$ <<'PY'
+import json, sys, re, os
+
+json_path = sys.argv[1]
+bindings_path = sys.argv[2]
+
+def normalize(cmd: str) -> str:
+    return ' '.join(cmd.split()).rstrip(';').strip()
+
+def strip_cwd(cmd: str) -> str:
+    """Remove -c '#{pane_current_path}' or -c "#{pane_current_path}" for dedup."""
+    return re.sub(r"\s+-c\s+['\"]#\{pane_current_path\}['\"]", '', cmd).strip()
+
+def infer_category(cmd: str) -> str:
+    c = cmd.lower()
+    if any(x in c for x in ('pane', 'resize-pane', 'select-pane', 'swap-pane', 'layout', 'synchronize')):
+        return 'Panes'
+    if any(x in c for x in ('window', 'new-window', 'next-window', 'previous-window', 'last-window', 'kill-window', 'move-window')):
+        return 'Windows'
+    if any(x in c for x in ('session', 'switch-client', 'choose-tree', 'detach-client', 'kill-session')):
+        return 'Sessions'
+    if any(x in c for x in ('copy-mode', 'paste-buffer')):
+        return 'Buffers'
+    return 'System'
+
+def infer_icon(title: str, category: str, cmd: str) -> str:
+    t = title.lower()
+    if 'resize' in t:
+        return '󰩨'
+    if 'select' in t and 'pane' in t:
+        return '󰋸'
+    if 'layout' in t:
+        return '󰕴'
+    if 'paste' in t:
+        return '󰆐'
+    if 'sync' in t:
+        return '󰓦'
+    if 'pstree' in t or 'tree' in t:
+        return '󰔱'
+    if 'join' in t:
+        return '󰓢'
+    if 'popup' in t:
+        return '󰕮'
+    if 'actions' in t:
+        return '󰘕'
+    if 'repeat' in t:
+        return '󰑖'
+    if 'rename' in t:
+        return '󰏫'
+    if 'switch' in t or 'session' in t:
+        return '󰍃'
+    if 'last' in t:
+        return '󰋚'
+    if 'mappings' in t or 'keys' in t:
+        return '󰌌'
+    if 'clear' in t or 'history' in t:
+        return '󰃣'
+    return '󰘳'
+
+def make_title(key: str, cmd: str) -> str:
+    parts = normalize(cmd).split()
+    base = parts[0] if parts else ""
+
+    title_map = {
+        'resize-pane': {
+            '-D': 'Resize Pane Down',
+            '-U': 'Resize Pane Up',
+            '-L': 'Resize Pane Left',
+            '-R': 'Resize Pane Right',
+        },
+        'select-pane': {
+            '-U': 'Select Pane Up',
+            '-D': 'Select Pane Down',
+            '-L': 'Select Pane Left',
+            '-R': 'Select Pane Right',
+        },
+        'select-layout': {
+            'main-vertical': 'Main Vertical Layout',
+            'main-horizontal': 'Main Horizontal Layout',
+            'even-vertical': 'Even Vertical Layout',
+            'even-horizontal': 'Even Horizontal Layout',
+        },
+        'paste-buffer': 'Paste Buffer',
+        'setw': 'Synchronize Panes On',
+        'send-keys': 'Send Ctrl-L & Clear History',
+    }
+
+    if base in title_map and isinstance(title_map[base], dict):
+        for flag, t in title_map[base].items():
+            if flag in cmd:
+                return t
+        return base.replace('-', ' ').title()
+    elif base in title_map and isinstance(title_map[base], str):
+        if base == 'setw':
+            return 'Synchronize Panes On' if 'on' in cmd.lower() else 'Synchronize Panes Off'
+        return title_map[base]
+
+    if base == 'run-shell':
+        script = normalize(cmd).split()[-1] if normalize(cmd).split() else ""
+        script_name = os.path.basename(script).replace("'", "").replace('"', '')
+        name = script_name.replace('tmux-', '').replace('-', ' ').title()
+        return name
+
+    return base.replace('-', ' ').title()
+
+# ------------------------------------------------------------------
+# Load existing palette
+# ------------------------------------------------------------------
+with open(json_path) as f:
+    data = json.load(f)
+
+existing_cmds = set()
+existing_titles = {item["title"] for item in data["items"]}
+existing_shortcuts = {item.get("shortcut", "") for item in data["items"]}
+for item in data["items"]:
+    action = item.get("action", {})
+    tmux_cmd = action.get("tmux", "")
+    if tmux_cmd:
+        existing_cmds.add(strip_cwd(normalize(tmux_cmd)))
+
+# ------------------------------------------------------------------
+# Load tmux.conf bindings and filter out existing ones
+# ------------------------------------------------------------------
+new_items = []
+with open(bindings_path) as f:
+    for line in f:
+        line = line.rstrip('\n')
+        if not line or '\t' not in line:
+            continue
+        key, cmd = line.split('\t', 1)
+        cmd_clean = normalize(cmd)
+        norm_cmd = strip_cwd(cmd_clean)
+        shortcut = f"prefix-{key}"
+
+        # Skip if shortcut already exists (same key bound to different command)
+        if shortcut in existing_shortcuts:
+            continue
+
+        # Skip if command (or its cwd-less version) already exists
+        if norm_cmd in existing_cmds:
+            continue
+
+        # Skip if the command is a prefix/suffix of an existing one (same base cmd)
+        is_dup = False
+        for ec in existing_cmds:
+            if norm_cmd.startswith(ec + ' ') or ec.startswith(norm_cmd + ' '):
+                if norm_cmd.split() and ec.split() and norm_cmd.split()[0] == ec.split()[0]:
+                    is_dup = True
+                    break
+        if is_dup:
+            continue
+
+        # Also skip by title
+        title = make_title(key, cmd_clean)
+        if title in existing_titles:
+            continue
+
+        category = infer_category(cmd_clean)
+        icon = infer_icon(title, category, cmd_clean)
+
+        item = {
+            "icon": icon,
+            "category": category,
+            "title": title,
+            "description": f"bind-key {key} {cmd_clean}",
+            "shortcut": shortcut,
+            "action": {"tmux": cmd_clean},
+        }
+        new_items.append(item)
+        existing_cmds.add(norm_cmd)
+        existing_titles.add(title)
+        existing_shortcuts.add(shortcut)
+
+# ------------------------------------------------------------------
+# Insert new items into palette by category
+# ------------------------------------------------------------------
+added = 0
+for item in new_items:
+    cat = item["category"]
+    insert_pos = None
+    for idx in range(len(data["items"]) - 1, -1, -1):
+        if data["items"][idx].get("category") == cat:
+            insert_pos = idx + 1
+            break
+    if insert_pos is None:
+        insert_pos = len(data["items"])
+    data["items"].insert(insert_pos, item)
+    added += 1
+    print(f"Added '{item['title']}' ({item['shortcut']}) -> {cat}")
+
+with open(json_path, 'w') as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+    f.write('\n')
+
+print(f"\nDone: {added} items added, {len(data['items'])} total items.")
+PY
+
+rm -f /tmp/tmux_conf_bindings_$$
