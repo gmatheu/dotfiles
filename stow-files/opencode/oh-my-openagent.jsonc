@@ -5,26 +5,26 @@
   },
   "agents": {
     "sisyphus": {
-      "model": "opencode/kimi-k2.6",
+      "model": "opencode-go/kimi-k2.6",
       "prompt_append": "Summary after work should be concise. Let's split the summary in 2 parts, first a concise summary of changes applied and then a code review focused itemized summary (hunk by hunk and order following the runtime flow)",
     },
     "hephaestus": {
-      "model": "opencode/gpt-5.4",
+      "model": "opencode-go/gpt-5.4",
     },
     "prometheus": {
-      "model": "opencode/kimi-k2.6",
+      "model": "opencode-go/kimi-k2.6",
     },
     "atlas": {
-      "model": "opencode/minimax-m2.7",
+      "model": "opencode-go/minimax-m2.7",
     },
     "librarian": {
-      "model": "opencode/glm-5.1",
+      "model": "opencode-go/glm-5.1",
     },
     "oracle": {
-      "model": "opencode/gpt-5.3-codex",
+      "model": "opencode-go/gpt-5.3-codex",
     },
     "explore": {
-      "model": "opencode/gpt-5.4-nano",
+      "model": "opencode-go/gpt-5.4-nano",
     },
     "frontend-ui-ux-engineer": {
       "model": "google/gemini-3.1-pro-high",
@@ -38,7 +38,7 @@
   },
   "categories": {
     "quick": {
-      "model": "opencode/gpt-5.4-nano",
+      "model": "opencode-go/gpt-5.4-nano",
     },
     "visual-engineering": {
       "model": "google/gemini-3.1-pro",
