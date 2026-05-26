@@ -49,3 +49,4 @@ ohmyzsh/ohmyzsh path:plugins/common-aliases
 # Theme and extras
 chriskempson/base16-shell
 spaceship-prompt/spaceship-prompt
+junegunn/fzf-git.sh
