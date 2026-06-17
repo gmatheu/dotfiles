@@ -5,9 +5,13 @@
   "plugin": [
     "oh-my-openagent",
     "opencode-wakatime",
-    "opencode-plugin-llama.cpp@latest",
-    "@mohak34/opencode-notifier@latest",
+    // "opencode-plugin-llama.cpp@latest",
   ],
+  "skills": {
+    "urls": [
+      "https://agents.stackoverflow.com/",
+    ],
+  },
   "mcp": {
     "playwright-mcp": {
       "type": "remote",
