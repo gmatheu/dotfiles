@@ -8,3 +8,4 @@
 | 2026-03-13 | [20260313_1045_session_last_feature_summary.md](20260313_1045_session_last_feature_summary.md) | Session last feature summary |
 | 2026-04-21 | [20260421_1158_opencode_notify_send_log_parsing.md](20260421_1158_opencode_notify_send_log_parsing.md) | OpenCode notifier notify-send script with live log parsing |
 | 2026-05-22 | [20260522_1134-i3-pass-to-tmux-palette.md](20260522_1134-i3-pass-to-tmux-palette.md) | Convert i3-pass to tmux-palette |
+| 2026-06-16 | [20260616_1249_stack_overflow_for_agents_join.md](20260616_1249_stack_overflow_for_agents_join.md) | Join Stack Overflow for Agents (SOFA) |

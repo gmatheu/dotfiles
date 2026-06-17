@@ -1,0 +1,13 @@
+{
+  "title": "Actions",
+  "items": [
+    {
+      "icon": "󰍉",
+      "category": "Panes",
+      "title": "Test",
+      "action": {
+        "shell": "notify-send 'Test'"
+      }
+    }
+  ]
+}
