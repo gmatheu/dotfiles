@@ -8,7 +8,6 @@ if [[ -v PROFILE_ZSH ]]; then
   echo "Profiling with zprof (execute zprof to gather results)"
   zmodload zsh/zprof
 fi
-zmodload zsh/zprof
 export DISABLE_CORRECTION="true"
 export EDITOR='nvim'
 
@@ -188,13 +187,11 @@ function extra_init() {
 
 export NVIM_APPNAME=astronvim
 function _nvim() {
-  cmd="nvim"
-
   if [ -f uv.lock ]; then
     echo "Using uv to execute nvim"
-    uv run nvim $@
+    uv run command nvim $@
   else
-    nvim $@
+    command nvim $@
   fi
 
 }
@@ -339,10 +336,16 @@ esac
 # pnpm end
 #
 
-source $HOME/.zshrc.aliases
+source $HOME/.zshrc-aliases.zsh
 
 # export CARAPACE_BRIDGES='zsh,bash' # optional
-export LS_COLORS=$(vivid generate dracula)
+# Cache vivid LS_COLORS to avoid subprocess on every startup
+_vivid_cache="${XDG_CACHE_HOME:-$HOME/.cache}/vivid_colors.zsh"
+if [[ ! -f "$_vivid_cache" ]] || [[ ! -s "$_vivid_cache" ]]; then
+  mkdir -p "${_vivid_cache:h}"
+  vivid generate dracula > "$_vivid_cache"
+fi
+# source "$_vivid_cache"
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 # source <(carapace _carapace)
 
@@ -350,10 +353,9 @@ compdef _files _nvim
 # autoload -U compinit
 # compinit
 
-
 if [ -f $HOME/.zshrc.post ]; then
   source $HOME/.zshrc.post
 fi
 
-# Added by git-ai installer on Fri May 22 11:37:42 AM -03 2026
+# Added by git-ai installer on Mon Jun 15 12:20:32 PM -03 2026
 export PATH="/home/gmatheu/.git-ai/bin:$PATH"

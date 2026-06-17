@@ -31,17 +31,21 @@ function sesh-last() {
 ## Git zsh plugin
 function git_current_branch() { git branch --show-current; }
 
-
-function __git_last_commit() { print -z "git commit -m \"$(git log -1 --pretty=%B)\"" }
+function __git_last_commit() { print -z "git commit -m \"$(git log -1 --pretty=%B)\""; }
 alias glc=__git_last_commit
 
-function __git_branch_local_switch () {
+function __git_branch_local_switch() {
   _fzf_git_branches | xargs git checkout
 }
 alias gbs=__git_branch_local_switch
 
+function __git_worktree_switch() {
+  relative_path=$(pwd | sed -e "s#$(git rev-parse --show-toplevel)/##g")
+  cd $(_fzf_git_worktrees | xargs -i{} echo {}/$relative_path)
+}
+alias gws=__git_worktree_switch
 
-function __git_branch_remote_switch () {git branch --remotes --list --sort=-creatordate | cut -d '/' -f 2- | grep -v 'HEAD' | grep -v 'main' | fzf --bind='enter:become(git checkout {})'}
+function __git_branch_remote_switch() {git branch --remotes --list --sort=-creatordate | cut -d '/' -f 2- | grep -v 'HEAD' | grep -v 'main' | fzf --bind='enter:become(git checkout {})'}
 alias gbr=__git_branch_remote_switch
 ## end: git
 
