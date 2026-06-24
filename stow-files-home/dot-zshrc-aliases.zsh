@@ -45,7 +45,15 @@ function __git_worktree_switch() {
 }
 alias gws=__git_worktree_switch
 
-function __git_branch_remote_switch() {git branch --remotes --list --sort=-creatordate | cut -d '/' -f 2- | grep -v 'HEAD' | grep -v 'main' | fzf --bind='enter:become(git checkout {})'}
+function __git_branch_remote_woktrunk() {
+  local base=$(git branch --show-current)
+  git branch --remotes --list --sort=-creatordate | cut -d '/' -f 2- | grep -v 'HEAD' | grep -v 'main' | fzf |
+    xargs -I% wt switch --create % --base "$base"
+}
+
+function __git_branch_remote_switch() {
+  git branch --remotes --list --sort=-creatordate | cut -d '/' -f 2- | grep -v 'HEAD' | grep -v 'main' | fzf --bind='enter:become(git checkout {})'
+}
 alias gbr=__git_branch_remote_switch
 ## end: git
 
@@ -63,7 +71,7 @@ if command -v zellij >/dev/null; then
     local current_tab
     current_tab=$(zellij action dump-layout | grep -e 'tab' | grep -e 'focus=true' | grep -e '#.' -o)
     local current_branch
-    current_branch=$(git branch --show-current)
+    current_branch=$(git branch --show-current | cut -d'-' -f1)
 
     zellij action rename-tab "$current_tab:$current_branch"
   }
@@ -73,3 +81,19 @@ if command -v zellij >/dev/null; then
   alias zjg=zellij_rename_tab_git
 fi
 ## end:Zellij zsh plugin
+
+# Purge completion cache files older than 7 days so they regenerate on next load.
+_refresh_completion_cache() {
+  find "$HOME/.cache" -maxdepth 1 -name '*_completion.zsh' -mtime +7 -delete 2>/dev/null
+}
+_refresh_completion_cache
+# Cache and source a shell completion script.
+# Usage: _cache_completion NAME CMD [ARGS...]
+_cache_completion() {
+  local cache_file=$HOME/.cache/${1}_completion.zsh
+  if [[ ! -f $cache_file ]]; then
+    shift
+    "$@" >"$cache_file"
+  fi
+  eval "$(cat $cache_file)"
+}

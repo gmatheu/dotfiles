@@ -1,0 +1,64 @@
+export PATH="$HOME/.git-ai/bin:$PATH"
+
+function _load_profile_secrets() {
+  export OPENROUTER_API_KEY_MINUET
+  OPENROUTER_API_KEY_MINUET=$(pass show personal/openrouter/matheu.gonzalo/framework_minuet)
+  export EGET_GITHUB_TOKEN
+  EGET_GITHUB_TOKEN=$(pass show personal/github.com/api-key_framework-public)
+
+  export AIDER_OPENAI_API_KEY
+  AIDER_OPENAI_API_KEY=$(pass show personal/opencode/framework_aider_api-key)
+  export MIMO_API_KEY_MINUET
+  MIMO_API_KEY_MINUET=$(pass show personal/xiaomimimo/framework_minuet_api-key)
+
+  export SOFA_API_KEY
+  SOFA_API_KEY=$(pass show personal/sofa/default_api-key)
+}
+
+#ln-remote-chunk: https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/chunks/zshrc_completion_cache.sh
+# Purge completion cache files older than 7 days so they regenerate on next load.
+_refresh_completion_cache() {
+	find "$HOME/.cache" -maxdepth 1 -name '*_completion.zsh' -mtime +7 -delete 2>/dev/null
+}
+_refresh_completion_cache
+# Cache and source a shell completion script.
+# Usage: _cache_completion NAME CMD [ARGS...]
+_cache_completion() {
+	local cache_file=$HOME/.cache/${1}_completion.zsh
+	if [[ ! -f $cache_file ]]; then
+		shift
+		"$@" >"$cache_file"
+	fi
+	eval "$(cat $cache_file)"
+}
+#ln-remote-chunk:end
+
+if command -v workz &>/dev/null; then
+  eval "$(workz init zsh)"
+  alias wz=workz
+fi
+_cache_completion omp omp completions zsh
+
+if command -v pyenv &>/dev/null; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  # Lazy-load pyenv - only initialize when first needed (~50-100ms savings)
+  _pyenv_lazy_init() {
+    unset -f pyenv
+    eval "$(command pyenv init - zsh)"
+    # _cache_completion pyenv pyenv init - zsh
+    eval "$(command pyenv virtualenv-init -)"
+  }
+  pyenv() { _pyenv_lazy_init && pyenv "$@"; }
+fi
+
+_cache_completion mise mise completion zsh
+eval "$(terminal-wakatime init)"
+_cache_completion terminal-wakatime terminal-wakatime completion zsh
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+_cache_completion workshop workshop completion zsh
+_cache_completion gh gh completion -s zsh
+_cache_completion rustup rustup completions zsh
+# _cache_completion cargo rustup completions zsh cargo
+_cache_completion docker docker completion zsh
