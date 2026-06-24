@@ -78,15 +78,13 @@
   [installed."agavra/tuicr"]
     repo = "agavra/tuicr"
     target = "agavra/tuicr"
-    installed_at = 2026-06-08T08:36:59.74807043-03:00
-    url = "https://github.com/agavra/tuicr/releases/download/v0.17.1/tuicr-0.17.1-x86_64-unknown-linux-gnu.tar.gz"
-    asset = "tuicr-0.17.1-x86_64-unknown-linux-gnu.tar.gz"
+    installed_at = 2026-06-22T17:03:44.398073869-03:00
+    url = "https://github.com/agavra/tuicr/releases/download/v0.18.0/tuicr-0.18.0-x86_64-unknown-linux-gnu.tar.gz"
+    asset = "tuicr-0.18.0-x86_64-unknown-linux-gnu.tar.gz"
     tool = "tuicr"
     extracted_files = ["/home/gmatheu/.local/eget/bin/tuicr"]
-    tag = "v0.17.1"
     [installed."agavra/tuicr".options]
       system = "linux/amd64"
-      tag = "v0.17.1"
       upgrade_only = true
   [installed."alexpasmantier/television"]
     repo = "alexpasmantier/television"
@@ -455,15 +453,13 @@
   [installed."modem-dev/hunk"]
     repo = "modem-dev/hunk"
     target = "modem-dev/hunk"
-    installed_at = 2026-06-08T08:38:24.570565427-03:00
-    url = "https://github.com/modem-dev/hunk/releases/download/v0.14.1/hunkdiff-linux-x64.tar.gz"
+    installed_at = 2026-06-23T08:42:52.860398398-03:00
+    url = "https://github.com/modem-dev/hunk/releases/download/v0.16.0/hunkdiff-linux-x64.tar.gz"
     asset = "hunkdiff-linux-x64.tar.gz"
     tool = "hunk"
     extracted_files = ["/home/gmatheu/.local/eget/bin/hunk"]
-    tag = "v0.14.1"
     [installed."modem-dev/hunk".options]
       system = "linux/amd64"
-      tag = "v0.14.1"
       upgrade_only = true
   [installed."nektos/act"]
     repo = "nektos/act"
@@ -490,6 +486,17 @@
     [installed."ollama/ollama".options]
       asset = ["ollama-linux-amd64.tar.zst"]
       tag = "v0.30.0"
+      upgrade_only = true
+  [installed."open-pencil/open-pencil"]
+    repo = "open-pencil/open-pencil"
+    target = "open-pencil/open-pencil"
+    installed_at = 2026-06-22T17:11:35.703308566-03:00
+    url = "https://github.com/open-pencil/open-pencil/releases/download/v0.13.2/OpenPencil_0.13.2_amd64.AppImage"
+    asset = "OpenPencil_0.13.2_amd64.AppImage"
+    tool = "open-pencil"
+    extracted_files = ["/home/gmatheu/.local/eget/bin/open-pencil"]
+    [installed."open-pencil/open-pencil".options]
+      system = "linux/amd64"
       upgrade_only = true
   [installed."orhun/ratty"]
     repo = "orhun/ratty"
@@ -594,15 +601,15 @@
   [installed."sst/opencode"]
     repo = "sst/opencode"
     target = "sst/opencode"
-    installed_at = 2026-06-10T09:21:54.885926548-03:00
-    url = "https://github.com/anomalyco/opencode/releases/download/v1.17.1/opencode-linux-x64.tar.gz"
+    installed_at = 2026-06-22T09:33:55.376890102-03:00
+    url = "https://github.com/anomalyco/opencode/releases/download/v1.17.9/opencode-linux-x64.tar.gz"
     asset = "opencode-linux-x64.tar.gz"
     tool = "opencode"
     extracted_files = ["/home/gmatheu/.local/eget/bin/opencode"]
-    tag = "v1.17.1"
+    tag = "v1.17.9"
     [installed."sst/opencode".options]
       system = "linux/amd64"
-      tag = "v1.17.1"
+      tag = "v1.17.9"
       upgrade_only = true
   [installed."steipete/gogcli"]
     repo = "steipete/gogcli"
