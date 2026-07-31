@@ -189,7 +189,7 @@ export NVIM_APPNAME=astronvim
 function _nvim() {
   if [ -f uv.lock ]; then
     echo "Using uv to execute nvim"
-    uv run command nvim $@
+    uv run nvim $@
   else
     command nvim $@
   fi

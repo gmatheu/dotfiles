@@ -18,18 +18,18 @@ function _load_profile_secrets() {
 #ln-remote-chunk: https://codeberg.org/gmatheu/ln-remote-files/raw/branch/main/chunks/zshrc_completion_cache.sh
 # Purge completion cache files older than 7 days so they regenerate on next load.
 _refresh_completion_cache() {
-	find "$HOME/.cache" -maxdepth 1 -name '*_completion.zsh' -mtime +7 -delete 2>/dev/null
+  find "$HOME/.cache" -maxdepth 1 -name '*_completion.zsh' -mtime +7 -delete 2>/dev/null
 }
 _refresh_completion_cache
 # Cache and source a shell completion script.
 # Usage: _cache_completion NAME CMD [ARGS...]
 _cache_completion() {
-	local cache_file=$HOME/.cache/${1}_completion.zsh
-	if [[ ! -f $cache_file ]]; then
-		shift
-		"$@" >"$cache_file"
-	fi
-	eval "$(cat $cache_file)"
+  local cache_file=$HOME/.cache/${1}_completion.zsh
+  if [[ ! -f $cache_file ]]; then
+    shift
+    "$@" >"$cache_file"
+  fi
+  eval "$(cat $cache_file)"
 }
 #ln-remote-chunk:end
 

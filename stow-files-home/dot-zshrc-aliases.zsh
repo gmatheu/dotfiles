@@ -45,7 +45,7 @@ function __git_worktree_switch() {
 }
 alias gws=__git_worktree_switch
 
-function __git_branch_remote_woktrunk() {
+function __git_branch_remote_worktrunk() {
   local base=$(git branch --show-current)
   git branch --remotes --list --sort=-creatordate | cut -d '/' -f 2- | grep -v 'HEAD' | grep -v 'main' | fzf |
     xargs -I% wt switch --create % --base "$base"
